@@ -1,0 +1,10 @@
+[
+	{
+		"question": "Oletko tehnyt yrittäjän kehityskeskustelun työkalullamme aikaisemmin?",
+		"helperText": "Mikäli olet, vastaa kyllä, niin seuraa jatkokysymyksiä. Mikäli et ole, niin pääset aloittamaan kehityskeskustelun.",
+		"choices": [
+			"Kyllä", "Ei"
+		],
+		"ID": 1
+	}
+]
