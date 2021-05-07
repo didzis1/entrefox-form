@@ -1,25 +1,27 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Parts from './components/Parts'
 import Button from './components/Button'
-
 import Summary from './components/Summary'
+
+import { useDispatch } from 'react-redux'
+import { increment, decrement } from './reducers/pageCountReducer'
 
 
 const App = () => {
-
-	const [currentPage, setCurrentPage] = useState(1)
+	// const [currentPage, setCurrentPage] = useState(1)
 	//const [answers, setAnswers] = useState({})
+	const dispatch = useDispatch()
 
 
 	// Jos kysymykseen ID 1 on vastattu logiikka buttoneihi (skippaa partit)
 	const handleNextPage = () => {
 		console.log('works next')
-		setCurrentPage(currentPage + 1)
+		dispatch(increment())
 	}
 
 	const handlePreviousPage = () => {
 		console.log('works previous')
-		setCurrentPage(currentPage - 1)
+		dispatch(decrement())
 	}
 
 	const displaySummary = () => {
@@ -45,17 +47,15 @@ const App = () => {
 	return (
 		<div>
 			<form onSubmit={displaySummary}>
-				<Parts currentPage={currentPage} />
+				<Parts />
 			</form>
 			<Button
 				text='Edellinen'
 				handleVisibility={handlePreviousPage}
-				currentPage={currentPage}
 			/>
 			<Button
 				text='Seuraava'
 				handleVisibility={handleNextPage}
-				currentPage={currentPage}
 			/>
 		</div>
 	)
