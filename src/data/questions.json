@@ -200,27 +200,47 @@
 				"title": "Mieti arvioita, jotka teit äsken koskien omaa osaamista ja hyvinvointiasi. Mihin asiaan aiot panostaa tulevan 6 kk aikana? Valitse max 3 asiaa.",
 				"description": "",
 				"fields": [
-					"Tavoite 1.", "Tavoite 2.", "Tavoite 3."
+					{
+						"text": "Tavoite 1.",
+						"ID": 0
+					},
+					{
+						"text": "Tavoite 2.",
+						"ID": 1
+					},
+					{
+						"text": "Tavoite 3.",
+						"ID": 2
+					}
 				],
-				"type": "multiple-text",
-				"ID": 12
+				"type": "text",
+				"ID": [12, 13, 14]
 			},
 			{
 				"title": "Miksi valitsemasi asiat ovat tärkeitä?",
 				"description": "",
 				"fields": [
-					"Kohta 1. on tärkeä, koska ", 
-					"Kohta 2. on tärkeä, koska ", 
-					"Kohta 3. on tärkeä, koska "
+					{
+						"text": "Kohta 1. on tärkeä, koska ",
+						"ID": 0
+					},
+					{
+						"text": "Kohta 2. on tärkeä, koska ",
+						"ID": 1
+					},
+					{
+						"text": "Kohta 3. on tärkeä, koska ",
+						"ID": 2
+					}
 				],
-				"type": "multiple-text",
-				"ID": 13
+				"type": "text",
+				"ID": [15, 16, 17]
 			},
 			{
 				"title": "Anna itsellesi mojovat kehut tämän kehityskeskustelun tekemisestä",
 				"description": "",
 				"type": "text",
-				"ID": 14
+				"ID": 18
 			}	
 		]
 	}

@@ -4,9 +4,7 @@ import PropTypes from 'prop-types'
 const Radio = ({ question }) => {
 
 	return (
-		<div>
-			<h3>{question.title}</h3>
-			{ question.description && <small>{question.description}</small> }
+		<>
 			{
 				question.choices.map((choice) => (
 					<div key={choice.ID}>
@@ -15,7 +13,7 @@ const Radio = ({ question }) => {
 					</div>
 				))
 			}
-		</div>
+		</>
 	)
 }
 

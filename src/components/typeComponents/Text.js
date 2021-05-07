@@ -2,13 +2,24 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const Text = ({ question }) => {
-	// console.log(question)
+	if (question.fields) {
+		console.log(question.ID[0])
+		return (
+			<>
+				{question.fields.map((field) => (
+					<div key={field.ID}>
+						<label>{field.text}</label>
+						<input type="text" name={question.ID[field.ID]} />
+					</div>
+				))}
+			</>
+		)
+	}
+
 	return (
-		<>
-			<h3>{question.title}</h3>
-			{ question.description && <small>{question.description}</small> }
+		<div>
 			<input type="text" name={question.ID} />
-		</>
+		</div>
 	)
 }
 

@@ -6,8 +6,6 @@ import questionSets from '../data/questions.json'
 const Parts = ({ currentPage }) => {
 	console.log(currentPage)
 
-
-
 	return (
 		<div>
 			{questionSets.map((part) => (

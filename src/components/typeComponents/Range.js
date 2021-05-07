@@ -4,12 +4,9 @@ import PropTypes from 'prop-types'
 const Range = ({ question }) => {
 	//console.log(question)
 	return (
-		<>
-			<h3>{question.title}</h3>
-			{ question.description && <small>{question.description}</small> }
+		<div>
 			<input type='range' name={question.ID} min={question.choices.min} max={question.choices.max}/>
-
-		</>
+		</div>
 	)
 }
 

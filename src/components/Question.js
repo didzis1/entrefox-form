@@ -42,6 +42,8 @@ const Question = ({ questions }) => {
 			{
 				questions.map((question) => (
 					<div key={question.ID}>
+						<h3>{question.title}</h3>
+						{ question.description && <small>{question.description}</small> }
 						{typeComponent(question)}
 					</div>
 				))
