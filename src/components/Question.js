@@ -30,8 +30,6 @@ const Question = ({ questions }) => {
 			return <DateField
 				question={question}
 			/>
-		case 'multiple-text':
-			return 'hello'
 		default:
 			throw new Error('Type not found...')
 		}

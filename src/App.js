@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Parts from './components/Parts'
 import Button from './components/Button'
 
+import Summary from './components/Summary'
 
 
 const App = () => {
@@ -21,9 +22,29 @@ const App = () => {
 		setCurrentPage(currentPage - 1)
 	}
 
+	const displaySummary = () => {
+		console.log('Summary displayed')
+		return <Summary />
+	}
+
+	// const handleInputChange = (event) => {
+	// 	const inputField = {
+	// 		'id': event.target.name,
+	// 		'value': event.target.value
+	// 	}
+	// 	if (answers.find(answer => answer['id'] === inputField['id'])) {
+	// 		const newAnswer = answers.map((answer) => answer['id'] === inputField['id'] ? inputField : answer)
+	// 		setAnswers(newAnswer)
+	// 	} else {
+	// 		setAnswers(answers.concat(inputField))
+	// 	}
+	// }
+
+	// Fix label id's to point to corresponding input!
+	// Handle -> save (redux. react state) -> page flip
 	return (
 		<div>
-			<form>
+			<form onSubmit={displaySummary}>
 				<Parts currentPage={currentPage} />
 			</form>
 			<Button

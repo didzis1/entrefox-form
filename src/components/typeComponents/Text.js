@@ -3,13 +3,12 @@ import PropTypes from 'prop-types'
 
 const Text = ({ question }) => {
 	if (question.fields) {
-		console.log(question.ID[0])
 		return (
 			<>
 				{question.fields.map((field) => (
 					<div key={field.ID}>
 						<label>{field.text}</label>
-						<input type="text" name={question.ID[field.ID]} />
+						<input type="text" name={question.ID[field.ID]} className="text-field" />
 					</div>
 				))}
 			</>
@@ -18,7 +17,7 @@ const Text = ({ question }) => {
 
 	return (
 		<div>
-			<input type="text" name={question.ID} />
+			<input type="text" name={question.ID} className="text-box" />
 		</div>
 	)
 }
