@@ -3,8 +3,8 @@ import Question from './Question'
 import PropTypes from 'prop-types'
 import questionSets from '../data/questions.json'
 
-const Parts = ({ currentPage }) => {
-	console.log(currentPage)
+const Parts = () => {
+	// console.log(currentPage)
 
 	return (
 		<div>
