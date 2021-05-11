@@ -1,14 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { updateAnswers } from '../../reducers/answersReducer'
 
 const DateField = ({ question }) => {
 
 	const dispatch = useDispatch()
-	const dateAnswer = useSelector(state => state.answers[question.ID])
-	console.log(dateAnswer)
+	//const dateAnswer = useSelector(state => state.answers[question.ID])
+	// console.log(dateAnswer)
 	// console.log(question)
 	// Jos klikkaa "En tiedä tarkkaa päivämäärää", kalenterin täytyy tyhjentää arvot
 	return (
