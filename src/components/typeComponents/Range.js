@@ -15,7 +15,7 @@ const Range = ({ question }) => {
 				name={question.ID}
 				min={question.choices.min}
 				max={question.choices.max}
-				value={rangeValue === undefined ? 5 : rangeValue}
+				value={rangeValue ?? (question.choices.max / 2)}
 				onChange={(event) => dispatch(updateAnswers(question.ID, event.target.value))}
 			/>
 			<span>{rangeValue ?? ''}</span>
