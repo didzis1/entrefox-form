@@ -6,15 +6,11 @@ import { updateAnswers } from '../../reducers/answersReducer'
 const Text = ({ question }) => {
 	const dispatch = useDispatch()
 
-	const textValue = useSelector(state =>
-		state.answers.find(answer => answer.id === question.ID)?.value ?? '')
-	// const textValue = useSelector(state => state.answers[question.ID]) objektilla
+	// const textValue = useSelector(state =>
+	// 	state.answers.find(answer => answer.id === question.ID)?.value ?? '')
+	const textValue = useSelector(state => state.answers[question.ID])
 
-	const handleChange = (event) => {
-		dispatch(updateAnswers(event.target.name, event.target.value))
-		console.log(textValue)
-	}
-
+	console.log(textValue)
 	if (question.fields) {
 		return (
 			<>
@@ -22,10 +18,10 @@ const Text = ({ question }) => {
 					<div key={field.ID}>
 						<label>{field.text}</label>
 						<input
-							onChange={(event) => handleChange(event)}
 							type="text"
 							name={question.ID[field.ID]}
-							value={textValue}
+							value={textValue ?? ''}
+							onChange={(event) => dispatch(updateAnswers(event.target.name, event.target.value))}
 						/>
 					</div>
 				))}
@@ -36,9 +32,10 @@ const Text = ({ question }) => {
 	return (
 		<div>
 			<input
-				onChange={(event) => handleChange(event)}
-				type="text" name={question.ID}
-				value={textValue}
+				type="text"
+				name={question.ID}
+				value={textValue ?? ''}
+				onChange={(event) => dispatch(updateAnswers(event.target.name, event.target.value))}
 			/>
 		</div>
 	)
