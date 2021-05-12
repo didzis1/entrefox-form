@@ -8,7 +8,7 @@ const DateField = ({ question }) => {
 	const [checked, setChecked] = useState(false)
 	const dispatch = useDispatch()
 	const dateAnswer = useSelector(state => state.answers[question.ID])
-	console.log(dateAnswer)
+	// console.log(dateAnswer)
 
 	const handleCheckBox = () => {
 		setChecked(!checked)

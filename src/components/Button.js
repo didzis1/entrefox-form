@@ -1,10 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { useSelector } from 'react-redux'
 
-const Button = ({ text, handleVisibility }) => {
-	const currentPage = useSelector(state => state)
-	if (currentPage === 0 && text === 'Edellinen') {
+const Button = ({ text, handleVisibility, page }) => {
+	console.log(page)
+	if (page === 1 && text === 'Edellinen') {
 		return null
 	}
 
@@ -16,7 +15,7 @@ const Button = ({ text, handleVisibility }) => {
 Button.propTypes = {
 	text: PropTypes.string,
 	handleVisibility: PropTypes.func,
-	currentPage: PropTypes.number
+	page: PropTypes.number
 }
 
 export default Button

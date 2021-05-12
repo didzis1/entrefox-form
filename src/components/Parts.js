@@ -3,13 +3,13 @@ import Question from './Question'
 import PropTypes from 'prop-types'
 import questionSets from '../data/questions.json'
 
-const Parts = () => {
-	// console.log(currentPage)
 
+const Parts = ({ page }) => {
+	console.log(page)
 	return (
 		<div>
 			{questionSets.map((part) => (
-				<div key={part.ID} id={part.ID}>
+				<div style={{ display: page === part.ID ? '' : 'none' }}  key={part.ID} id={part.ID}>
 					<Question questions={part.questions} />
 				</div>
 			))}
@@ -18,7 +18,7 @@ const Parts = () => {
 }
 
 Parts.propTypes = {
-	currentPage: PropTypes.number
+	page: PropTypes.number
 }
 
 

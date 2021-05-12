@@ -3,25 +3,26 @@ import Parts from './components/Parts'
 import Button from './components/Button'
 import Summary from './components/Summary'
 
-import { useDispatch } from 'react-redux'
-import { increment, decrement } from './reducers/pageCountReducer'
+import { useDispatch, useSelector } from 'react-redux'
+import { increment, skipIncrement, decrement } from './reducers/pageCountReducer'
 
 
 const App = () => {
-	// const [currentPage, setCurrentPage] = useState(1)
-	//const [answers, setAnswers] = useState({})
 	const dispatch = useDispatch()
+	const currentPage = useSelector(state => state.currentPage)
+	const firstQuestion = useSelector(state => state.answers[1])
 
-
-	// Jos kysymykseen ID 1 on vastattu logiikka buttoneihi (skippaa partit)
 	const handleNextPage = () => {
 		console.log('works next')
-		dispatch(increment())
+		if (firstQuestion === 'Kyllä') {
+			return dispatch(skipIncrement())
+		}
+		return dispatch(increment())
 	}
 
 	const handlePreviousPage = () => {
 		console.log('works previous')
-		dispatch(decrement())
+		return dispatch(decrement())
 	}
 
 	const displaySummary = () => {
@@ -29,33 +30,22 @@ const App = () => {
 		return <Summary />
 	}
 
-	// const handleInputChange = (event) => {
-	// 	const inputField = {
-	// 		'id': event.target.name,
-	// 		'value': event.target.value
-	// 	}
-	// 	if (answers.find(answer => answer['id'] === inputField['id'])) {
-	// 		const newAnswer = answers.map((answer) => answer['id'] === inputField['id'] ? inputField : answer)
-	// 		setAnswers(newAnswer)
-	// 	} else {
-	// 		setAnswers(answers.concat(inputField))
-	// 	}
-	// }
-
-	// Fix label id's to point to corresponding input!
-	// Handle -> save (redux. react state) -> page flip
 	return (
 		<div>
 			<form onSubmit={displaySummary}>
-				<Parts />
+				<Parts
+					page={currentPage}
+				/>
 			</form>
 			<Button
 				text='Edellinen'
 				handleVisibility={handlePreviousPage}
+				page={currentPage}
 			/>
 			<Button
 				text='Seuraava'
 				handleVisibility={handleNextPage}
+				page={currentPage}
 			/>
 		</div>
 	)
