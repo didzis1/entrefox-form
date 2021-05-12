@@ -4,7 +4,7 @@ import Button from './components/Button'
 import Summary from './components/Summary'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { increment, skipIncrement, decrement } from './reducers/pageCountReducer'
+import { increment, skipIncrement, decrement, skipDecrement } from './reducers/pageCountReducer'
 
 
 const App = () => {
@@ -22,6 +22,9 @@ const App = () => {
 
 	const handlePreviousPage = () => {
 		console.log('works previous')
+		if (firstQuestion === 'Kyllä' && currentPage === 3) {
+			return dispatch(skipDecrement())
+		}
 		return dispatch(decrement())
 	}
 
