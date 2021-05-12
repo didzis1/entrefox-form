@@ -2,6 +2,7 @@ import React from 'react'
 import Parts from './components/Parts'
 import Button from './components/Button'
 import Summary from './components/Summary'
+import questionSets from './data/questions.json'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { increment, skipIncrement, decrement, skipDecrement } from './reducers/pageCountReducer'
@@ -28,28 +29,46 @@ const App = () => {
 		return dispatch(decrement())
 	}
 
+
 	const displaySummary = () => {
 		console.log('Summary displayed')
 		return <Summary />
+	}
+
+	const handleNextButton = () => {
+		if (questionSets.length === currentPage) {
+			return (
+				<Button
+					text='Olen valmis'
+					handlePagination={displaySummary}
+					page={currentPage}
+				/>
+			)
+		} else {
+			return (
+				<Button
+					text='Seuraava'
+					handlePagination={handleNextPage}
+					page={currentPage}
+				/>
+			)
+		}
 	}
 
 	return (
 		<div>
 			<form onSubmit={displaySummary}>
 				<Parts
+					questionSets={questionSets}
 					page={currentPage}
 				/>
 			</form>
 			<Button
 				text='Edellinen'
-				handleVisibility={handlePreviousPage}
+				handlePagination={handlePreviousPage}
 				page={currentPage}
 			/>
-			<Button
-				text='Seuraava'
-				handleVisibility={handleNextPage}
-				page={currentPage}
-			/>
+			{ handleNextButton() }
 		</div>
 	)
 }

@@ -1,11 +1,9 @@
 import React from 'react'
 import Question from './Question'
 import PropTypes from 'prop-types'
-import questionSets from '../data/questions.json'
 
 
-const Parts = ({ page }) => {
-	console.log(page)
+const Parts = ({ page, questionSets }) => {
 	return (
 		<div>
 			{questionSets.map((part) => (
@@ -18,7 +16,8 @@ const Parts = ({ page }) => {
 }
 
 Parts.propTypes = {
-	page: PropTypes.number
+	page: PropTypes.number,
+	questionSets: PropTypes.array
 }
 
 
