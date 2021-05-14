@@ -19,7 +19,7 @@ const Text = ({ question }) => {
 							name={question.ID[field.ID]}
 							value={textValue ?? ''}
 							onChange={(event) => dispatch(updateAnswers(event.target.name, event.target.value))}
-							className="rounded-md w-full"
+							className="rounded-md w-full focus:ring-indigo-"
 							rows="4"
 						></textarea>
 					</div>

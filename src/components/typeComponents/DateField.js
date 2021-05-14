@@ -29,7 +29,7 @@ const DateField = ({ question }) => {
 					type='checkbox'
 					name='Disable date field'
 					onChange={() => handleCheckBox()}
-					className="rounded border-gray-300"
+					className="rounded border-gray-400 text-indigo-500 focus:text-indigo-600 focus:ring-indigo-600"
 				/>
 				<label>En tiedä tarkkaa päivämäärää</label>
 			</div>
