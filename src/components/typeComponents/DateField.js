@@ -16,7 +16,7 @@ const DateField = ({ question }) => {
 	}
 
 	return (
-		<div>
+		<div className="p-2 sm:p-3 md:p-5">
 			<input
 				type='date'
 				name={question.ID}
@@ -24,13 +24,15 @@ const DateField = ({ question }) => {
 				disabled={checked}
 				onChange={(event) => dispatch(updateAnswers(question.ID, event.target.value))}
 			/>
-
-			<label>En tiedä tarkkaa päivämäärää</label>
-			<input
-				type='checkbox'
-				name='Remove date field'
-				onChange={() => handleCheckBox()}
-			/>
+			<div className="space-x-2 py-3 flex items-center">
+				<input
+					type='checkbox'
+					name='Disable date field'
+					onChange={() => handleCheckBox()}
+					className="rounded border-gray-300"
+				/>
+				<label>En tiedä tarkkaa päivämäärää</label>
+			</div>
 		</div>
 	)
 }

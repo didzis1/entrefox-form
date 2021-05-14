@@ -8,9 +8,9 @@ const Question = ({ questions }) => {
 		<>
 			{
 				questions.map((question) => (
-					<div key={question.ID}>
-						<h3>{question.title}</h3>
-						{ question.description && <small>{question.description}</small> }
+					<div key={question.ID} className="pb-3">
+						<h3 className="font-semibold">{question.title}</h3>
+						{ question.description && <small className="italic text-md">{question.description}</small> }
 						{typeComponent(question)}
 					</div>
 				))

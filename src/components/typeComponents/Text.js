@@ -13,14 +13,15 @@ const Text = ({ question }) => {
 			{question.fields.map((field) => {
 				const textValue = useSelector(state => state.answers[question.ID[field.ID]])
 				return (
-					<div key={field.ID}>
+					<div key={field.ID} className="p-2 sm:p-3 md:p-5">
 						{field.text && <label>{field.text}</label>}
-						<input
-							type="text"
+						<textarea
 							name={question.ID[field.ID]}
 							value={textValue ?? ''}
 							onChange={(event) => dispatch(updateAnswers(event.target.name, event.target.value))}
-						/>
+							className="rounded-md w-full"
+							rows="4"
+						></textarea>
 					</div>
 				)
 			})}

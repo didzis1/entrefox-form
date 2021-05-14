@@ -9,7 +9,7 @@ const Range = ({ question }) => {
 	//console.log(question)
 	const rangeValue = useSelector(state => state.answers[question.ID])
 	return (
-		<div>
+		<div className="p-2 sm:p-3 md:p-5">
 			<input
 				type='range'
 				name={question.ID}
@@ -17,8 +17,9 @@ const Range = ({ question }) => {
 				max={question.choices.max}
 				value={rangeValue ?? (question.choices.max / 2)}
 				onChange={(event) => dispatch(updateAnswers(question.ID, event.target.value))}
+				className="w-full bg-red-700 overflow-hidden"
 			/>
-			<span>{rangeValue ?? ''}</span>
+			{/* <span>{rangeValue ?? ''}</span> */}
 		</div>
 	)
 }

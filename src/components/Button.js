@@ -7,10 +7,21 @@ const Button = ({ text, handlePagination, page }) => {
 		return null
 	}
 
+	// Styling for buttons (last button is yellow)
+	let btn
+	if (text === 'Olen valmis') {
+		btn = 'bg-yellow-600 hover:bg-yellow-600 focus:ring-yellow-400 active:bg-yellow-600 text-white font-semibold py-2 px-4 rounded-lg tracking-wider shadow-md focus:outline-none focus:ring focus:ring-offset-2 focus:ring-opacity-70'
+	} else {
+		btn = 'bg-green-500 hover:bg-green-600 focus:ring-green-400 active:bg-green-600 text-white font-semibold py-2 px-4 rounded-lg tracking-wider shadow-md focus:outline-none focus:ring focus:ring-offset-2 focus:ring-opacity-70'
+	}
+
 	return (
-		<button onClick={handlePagination}>{text}</button>
+		<button
+			className={btn}
+			onClick={handlePagination}>{text}</button>
 	)
 }
+
 
 Button.propTypes = {
 	text: PropTypes.string,
