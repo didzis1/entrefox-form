@@ -1,19 +1,31 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import { useSelector, useDispatch } from 'react-redux'
+import { updateAnswers } from '../../reducers/answersReducer'
+
 const Radio = ({ question }) => {
 
+	const dispatch = useDispatch()
+	const radioValue = useSelector(state => state.answers[question.ID])
+
 	return (
-		<>
+		<div className="p-2 sm:p-3 md:p-5">
 			{
 				question.choices.map((choice) => (
-					<div key={choice.ID}>
+					<div key={choice.ID} className="py-1 space-x-2 flex items-center">
+						<input
+							type='radio'
+							name={question.ID}
+							value={radioValue}
+							onChange={(event) => dispatch(updateAnswers(event.target.name, choice.text))}
+							className="text-red-600 focus:text-red-700 focus:ring-red-600"
+						/>
 						<label>{choice.text}</label>
-						<input type='radio' name={question.ID}/>
 					</div>
 				))
 			}
-		</>
+		</div>
 	)
 }
 

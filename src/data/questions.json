@@ -32,14 +32,26 @@
 			{
 				"title": "Millaisia tavoitteita ja askelmerkkejä asetit itsellesi viime kehityskeskustelussa?",
 				"description": "",
+				"fields": [
+					{
+						"text": "",
+						"ID": 0
+					}
+				],
 				"type": "text",
-				"ID": 3
+				"ID": [3]
 			},
 			{
 				"title": "Miten tavoitteet ovat toteutuneet?",
 				"description": "",
+				"fields": [
+					{
+						"text": "",
+						"ID": 0
+					}
+				],
 				"type": "text",
-				"ID": 4
+				"ID": [4]
 			}
 		]
 	},
@@ -164,8 +176,14 @@
 			{
 				"title": "Millä tasolla työhön liittyvät tietosi ja taitosi ovat tällä hetkellä?",
 				"description": "",
+				"fields": [
+					{
+						"text": "",
+						"ID": 0
+					}
+				],
 				"type": "text",
-				"ID": 10
+				"ID": [10]
 			},
 			{
 				"title": "Miten käytät digitaalisia työkaluja työssäsi?",
@@ -235,13 +253,24 @@
 				],
 				"type": "text",
 				"ID": [15, 16, 17]
-			},
+			}
+		]
+	},
+	{
+		"ID": 5,
+		"questions": [
 			{
 				"title": "Anna itsellesi mojovat kehut tämän kehityskeskustelun tekemisestä",
 				"description": "",
+				"fields": [
+					{
+						"text": "",
+						"ID": 0
+					}
+				],
 				"type": "text",
-				"ID": 18
-			}	
+				"ID": [18]
+			}
 		]
 	}
 ]
