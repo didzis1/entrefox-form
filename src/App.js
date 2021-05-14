@@ -36,13 +36,25 @@ const App = () => {
 		return <Summary />
 	}
 
+	const handlePreviousButton = () => {
+		if (currentPage === 1) {
+			return null
+		} else {
+			return (
+				<Button
+					text='Edellinen'
+					handlePagination={handlePreviousPage}
+				/>
+			)
+		}
+	}
+
 	const handleNextButton = () => {
 		if (questionSets.length === currentPage) {
 			return (
 				<Button
 					text='Olen valmis'
 					handlePagination={displaySummary}
-					page={currentPage}
 				/>
 			)
 		} else {
@@ -50,18 +62,18 @@ const App = () => {
 				<Button
 					text='Seuraava'
 					handlePagination={handleNextPage}
-					page={currentPage}
 				/>
 			)
 		}
 	}
 
 	return (
-		<div className="pb-12">
-			<div className="p-5 bg-yellow-50 bg-opacity-90 border border-gray-200 mx-auto rounded-2xl shadow-2xl mt-10 max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl 2xl:max-w-4xl">
-				<h1 className="text-center text-3xl pt-6 pb-6 font-semibold tracking-wide uppercase">
+		<div className="pb-12 pt-12">
+			<div className="p-5 bg-yellow-50 bg-opacity-90 border border-gray-200 mx-auto rounded-2xl shadow-2xl max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl 2xl:max-w-4xl">
+				<h1 className="text-center text-gray-900 text-3xl pt-6 pb-6 font-semibold tracking-wide uppercase">
 					Yrittäjän kehityskeskustelu
 				</h1>
+				<hr />
 				<div className="pt-4">
 					<form onSubmit={displaySummary}>
 						<Parts
@@ -69,12 +81,8 @@ const App = () => {
 							page={currentPage}
 						/>
 					</form>
-					<div className="space-x-3">
-						<Button
-							text='Edellinen'
-							handlePagination={handlePreviousPage}
-							page={currentPage}
-						/>
+					<div className="space-x-3 text-right pr-2 md:text-left md:pl-4">
+						{ handlePreviousButton() }
 						{ handleNextButton() }
 					</div>
 				</div>

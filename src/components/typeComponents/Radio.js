@@ -19,7 +19,7 @@ const Radio = ({ question }) => {
 							name={question.ID}
 							value={radioValue}
 							onChange={(event) => dispatch(updateAnswers(event.target.name, choice.text))}
-							className="text-red-600 focus:text-red-700 focus:ring-red-600"
+							className="text-indigo-500 focus:text-indigo-600 focus:ring-indigo-600"
 						/>
 						<label>{choice.text}</label>
 					</div>
