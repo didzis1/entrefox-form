@@ -11,7 +11,7 @@
 						"ID": 1
 					},
 					{
-						"text": "Ei",
+						"text": "En",
 						"ID": 2
 					}
 				],
@@ -117,11 +117,48 @@
 			{
 				"title": "Oletetaan, että työkykysi on parhaimmillaan saanut 10 pistettä. Minkä pistemäärän antaisit nykyiselle työkyvyllesi? Valitse kokemustasi parhaiten kuvaava vaihtoehto.",
 				"description": "",
-				"choices": {
-						"min": 0,
-						"max": 10,
+				"choices": [
+					{
+						"value": 1,
 						"ID": 1
 					},
+					{
+						"value": 2,
+						"ID": 2
+					},
+					{
+						"value": 3,
+						"ID": 3
+					},
+					{
+						"value": 4,
+						"ID": 4
+					},
+					{
+						"value": 5,
+						"ID": 5
+					},
+					{
+						"value": 6,
+						"ID": 6
+					},
+					{
+						"value": 7,
+						"ID": 7
+					},
+					{
+						"value": 8,
+						"ID": 8
+					},
+					{
+						"value": 9,
+						"ID": 9
+					},
+					{
+						"value": 10,
+						"ID": 10
+					}
+				],
 				"type": "range",
 				"ID": 7
 			},

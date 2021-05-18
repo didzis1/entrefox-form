@@ -13,15 +13,17 @@ const Radio = ({ question }) => {
 		<div className="p-2 sm:p-3 md:p-5">
 			{
 				question.choices.map((choice) => (
-					<div key={choice.ID} className="py-1 space-x-2 flex items-center">
-						<input
-							type='radio'
-							name={question.ID}
-							value={radioValue}
-							onChange={(event) => dispatch(updateAnswers(event.target.name, choice.text))}
-							className="text-indigo-500 focus:text-indigo-600 focus:ring-indigo-600"
-						/>
-						<label>{choice.text}</label>
+					<div key={choice.ID} className="py-1">
+						<label className="cursor-pointer inline-flex items-center">
+							<input
+								type='radio'
+								name={question.ID}
+								value={radioValue}
+								onChange={(event) => dispatch(updateAnswers(event.target.name, choice.text))}
+								className="text-lime-500 focus:ring-lime-600 mr-2"
+							/>
+							{choice.text}
+						</label>
 					</div>
 				))
 			}

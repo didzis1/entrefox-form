@@ -1,10 +1,29 @@
 /* ./src/index.css */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-	h3 {
-		@apply text-xl
+	h1 {
+		@apply text-3xl font-semibold sm:text-3xl
+	}
+
+	p {
+		@apply text-lg sm:text-xl text-grey-900
+	}
+
+	i {
+		@apply text-base text-grey-800
+	}
+
+	label {
+		@apply text-base md:text-lg
+	}
+}
+
+@layer utilities {
+	.slider {
+		@apply w-6 h-6 sm:w-8 sm:h-8 text-lime-400 focus:ring-lime-500
 	}
 }

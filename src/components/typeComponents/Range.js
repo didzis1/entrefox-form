@@ -1,26 +1,28 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { updateAnswers } from '../../reducers/answersReducer'
 
 const Range = ({ question }) => {
 	const dispatch = useDispatch()
 	//console.log(question)
-	const rangeValue = useSelector(state => state.answers[question.ID])
 	return (
-		<div className="p-2 sm:p-3 md:p-5 text-center">
-			<input
-				type='range'
-				name={question.ID}
-				min={question.choices.min}
-				max={question.choices.max}
-				value={rangeValue ?? (question.choices.max / 2)}
-				onChange={(event) => dispatch(updateAnswers(question.ID, event.target.value))}
-				className="w-full"
-			/>
-			{/* <span>{rangeValue ?? ''}</span> */}
-			<span className="">{rangeValue ?? (question.choices.max / 2)}</span>
+		<div className="p-2 my-5 sm:p-3 md:p-5 flex flex-row justify-evenly content-center">
+			{
+				question.choices.map((choice) => (
+					<div key={choice.ID} className="flex flex-col">
+						<input
+							type='radio'
+							name={question.ID}
+							value={choice.value}
+							onChange={(event) => dispatch(updateAnswers(question.ID, event.target.value))}
+							className="slider"
+						/>
+						<label className="place-self-center" htmlFor={choice.ID}>{choice.value}</label>
+					</div>
+				))
+			}
 		</div>
 	)
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Parts from './components/Parts'
 import Button from './components/Button'
 import Summary from './components/Summary'
@@ -13,9 +13,17 @@ const App = () => {
 	const currentPage = useSelector(state => state.currentPage)
 	const allAnswers = useSelector(state => state.answers)
 
+	useEffect(() => {
+		window.scrollTo({
+			top: 0,
+			left: 0,
+			behavior: 'smooth'
+		})
+	}, [ currentPage ])
+
 	const handleNextPage = () => {
 		// console.log('works next')
-		if (allAnswers[1] === 'Ei' && currentPage === 1) {
+		if (allAnswers[1] === 'En' && currentPage === 1) {
 			return dispatch(skipIncrement())
 		}
 		return dispatch(increment())
@@ -23,7 +31,7 @@ const App = () => {
 
 	const handlePreviousPage = () => {
 		// console.log('works previous')
-		if (allAnswers[1] === 'Ei' && currentPage === 3) {
+		if (allAnswers[1] === 'En' && currentPage === 3) {
 			return dispatch(skipDecrement())
 		}
 		return dispatch(decrement())
@@ -69,11 +77,11 @@ const App = () => {
 
 	return (
 		<div className="pb-12 pt-12">
-			<div className="p-5 bg-yellow-50 bg-opacity-90 border border-gray-200 mx-auto rounded-2xl shadow-2xl max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl 2xl:max-w-4xl">
-				<h1 className="text-center text-gray-900 text-3xl pt-6 pb-6 font-semibold tracking-wide uppercase">
+			<div className="px-2 sm:px-6 pb-4 bg-white bg-opacity-95 mx-auto rounded-2xl shadow-2xl max-w-md sm:max-w-xl md:max-w-xl lg:max-w-2xl 2xl:max-w-4xl">
+				<h1 className="text-center py-6 text-grey-900 tracking-wide">
 					Yrittäjän kehityskeskustelu
 				</h1>
-				<hr />
+				<hr className="opacity-20" />
 				<div className="pt-4">
 					<form onSubmit={displaySummary}>
 						<Parts
@@ -81,7 +89,7 @@ const App = () => {
 							page={currentPage}
 						/>
 					</form>
-					<div className="space-x-3 text-right pr-2 md:text-left md:pl-4">
+					<div className="space-x-3 text-right md:text-left">
 						{ handlePreviousButton() }
 						{ handleNextButton() }
 					</div>
