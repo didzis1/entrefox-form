@@ -3,6 +3,9 @@ import PropTypes from 'prop-types'
 import { useSelector, useDispatch } from 'react-redux'
 import { updateAnswers } from '../../reducers/answersReducer'
 
+import TextField from '@material-ui/core/TextField'
+import Box from '@material-ui/core/Box'
+
 const Text = ({ question }) => {
 	const dispatch = useDispatch()
 	// const textValue = useSelector(state =>
@@ -13,16 +16,18 @@ const Text = ({ question }) => {
 			{question.fields.map((field) => {
 				const textValue = useSelector(state => state.answers[question.ID[field.ID]])
 				return (
-					<div key={field.ID} className="p-2 sm:p-3 md:p-5">
-						{field.text && <label>{field.text}</label>}
-						<textarea
-							name={question.ID[field.ID]}
+					<Box key={field.ID} my={2}>
+						<TextField
+							name={question.ID[field.ID].toString()}
 							value={textValue ?? ''}
 							onChange={(event) => dispatch(updateAnswers(event.target.name, event.target.value))}
-							className="rounded w-full focus:ring-lime-400 focus:ring-4 focus:ring-opacity-30"
+							multiline
 							rows="4"
-						></textarea>
-					</div>
+							variant="outlined"
+							fullWidth
+							label={field.text && field.text}
+						/>
+					</Box>
 				)
 			})}
 		</>

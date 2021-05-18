@@ -1,17 +1,34 @@
 import React, { useEffect } from 'react'
 import Parts from './components/Parts'
-import Button from './components/Button'
+import ButtonHandler from './components/ButtonHandler'
 import Summary from './components/Summary'
+import ProgressBar from './components/ProgressBar'
 import questionSets from './data/questions.json'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { increment, skipIncrement, decrement, skipDecrement } from './reducers/pageCountReducer'
 
+import Typography from '@material-ui/core/Typography'
+import Container from '@material-ui/core/Container'
+import Box from '@material-ui/core/Box'
+
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles'
+import { lime, yellow } from '@material-ui/core/colors'
+import useStyles from './styles'
+
+const theme = createMuiTheme({
+	palette: {
+		primary: lime,
+		secondary: yellow,
+		lightLime: lime[50]
+	}
+})
 
 const App = () => {
 	const dispatch = useDispatch()
 	const currentPage = useSelector(state => state.currentPage)
 	const allAnswers = useSelector(state => state.answers)
+	const classes = useStyles()
 
 	useEffect(() => {
 		window.scrollTo({
@@ -49,7 +66,7 @@ const App = () => {
 			return null
 		} else {
 			return (
-				<Button
+				<ButtonHandler
 					text='Edellinen'
 					handlePagination={handlePreviousPage}
 				/>
@@ -60,14 +77,14 @@ const App = () => {
 	const handleNextButton = () => {
 		if (questionSets.length === currentPage) {
 			return (
-				<Button
+				<ButtonHandler
 					text='Olen valmis'
 					handlePagination={displaySummary}
 				/>
 			)
 		} else {
 			return (
-				<Button
+				<ButtonHandler
 					text='Seuraava'
 					handlePagination={handleNextPage}
 				/>
@@ -76,26 +93,41 @@ const App = () => {
 	}
 
 	return (
-		<div className="pb-12 pt-12">
-			<div className="px-2 sm:px-6 pb-4 bg-white bg-opacity-95 mx-auto rounded-2xl shadow-2xl max-w-md sm:max-w-xl md:max-w-xl lg:max-w-2xl 2xl:max-w-4xl">
-				<h1 className="text-center py-6 text-grey-900 tracking-wide">
+		<ThemeProvider theme={theme}>
+			<Container
+				className={classes.survey}
+			>
+				<Box textAlign="center">
+					<Typography
+						variant="h4"
+						component="h1"
+						gutterBottom
+					>
 					Yrittäjän kehityskeskustelu
-				</h1>
-				<hr className="opacity-20" />
-				<div className="pt-4">
+					</Typography>
+				</Box>
+				<hr />
+				<Box pt={2} px={2}>
 					<form onSubmit={displaySummary}>
 						<Parts
 							questionSets={questionSets}
 							page={currentPage}
 						/>
 					</form>
-					<div className="space-x-3 text-right md:text-left">
-						{ handlePreviousButton() }
-						{ handleNextButton() }
-					</div>
-				</div>
-			</div>
-		</div>
+				</Box>
+				<Box display='inline'>
+					{ handlePreviousButton() }
+				</Box>
+				<Box mx={2} display='inline'>
+					{ handleNextButton() }
+				</Box>
+				<Box m='auto'>
+					<ProgressBar
+						currentPage={currentPage}
+					/>
+				</Box>
+			</Container>
+		</ThemeProvider>
 	)
 }
 

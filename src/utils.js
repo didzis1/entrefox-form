@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Radio from './components/typeComponents/Radio'
+import RadioButton from './components/typeComponents/RadioButton'
 import Range from './components/typeComponents/Range'
 import Text from './components/typeComponents/Text'
 import DateField from './components/typeComponents/DateField'
@@ -8,7 +8,7 @@ import DateField from './components/typeComponents/DateField'
 const typeComponent = (question) => {
 	switch (question.type) {
 	case 'radio':
-		return <Radio
+		return <RadioButton
 			question={question}
 		/>
 	case 'range':

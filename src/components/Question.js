@@ -2,17 +2,28 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import typeComponent from '../utils'
 
+import Typography from '@material-ui/core/Typography'
+import Box from '@material-ui/core/Box'
+
 const Question = ({ questions }) => {
 
 	return (
 		<>
 			{
 				questions.map((question) => (
-					<div key={question.ID} className="pb-3">
-						<p className="font-semibold">{question.title}</p>
-						{ question.description && <i>{question.description}</i> }
+					<Box key={question.ID} my={4} >
+						<Typography variant="h5">
+							{question.title}
+						</Typography>
+						{ question.description && (
+							<Box fontStyle='italic'>
+								<Typography variant='body2'>
+									{question.description}
+								</Typography>
+							</Box>
+						) }
 						{typeComponent(question)}
-					</div>
+					</Box>
 				))
 			}
 		</>
