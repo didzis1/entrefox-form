@@ -1,11 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { useSelector, useDispatch } from 'react-redux'
 
 import Slider from '@material-ui/core/Slider'
 import Box from '@material-ui/core/Box'
-
 import { withStyles } from '@material-ui/core/styles'
-import { useSelector } from 'react-redux'
+
+import { getAnswerByID } from '../../utils'
+import { updateAnswers } from '../../reducers/answersReducer'
 
 const CustomSlider = withStyles({
 	root: {
@@ -38,26 +40,25 @@ const CustomSlider = withStyles({
 	},
 })(Slider)
 
-const Range = ({ question, inputValidation }) => {
+const Range = ({ question }) => {
 
-	const page = useSelector(state => state.answers.find(page => page.page === question.page))
-
-	const handleChange = (event, newValue) => {
-		inputValidation(question.ID, newValue)
-	}
+	const dispatch = useDispatch()
+	const answers = useSelector(state => state.answers)
+	const currentPage = useSelector(state => state.currentPage)
 
 	return (
 		<Box my={4}>
 			<CustomSlider
 				aria-labelledby="discrete-slider"
 				valueLabelDisplay="auto"
-				value={(page ? page.answers[question.ID] : undefined) ?? (question.choices.max / 2)}
+				value={getAnswerByID(answers, question.page, question.ID) ?? (question.choices.max / 2)}
 				name={question.ID.toString()}
 				marks={question.marks}
 				min={question.choices.min}
 				max={question.choices.max}
 				step={question.step}
-				onChange={handleChange}
+				// 'event' required!
+				onChange={(event, newValue) => dispatch(updateAnswers(currentPage, question.ID, newValue))}
 				color='primary'
 			/>
 		</Box>
@@ -65,8 +66,7 @@ const Range = ({ question, inputValidation }) => {
 }
 
 Range.propTypes = {
-	question: PropTypes.object,
-	inputValidation: PropTypes.func
+	question: PropTypes.object
 }
 
 export default Range

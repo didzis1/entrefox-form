@@ -1,26 +1,28 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
 import TextField from '@material-ui/core/TextField'
 import Box from '@material-ui/core/Box'
 
-const Text = ({ question, inputValidation }) => {
+import { updateAnswers } from '../../reducers/answersReducer'
+import { getAnswerByID } from '../../utils'
 
-	// const textValue = useSelector(state =>
-	// 	state.answers.find(answer => answer.id === question.ID)?.value ?? '')
-	const page = useSelector(state => state.answers.find(page => page.page === question.page))
+const Text = ({ question }) => {
+
+	const dispatch = useDispatch()
+	const answers = useSelector(state => state.answers)
+	const currentPage = useSelector(state => state.currentPage)
 
 	return (
 		<>
 			{question.fields.map((field) => {
-				const textValue = page ? page.answers[question.ID[field.ID]] : ''
 				return (
 					<Box key={field.ID} my={2}>
 						<TextField
 							name={question.ID[field.ID].toString()}
-							value={textValue ?? ''}
-							onChange={(event) => inputValidation(event.target.name, event.target.value)}
+							value={getAnswerByID(answers, question.page, question.ID[field.ID]) ?? ''}
+							onChange={(event) => dispatch(updateAnswers(currentPage, event.target.name, event.target.value))}
 							multiline
 							rows="4"
 							variant="outlined"
@@ -40,8 +42,7 @@ const Text = ({ question, inputValidation }) => {
 }
 
 Text.propTypes = {
-	question: PropTypes.object,
-	inputValidation: PropTypes.func
+	question: PropTypes.object
 }
 
 export default Text

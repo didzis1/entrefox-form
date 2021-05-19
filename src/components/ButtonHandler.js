@@ -1,11 +1,29 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { useSelector } from 'react-redux'
 
 import Button from '@material-ui/core/Button'
 import useStyles from '../styles'
 
-const ButtonHandler = ({ text, handlePagination, validated }) => {
+const ButtonHandler = ({ text, handlePagination, questionSets }) => {
 	const styles = useStyles()
+
+	const answers = useSelector(state => state.answers)
+	const currentPage = useSelector(state => state.currentPage)
+
+	// Validation logic for input, if questionSets isn't defined ('Edellinen' button), returns false
+	const validated = () => {
+
+		if (!questionSets) return false
+
+		const questionAmount = questionSets.find(page => page.ID === currentPage).questions.length
+		const answerAmount = answers.some(page => page.id === currentPage)
+			? answers.find(page => page.id === currentPage).answers.length
+			: 0
+
+		return questionAmount !== answerAmount
+
+	}
 
 	return (
 		<Button
@@ -13,7 +31,7 @@ const ButtonHandler = ({ text, handlePagination, validated }) => {
 			variant="contained"
 			color="primary"
 			className={styles.button}
-			disabled={validated}
+			disabled={validated()}
 		>
 			{text}
 		</Button>
@@ -24,7 +42,7 @@ const ButtonHandler = ({ text, handlePagination, validated }) => {
 ButtonHandler.propTypes = {
 	text: PropTypes.string,
 	handlePagination: PropTypes.func,
-	validated: PropTypes.bool
+	questionSets: PropTypes.array
 }
 
 export default ButtonHandler

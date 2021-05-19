@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { useSelector } from 'react-redux'
 
 import useStyles from '../styles'
 import Box from '@material-ui/core/Box'
@@ -23,13 +24,12 @@ const BorderLinearProgress = withStyles(() => ({
 }))(LinearProgress)
 
 
-const ProgressBar = ({ currentPage }) => {
+const ProgressBar = () => {
 
 	const styles = useStyles()
+	const currentPage = useSelector(state => state.currentPage)
 	const progress = currentPage * 20
 	// console.log(progress)
-
-
 
 	return (
 		<Box mt={2} className={styles.progress}>

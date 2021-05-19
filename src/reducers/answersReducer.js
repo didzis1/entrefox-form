@@ -1,31 +1,51 @@
 const reducer = (state = [], action) => {
-	// console.log(action.data)
-	// console.log(state)
 	switch (action.type) {
 	case 'UPDATE':
 
-		if (state.some(page => page.page === action.page)) {
+		// Check if page exists in the state
+		if (state.some(page => page.id === action.page)) {
 
+			// Loop through the state items updating the desired page if its ID == action.page
 			return state.map(page => {
-				if (page.page === action.page) {
+				if (page.id === action.page) {
 
-					return {
-						...page,
-						answers: page.answers.map(answer => {
-							if (answer.id === action.data.id){
-								return {
-									...answer,
-									id:action.data.id, value:action.data.value
+					// Check if answer exists in the [state -> page -> answers]
+					if (page.answers.some(answer => answer.id === action.data.id)) {
+
+						// If value is null, remove it from state
+						if (action.data.value === undefined || action.data.value === '')
+							return { ...page, answers: page.answers.filter(answer => (answer.id !== action.data.id)) }
+
+						// Answer exists and gets updated to new value
+						return {
+							...page,
+							answers: page.answers.map(answer => {
+								if (answer.id === action.data.id){
+
+									return {
+										...answer,
+										id:action.data.id,
+										value:action.data.value
+									}
 								}
-							}
-						})
+								return answer
+							})
+						}
 					}
+
+					// Answer doesnt exist in the [state -> page -> answers], so it gets added
+					return { ...page, answers: page.answers.concat({
+						id:action.data.id,
+						value:action.data.value
+					}) }
 				}
 				return page
 			})
 		}
+
+		// Page doesn't exist in the state so it is added along with the new answer value
 		return state.concat({
-			page: action.page,
+			id: action.page,
 			answers: [{ id:action.data.id, value:action.data.value }]
 		})
 
@@ -37,8 +57,6 @@ const reducer = (state = [], action) => {
 }
 
 export const updateAnswers = (page, id, value) => {
-	// console.log(typeof id, id)
-	// console.log(typeof value, value)
 	return {
 		type: 'UPDATE',
 		page: parseInt(page),

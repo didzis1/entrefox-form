@@ -5,27 +5,36 @@ import Range from './components/typeComponents/Range'
 import Text from './components/typeComponents/Text'
 import DateField from './components/typeComponents/DateField'
 
-const typeComponent = (question, inputValidation) => {
+// Makes getting answer value a bit more effortless, prevents repetition
+export const getAnswerByID = (answers, questionPage, questionID) => {
+
+	const pageData = answers.find((page) => page.id === questionPage)
+	if (!pageData) return undefined
+
+	const answerData = pageData.answers.find((answer) => answer.id === questionID)
+	if (!answerData) return undefined
+
+	return answerData.value
+
+}
+
+const typeComponent = (question) => {
 	switch (question.type) {
 	case 'radio':
 		return <RadioButton
 			question={question}
-			inputValidation={inputValidation}
 		/>
 	case 'range':
 		return <Range
 			question={question}
-			inputValidation={inputValidation}
 		/>
 	case 'text':
 		return <Text
 			question={question}
-			inputValidation={inputValidation}
 		/>
 	case 'date':
 		return <DateField
 			question={question}
-			inputValidation={inputValidation}
 		/>
 	default:
 		throw new Error('Type not found...')

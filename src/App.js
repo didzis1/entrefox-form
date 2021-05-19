@@ -1,10 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import Parts from './components/Parts'
-import ButtonHandler from './components/ButtonHandler'
-import Summary from './components/Summary'
-import ProgressBar from './components/ProgressBar'
-import questionSets from './data/questions.json'
-
 import { useDispatch, useSelector } from 'react-redux'
 import { increment, skipIncrement, decrement, skipDecrement } from './reducers/pageCountReducer'
 
@@ -14,9 +8,15 @@ import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
 
 import useStyles from './styles'
-
+import Parts from './components/Parts'
+import ButtonHandler from './components/ButtonHandler'
+import Summary from './components/Summary'
+import ProgressBar from './components/ProgressBar'
+import questionSets from './data/questions.json'
+import { getAnswerByID } from './utils'
 
 const App = () => {
+
 	// React state
 	const [formSubmitted, setFormSubmitted] = useState(false)
 
@@ -25,8 +25,7 @@ const App = () => {
 
 	// Redux store state
 	const currentPage = useSelector(state => state.currentPage)
-	const allAnswers = useSelector(state => state.answers)
-	const validation = useSelector(state => state.validation)
+	const answers = useSelector(state => state.answers)
 
 	useEffect(() => {
 		window.scrollTo({
@@ -37,16 +36,16 @@ const App = () => {
 	}, [ currentPage ])
 
 	const handleNextPage = () => {
-		// console.log('works next')
-		if (allAnswers[1] === 'En' && currentPage === 1) {
+		// Gets the first question of the first page (Have you done this survey before)
+		if (getAnswerByID(answers, 1, 1) === 'En' && currentPage === 1) {
 			return dispatch(skipIncrement())
 		}
 		return dispatch(increment())
 	}
 
 	const handlePreviousPage = () => {
-		// console.log('works previous')
-		if (allAnswers[1] === 'En' && currentPage === 3) {
+		// Gets the first question of the first page (Have you done this survey before)
+		if (getAnswerByID(answers, 1, 1) === 'En' && currentPage === 3) {
 			return dispatch(skipDecrement())
 		}
 		return dispatch(decrement())
@@ -57,7 +56,7 @@ const App = () => {
 		console.log('Summary displayed')
 		setFormSubmitted(true)
 		console.log(formSubmitted)
-		console.log(allAnswers)
+		console.log(answers)
 		return <Summary />
 	}
 
@@ -80,8 +79,7 @@ const App = () => {
 				<ButtonHandler
 					text='Olen valmis'
 					handlePagination={displaySummary}
-					page={currentPage}
-					validated={validation[currentPage] ?? true}
+					questionSets={questionSets}
 				/>
 			)
 		} else {
@@ -89,8 +87,7 @@ const App = () => {
 				<ButtonHandler
 					text='Seuraava'
 					handlePagination={handleNextPage}
-					page={currentPage}
-					validated={validation[currentPage] ?? true}
+					questionSets={questionSets}
 				/>
 			)
 		}
@@ -113,7 +110,6 @@ const App = () => {
 				<form onSubmit={displaySummary}>
 					<Parts
 						questionSets={questionSets}
-						page={currentPage}
 					/>
 				</form>
 			</Box>
@@ -132,9 +128,7 @@ const App = () => {
 				</Grid>
 			</Grid>
 			<Box m='auto'>
-				<ProgressBar
-					currentPage={currentPage}
-				/>
+				<ProgressBar/>
 			</Box>
 		</Container>
 	)

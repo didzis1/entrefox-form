@@ -1,27 +1,29 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
+import { useSelector, useDispatch } from 'react-redux'
 
 import DateFnsUtils from '@date-io/date-fns'
 import {
 	MuiPickersUtilsProvider,
 	KeyboardDatePicker
 } from '@material-ui/pickers'
-
 import Box from '@material-ui/core/Box'
 import Checkbox from '@material-ui/core/Checkbox'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 
-import { useSelector } from 'react-redux'
+import { getAnswerByID } from '../../utils'
+import { updateAnswers } from '../../reducers/answersReducer'
 
-const DateField = ({ question, inputValidation }) => {
+const DateField = ({ question }) => {
 
 	const [checked, setChecked] = useState(false)
-	const page = useSelector(state => state.answers.find(page => page.page === question.page))
-	// console.log(dateAnswer)
+	const dispatch = useDispatch()
+	const answers = useSelector(state => state.answers)
+	const currentPage = useSelector(state => state.currentPage)
 
 	const handleCheckBox = () => {
 		setChecked(!checked)
-		inputValidation(question.ID, null)
+		dispatch(updateAnswers(currentPage, question.ID, !checked ? null : undefined))
 	}
 
 	return (
@@ -33,8 +35,8 @@ const DateField = ({ question, inputValidation }) => {
 					inputVariant="outlined"
 					disabled={checked}
 					name={question.ID.toString()}
-					value={page ? page.answers[question.ID] : null}
-					onChange={(event) => inputValidation(question.ID, event)}
+					value={getAnswerByID(answers, question.page, question.ID) ?? null}
+					onChange={(event) => dispatch(updateAnswers(currentPage, question.ID, event))}
 				/>
 			</MuiPickersUtilsProvider>
 
@@ -59,8 +61,7 @@ const DateField = ({ question, inputValidation }) => {
 }
 
 DateField.propTypes = {
-	question: PropTypes.object,
-	inputValidation: PropTypes.func
+	question: PropTypes.object
 }
 
 export default DateField

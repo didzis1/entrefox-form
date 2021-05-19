@@ -1,15 +1,21 @@
 import React from 'react'
 import Question from './Question'
 import PropTypes from 'prop-types'
+import { useSelector } from 'react-redux'
 
 
-const Parts = ({ page, questionSets }) => {
+const Parts = ({ questionSets }) => {
+
+	const currentPage = useSelector(state => state.currentPage)
 
 	return (
 		<div>
-			{questionSets.map((part, index) => (
-				<div style={{ display: page === part.ID ? '' : 'none' }}  key={part.ID} id={part.ID}>
-					<Question questions={part.questions} index={index+1} />
+			{questionSets.map((part) => (
+				<div style={{ display: currentPage === part.ID ? '' : 'none' }}  key={part.ID} id={part.ID}>
+
+					{/*part -> helps defining the page that the question is on*/}
+					<Question questions={part.questions} page={part.ID} />
+
 				</div>
 			))}
 		</div>
@@ -17,7 +23,6 @@ const Parts = ({ page, questionSets }) => {
 }
 
 Parts.propTypes = {
-	page: PropTypes.number,
 	questionSets: PropTypes.array
 }
 
