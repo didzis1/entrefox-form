@@ -3,23 +3,23 @@ const reducer = (state = [], action) => {
 	case 'UPDATE':
 
 		// Check if page exists in the state
-		if (state.some(page => page.id === action.page)) {
+		if (state.some(answerPage => answerPage.id === action.page)) {
 
 			// Loop through the state items updating the desired page if its ID == action.page
-			return state.map(page => {
-				if (page.id === action.page) {
+			return state.map(answerPage => {
+				if (answerPage.id === action.page) {
 
 					// Check if answer exists in the [state -> page -> answers]
-					if (page.answers.some(answer => answer.id === action.data.id)) {
+					if (answerPage.answers.some(answer => answer.id === action.data.id)) {
 
 						// If value is null, remove it from state
 						if (action.data.value === undefined || action.data.value === '')
-							return { ...page, answers: page.answers.filter(answer => (answer.id !== action.data.id)) }
+							return { ...answerPage, answers: answerPage.answers.filter(answer => (answer.id !== action.data.id)) }
 
 						// Answer exists and gets updated to new value
 						return {
-							...page,
-							answers: page.answers.map(answer => {
+							...answerPage,
+							answers: answerPage.answers.map(answer => {
 								if (answer.id === action.data.id){
 
 									return {
@@ -34,12 +34,12 @@ const reducer = (state = [], action) => {
 					}
 
 					// Answer doesnt exist in the [state -> page -> answers], so it gets added
-					return { ...page, answers: page.answers.concat({
+					return { ...answerPage, answers: answerPage.answers.concat({
 						id:action.data.id,
 						value:action.data.value
 					}) }
 				}
-				return page
+				return answerPage
 			})
 		}
 
