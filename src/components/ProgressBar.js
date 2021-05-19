@@ -1,31 +1,41 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
 import useStyles from '../styles'
 import Box from '@material-ui/core/Box'
+import LinearProgress from '@material-ui/core/LinearProgress'
+import { withStyles } from '@material-ui/core/styles'
+
+const BorderLinearProgress = withStyles(() => ({
+	root: {
+		height: 15,
+		borderRadius: 10,
+		boxShadow: '0 3px 3px -5px #93c78f, 0 2px 5px #6ba367'
+	},
+	colorPrimary: {
+		backgroundColor: '#f5eeed'
+	},
+	bar: {
+		borderRadius: 10,
+		backgroundColor: 'lime'
+	}
+}))(LinearProgress)
+
 
 const ProgressBar = ({ currentPage }) => {
-	const [style, setStyle] = useState({})
 
 	const styles = useStyles()
-	const progress = currentPage * 15
+	const progress = currentPage * 20
 	console.log(progress)
 
-	setTimeout(() => {
-		const newStyle = {
-			opacity: 1,
-			width: `${progress}%`
-		}
-
-		setStyle(newStyle)
-	}, 200)
 
 
 	return (
 		<Box mt={2} className={styles.progress}>
-			<Box className={styles.progressDone} style={style}>
-				{progress}%
-			</Box>
+			<BorderLinearProgress
+				variant='determinate'
+				value={progress}
+			></BorderLinearProgress>
 		</Box>
 	)
 }

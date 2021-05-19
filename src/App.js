@@ -11,18 +11,20 @@ import { increment, skipIncrement, decrement, skipDecrement } from './reducers/p
 import Typography from '@material-ui/core/Typography'
 import Container from '@material-ui/core/Container'
 import Box from '@material-ui/core/Box'
+import Grid from '@material-ui/core/Grid'
 
-import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles'
-import { lime, yellow } from '@material-ui/core/colors'
+import { ThemeProvider, createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles'
 import useStyles from './styles'
+import { yellow, lime } from '@material-ui/core/colors'
 
-const theme = createMuiTheme({
+let theme = createMuiTheme({
 	palette: {
 		primary: lime,
-		secondary: yellow,
-		lightLime: lime[50]
+		secondary: yellow
 	}
 })
+
+theme = responsiveFontSizes(theme)
 
 const App = () => {
 	const dispatch = useDispatch()
@@ -94,20 +96,16 @@ const App = () => {
 
 	return (
 		<ThemeProvider theme={theme}>
-			<Container
-				className={classes.survey}
-			>
-				<Box textAlign="center">
-					<Typography
-						variant="h4"
-						component="h1"
-						gutterBottom
-					>
-					Yrittäjän kehityskeskustelu
-					</Typography>
-				</Box>
-				<hr />
-				<Box pt={2} px={2}>
+			<Container className={classes.survey} maxWidth='md'>
+				<Typography
+					variant='h4'
+					component='h1'
+					align='center'
+					gutterBottom
+				>
+				Yrittäjän kehityskeskustelu
+				</Typography>
+				<Box pt={2} pb={4} px={3} className={classes.form}>
 					<form onSubmit={displaySummary}>
 						<Parts
 							questionSets={questionSets}
@@ -115,12 +113,20 @@ const App = () => {
 						/>
 					</form>
 				</Box>
-				<Box display='inline'>
-					{ handlePreviousButton() }
-				</Box>
-				<Box mx={2} display='inline'>
-					{ handleNextButton() }
-				</Box>
+
+				{/* Buttons in a grid */}
+				<Grid
+					container
+					direction='row'
+					justify='space-between'
+				>
+					<Grid item>
+						{ handlePreviousButton() }
+					</Grid>
+					<Grid item>
+						{ handleNextButton() }
+					</Grid>
+				</Grid>
 				<Box m='auto'>
 					<ProgressBar
 						currentPage={currentPage}

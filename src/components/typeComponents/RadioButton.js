@@ -30,6 +30,7 @@ const RadioButton = ({ question }) => {
 								}
 								label={choice.text}
 							/>
+							<hr style={{ opacity: 0.25 }} />
 						</Box>
 					))
 				}

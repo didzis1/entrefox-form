@@ -25,12 +25,6 @@ const DateField = ({ question }) => {
 
 	return (
 		<Box my={2} >
-			{/* <input
-				type='date'
-				name={question.ID}
-				value={dateAnswer ?? ''}
-				disabled={checked}
-			/> */}
 			<MuiPickersUtilsProvider utils={DateFnsUtils}>
 				<KeyboardDatePicker
 					format="dd/MM/yyyy"
@@ -53,6 +47,7 @@ const DateField = ({ question }) => {
 							inputProps={{
 								'aria-label': 'datefield disabler'
 							}}
+							color='primary'
 						/>
 					}
 					label="En tiedä tarkkaa päivämäärää"

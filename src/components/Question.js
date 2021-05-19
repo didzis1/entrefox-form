@@ -4,6 +4,7 @@ import typeComponent from '../utils'
 
 import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
+//import Container from '@material-ui/core/'
 
 const Question = ({ questions }) => {
 
@@ -11,13 +12,13 @@ const Question = ({ questions }) => {
 		<>
 			{
 				questions.map((question) => (
-					<Box key={question.ID} my={4} >
+					<Box key={question.ID} mt={5} >
 						<Typography variant="h5">
 							{question.title}
 						</Typography>
 						{ question.description && (
-							<Box fontStyle='italic'>
-								<Typography variant='body2'>
+							<Box fontStyle='italic' mt={2}>
+								<Typography variant='body1'>
 									{question.description}
 								</Typography>
 							</Box>

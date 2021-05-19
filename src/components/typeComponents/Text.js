@@ -6,6 +6,7 @@ import { updateAnswers } from '../../reducers/answersReducer'
 import TextField from '@material-ui/core/TextField'
 import Box from '@material-ui/core/Box'
 
+
 const Text = ({ question }) => {
 	const dispatch = useDispatch()
 	// const textValue = useSelector(state =>
@@ -26,6 +27,11 @@ const Text = ({ question }) => {
 							variant="outlined"
 							fullWidth
 							label={field.text && field.text}
+							InputLabelProps={{
+								style: {
+									fontSize: '1.1rem'
+								}
+							}}
 						/>
 					</Box>
 				)
