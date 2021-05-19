@@ -6,6 +6,7 @@ import Box from '@material-ui/core/Box'
 import LinearProgress from '@material-ui/core/LinearProgress'
 import { withStyles } from '@material-ui/core/styles'
 
+// LinearProgress component is visually upgraded with 'withStyles'
 const BorderLinearProgress = withStyles(() => ({
 	root: {
 		height: 15,
@@ -26,7 +27,7 @@ const ProgressBar = ({ currentPage }) => {
 
 	const styles = useStyles()
 	const progress = currentPage * 20
-	console.log(progress)
+	// console.log(progress)
 
 
 

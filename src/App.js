@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import Parts from './components/Parts'
 import ButtonHandler from './components/ButtonHandler'
 import Summary from './components/Summary'
@@ -13,20 +13,12 @@ import Container from '@material-ui/core/Container'
 import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
 
-import { ThemeProvider, createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles'
 import useStyles from './styles'
-import { yellow, lime } from '@material-ui/core/colors'
 
-let theme = createMuiTheme({
-	palette: {
-		primary: lime,
-		secondary: yellow
-	}
-})
-
-theme = responsiveFontSizes(theme)
 
 const App = () => {
+	const [formSubmitted, setFormSubmitted] = useState(false)
+
 	const dispatch = useDispatch()
 	const currentPage = useSelector(state => state.currentPage)
 	const allAnswers = useSelector(state => state.answers)
@@ -59,6 +51,8 @@ const App = () => {
 
 	const displaySummary = () => {
 		console.log('Summary displayed')
+		setFormSubmitted(true)
+		console.log(formSubmitted)
 		console.log(allAnswers)
 		return <Summary />
 	}
@@ -95,45 +89,46 @@ const App = () => {
 	}
 
 	return (
-		<ThemeProvider theme={theme}>
-			<Container className={classes.survey} maxWidth='md'>
-				<Typography
-					variant='h4'
-					component='h1'
-					align='center'
-					gutterBottom
-				>
-				Yrittäjän kehityskeskustelu
-				</Typography>
-				<Box pt={2} pb={4} px={3} className={classes.form}>
-					<form onSubmit={displaySummary}>
-						<Parts
-							questionSets={questionSets}
-							page={currentPage}
-						/>
-					</form>
-				</Box>
-
-				{/* Buttons in a grid */}
-				<Grid
-					container
-					direction='row'
-					justify='space-between'
-				>
-					<Grid item>
-						{ handlePreviousButton() }
-					</Grid>
-					<Grid item>
-						{ handleNextButton() }
-					</Grid>
-				</Grid>
-				<Box m='auto'>
-					<ProgressBar
-						currentPage={currentPage}
+		<Container
+			className={classes.survey}
+			maxWidth='md'
+		>
+			<Typography
+				variant='h4'
+				component='h1'
+				align='center'
+				gutterBottom
+			>
+			Yrittäjän kehityskeskustelu
+			</Typography>
+			<Box pt={2} pb={4} px={3} className={classes.form}>
+				<form onSubmit={displaySummary}>
+					<Parts
+						questionSets={questionSets}
+						page={currentPage}
 					/>
-				</Box>
-			</Container>
-		</ThemeProvider>
+				</form>
+			</Box>
+
+			{/* Buttons in a grid */}
+			<Grid
+				container
+				direction='row'
+				justify='space-between'
+			>
+				<Grid item>
+					{ handlePreviousButton() }
+				</Grid>
+				<Grid item>
+					{ handleNextButton() }
+				</Grid>
+			</Grid>
+			<Box m='auto'>
+				<ProgressBar
+					currentPage={currentPage}
+				/>
+			</Box>
+		</Container>
 	)
 }
 
