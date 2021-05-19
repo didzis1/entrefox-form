@@ -1,6 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import typeComponent from '../utils'
+import Typography from '@material-ui/core/Typography'
+import Box from '@material-ui/core/Box'
+//import Container from '@material-ui/core/'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateAnswers } from '../reducers/answersReducer'
 import { enable, disable } from '../reducers/validationReducer'
@@ -32,12 +35,19 @@ const Question = ({ questions, index }) => {
 		<>
 			{
 				questions.map((question) => (
-					<div key={question.ID} className="pb-3">
-
-						<h3 className="font-semibold">{question.title}</h3>
-						{ question.description && <small className="italic text-md">{question.description}</small> }
+					<Box key={question.ID} mt={5} >
+						<Typography variant="h5">
+							{question.title}
+						</Typography>
+						{ question.description && (
+							<Box fontStyle='italic' mt={2}>
+								<Typography variant='body1'>
+									{question.description}
+								</Typography>
+							</Box>
+						) }
 						{typeComponent({ ...question, page : index }, inputValidation)}
-					</div>
+					</Box>
 				))
 			}
 		</>

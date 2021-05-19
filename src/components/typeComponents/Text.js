@@ -2,6 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { useSelector } from 'react-redux'
 
+import TextField from '@material-ui/core/TextField'
+import Box from '@material-ui/core/Box'
+
 const Text = ({ question, inputValidation }) => {
 
 	// const textValue = useSelector(state =>
@@ -13,16 +16,23 @@ const Text = ({ question, inputValidation }) => {
 			{question.fields.map((field) => {
 				const textValue = page ? page.answers[question.ID[field.ID]] : ''
 				return (
-					<div key={field.ID} className="p-2 sm:p-3 md:p-5">
-						{field.text && <label>{field.text}</label>}
-						<textarea
-							name={question.ID[field.ID]}
+					<Box key={field.ID} my={2}>
+						<TextField
+							name={question.ID[field.ID].toString()}
 							value={textValue ?? ''}
 							onChange={(event) => inputValidation(event.target.name, event.target.value)}
-							className="rounded-md w-full"
+							multiline
 							rows="4"
-						></textarea>
-					</div>
+							variant="outlined"
+							fullWidth
+							label={field.text && field.text}
+							InputLabelProps={{
+								style: {
+									fontSize: '1.1rem'
+								}
+							}}
+						/>
+					</Box>
 				)
 			})}
 		</>

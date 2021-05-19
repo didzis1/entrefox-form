@@ -1,22 +1,44 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Parts from './components/Parts'
-import Button from './components/Button'
+import ButtonHandler from './components/ButtonHandler'
 import Summary from './components/Summary'
+import ProgressBar from './components/ProgressBar'
 import questionSets from './data/questions.json'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { increment, skipIncrement, decrement, skipDecrement } from './reducers/pageCountReducer'
 
+import Typography from '@material-ui/core/Typography'
+import Container from '@material-ui/core/Container'
+import Box from '@material-ui/core/Box'
+import Grid from '@material-ui/core/Grid'
+
+import useStyles from './styles'
+
 
 const App = () => {
+	// React state
+	const [formSubmitted, setFormSubmitted] = useState(false)
+
 	const dispatch = useDispatch()
+	const classes = useStyles()
+
+	// Redux store state
 	const currentPage = useSelector(state => state.currentPage)
 	const allAnswers = useSelector(state => state.answers)
 	const validation = useSelector(state => state.validation)
 
+	useEffect(() => {
+		window.scrollTo({
+			top: 0,
+			left: 0,
+			behavior: 'smooth'
+		})
+	}, [ currentPage ])
+
 	const handleNextPage = () => {
 		// console.log('works next')
-		if (allAnswers[1] === 'Ei' && currentPage === 1) {
+		if (allAnswers[1] === 'En' && currentPage === 1) {
 			return dispatch(skipIncrement())
 		}
 		return dispatch(increment())
@@ -24,7 +46,7 @@ const App = () => {
 
 	const handlePreviousPage = () => {
 		// console.log('works previous')
-		if (allAnswers[1] === 'Ei' && currentPage === 3) {
+		if (allAnswers[1] === 'En' && currentPage === 3) {
 			return dispatch(skipDecrement())
 		}
 		return dispatch(decrement())
@@ -33,14 +55,29 @@ const App = () => {
 
 	const displaySummary = () => {
 		console.log('Summary displayed')
+		setFormSubmitted(true)
+		console.log(formSubmitted)
 		console.log(allAnswers)
 		return <Summary />
+	}
+
+	const handlePreviousButton = () => {
+		if (currentPage === 1) {
+			return null
+		} else {
+			return (
+				<ButtonHandler
+					text='Edellinen'
+					handlePagination={handlePreviousPage}
+				/>
+			)
+		}
 	}
 
 	const handleNextButton = () => {
 		if (questionSets.length === currentPage) {
 			return (
-				<Button
+				<ButtonHandler
 					text='Olen valmis'
 					handlePagination={displaySummary}
 					page={currentPage}
@@ -49,7 +86,7 @@ const App = () => {
 			)
 		} else {
 			return (
-				<Button
+				<ButtonHandler
 					text='Seuraava'
 					handlePagination={handleNextPage}
 					page={currentPage}
@@ -60,29 +97,46 @@ const App = () => {
 	}
 
 	return (
-		<div className="pb-12">
-			<div className="p-5 bg-yellow-50 bg-opacity-90 border border-gray-200 mx-auto rounded-2xl shadow-2xl mt-10 max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl 2xl:max-w-4xl">
-				<h1 className="text-center text-3xl pt-6 pb-6 font-semibold tracking-wide uppercase">
-					Yrittäjän kehityskeskustelu
-				</h1>
-				<div className="pt-4">
-					<form onSubmit={displaySummary}>
-						<Parts
-							questionSets={questionSets}
-							page={currentPage}
-						/>
-					</form>
-					<div className="space-x-3">
-						<Button
-							text='Edellinen'
-							handlePagination={handlePreviousPage}
-							page={currentPage}
-						/>
-						{ handleNextButton() }
-					</div>
-				</div>
-			</div>
-		</div>
+		<Container
+			className={classes.survey}
+			maxWidth='md'
+		>
+			<Typography
+				variant='h4'
+				component='h1'
+				align='center'
+				gutterBottom
+			>
+			Yrittäjän kehityskeskustelu
+			</Typography>
+			<Box pt={2} pb={4} px={3} className={classes.form}>
+				<form onSubmit={displaySummary}>
+					<Parts
+						questionSets={questionSets}
+						page={currentPage}
+					/>
+				</form>
+			</Box>
+
+			{/* Buttons in a grid */}
+			<Grid
+				container
+				direction='row'
+				justify='space-between'
+			>
+				<Grid item>
+					{ handlePreviousButton() }
+				</Grid>
+				<Grid item>
+					{ handleNextButton() }
+				</Grid>
+			</Grid>
+			<Box m='auto'>
+				<ProgressBar
+					currentPage={currentPage}
+				/>
+			</Box>
+		</Container>
 	)
 }
 
