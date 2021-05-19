@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Button = ({ text, handlePagination, page }) => {
-	console.log(page)
+const Button = ({ text, handlePagination, page, validated }) => {
+
 	if (page === 1 && text === 'Edellinen') {
 		return null
 	}
@@ -18,7 +18,10 @@ const Button = ({ text, handlePagination, page }) => {
 	return (
 		<button
 			className={btn}
-			onClick={handlePagination}>{text}</button>
+			onClick={handlePagination}
+			disabled={validated}>
+			{text}
+		</button>
 	)
 }
 
@@ -26,7 +29,8 @@ const Button = ({ text, handlePagination, page }) => {
 Button.propTypes = {
 	text: PropTypes.string,
 	handlePagination: PropTypes.func,
-	page: PropTypes.number
+	page: PropTypes.number,
+	validated: PropTypes.bool
 }
 
 export default Button

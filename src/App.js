@@ -12,6 +12,7 @@ const App = () => {
 	const dispatch = useDispatch()
 	const currentPage = useSelector(state => state.currentPage)
 	const allAnswers = useSelector(state => state.answers)
+	const validation = useSelector(state => state.validation)
 
 	const handleNextPage = () => {
 		// console.log('works next')
@@ -43,6 +44,7 @@ const App = () => {
 					text='Olen valmis'
 					handlePagination={displaySummary}
 					page={currentPage}
+					validated={validation[currentPage] ?? true}
 				/>
 			)
 		} else {
@@ -51,6 +53,7 @@ const App = () => {
 					text='Seuraava'
 					handlePagination={handleNextPage}
 					page={currentPage}
+					validated={validation[currentPage] ?? true}
 				/>
 			)
 		}

@@ -4,11 +4,12 @@ import PropTypes from 'prop-types'
 
 
 const Parts = ({ page, questionSets }) => {
+
 	return (
 		<div>
-			{questionSets.map((part) => (
+			{questionSets.map((part, index) => (
 				<div style={{ display: page === part.ID ? '' : 'none' }}  key={part.ID} id={part.ID}>
-					<Question questions={part.questions} />
+					<Question questions={part.questions} index={index+1} />
 				</div>
 			))}
 		</div>

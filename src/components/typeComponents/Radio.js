@@ -1,13 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { useSelector, useDispatch } from 'react-redux'
-import { updateAnswers } from '../../reducers/answersReducer'
+import { useSelector } from 'react-redux'
 
-const Radio = ({ question }) => {
+const Radio = ({ question, inputValidation }) => {
 
-	const dispatch = useDispatch()
-	const radioValue = useSelector(state => state.answers[question.ID])
+	const page = useSelector(state => state.answers.find(page => page.page === question.page))
 
 	return (
 		<div className="p-2 sm:p-3 md:p-5">
@@ -17,8 +15,8 @@ const Radio = ({ question }) => {
 						<input
 							type='radio'
 							name={question.ID}
-							value={radioValue}
-							onChange={(event) => dispatch(updateAnswers(event.target.name, choice.text))}
+							value={page ? page.answers[question.ID] : ''}
+							onChange={(event) => inputValidation(event.target.name, choice.text)}
 							className="text-red-600 focus:text-red-700 focus:ring-red-600"
 						/>
 						<label>{choice.text}</label>
@@ -30,7 +28,8 @@ const Radio = ({ question }) => {
 }
 
 Radio.propTypes = {
-	question: PropTypes.object
+	question: PropTypes.object,
+	inputValidation: PropTypes.func
 }
 
 export default Radio
