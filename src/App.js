@@ -17,12 +17,15 @@ import useStyles from './styles'
 
 
 const App = () => {
+	// React state
 	const [formSubmitted, setFormSubmitted] = useState(false)
 
 	const dispatch = useDispatch()
+	const classes = useStyles()
+
+	// Redux store state
 	const currentPage = useSelector(state => state.currentPage)
 	const allAnswers = useSelector(state => state.answers)
-	const classes = useStyles()
 
 	useEffect(() => {
 		window.scrollTo({
