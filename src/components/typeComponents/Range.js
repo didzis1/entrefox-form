@@ -42,19 +42,22 @@ const Range = ({ question, inputValidation }) => {
 
 	const page = useSelector(state => state.answers.find(page => page.page === question.page))
 
+	const handleChange = (event, newValue) => {
+		inputValidation(question.ID, newValue)
+	}
 
 	return (
 		<Box my={4}>
 			<CustomSlider
 				aria-labelledby="discrete-slider"
 				valueLabelDisplay="auto"
-				value={page ? page.answers[question.ID] : (question.choices.max / 2)}
+				value={(page ? page.answers[question.ID] : undefined) ?? (question.choices.max / 2)}
 				name={question.ID.toString()}
 				marks={question.marks}
 				min={question.choices.min}
 				max={question.choices.max}
 				step={question.step}
-				onChange={(event) => inputValidation(question.ID, event.target.value)}
+				onChange={handleChange}
 				color='primary'
 			/>
 		</Box>

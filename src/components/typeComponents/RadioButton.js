@@ -1,22 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { useSelector, useDispatch } from 'react-redux'
-import { updateAnswers } from '../../reducers/answersReducer'
+import { useSelector } from 'react-redux'
 
 import Radio from '@material-ui/core/Radio'
 import RadioGroup from '@material-ui/core/RadioGroup'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Box from '@material-ui/core/Box'
 
-const RadioButton = ({ question }) => {
+const RadioButton = ({ question, inputValidation }) => {
 
-	const dispatch = useDispatch()
-	const radioValue = useSelector(state => state.answers[question.ID])
+	const page = useSelector(state => state.answers.find(page => page.page === question.page))
 
 	return (
 		<Box mt={2}>
-			<RadioGroup value={radioValue ?? null} name={question.ID.toString()} onChange={(event) => dispatch(updateAnswers(event.target.name, event.target.value))}>
+			<RadioGroup value={(page ? page.answers[question.ID] : undefined) ?? null} name={question.ID.toString()} onChange={(event) => inputValidation(event.target.name, event.target.value)}>
 				{
 					question.choices.map((choice) => (
 						<Box key={choice.ID}>
@@ -40,7 +38,8 @@ const RadioButton = ({ question }) => {
 }
 
 RadioButton.propTypes = {
-	question: PropTypes.object
+	question: PropTypes.object,
+	inputValidation: PropTypes.func
 }
 
 export default RadioButton

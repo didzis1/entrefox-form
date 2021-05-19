@@ -4,10 +4,8 @@ import PropTypes from 'prop-types'
 import Button from '@material-ui/core/Button'
 import useStyles from '../styles'
 
-const ButtonHandler = ({ text, handlePagination }) => {
+const ButtonHandler = ({ text, handlePagination, validated }) => {
 	const styles = useStyles()
-
-
 
 	return (
 		<Button
@@ -15,6 +13,7 @@ const ButtonHandler = ({ text, handlePagination }) => {
 			variant="contained"
 			color="primary"
 			className={styles.button}
+			disabled={validated}
 		>
 			{text}
 		</Button>
@@ -24,7 +23,8 @@ const ButtonHandler = ({ text, handlePagination }) => {
 
 ButtonHandler.propTypes = {
 	text: PropTypes.string,
-	handlePagination: PropTypes.func
+	handlePagination: PropTypes.func,
+	validated: PropTypes.bool
 }
 
 export default ButtonHandler

@@ -11,10 +11,14 @@ const reducer = (state = [], action) => {
 
 					return {
 						...page,
-						answers: {
-							...page.answers,
-							[action.data.id]: action.data.value
-						}
+						answers: page.answers.map(answer => {
+							if (answer.id === action.data.id){
+								return {
+									...answer,
+									id:action.data.id, value:action.data.value
+								}
+							}
+						})
 					}
 				}
 				return page
@@ -22,7 +26,7 @@ const reducer = (state = [], action) => {
 		}
 		return state.concat({
 			page: action.page,
-			answers: { [action.data.id]: action.data.value }
+			answers: [{ id:action.data.id, value:action.data.value }]
 		})
 
 	case 'CLEAR':

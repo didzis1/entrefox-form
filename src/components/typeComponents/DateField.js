@@ -21,7 +21,7 @@ const DateField = ({ question, inputValidation }) => {
 
 	const handleCheckBox = () => {
 		setChecked(!checked)
-		inputValidation(question.ID, '')
+		inputValidation(question.ID, null)
 	}
 
 	return (
@@ -33,8 +33,8 @@ const DateField = ({ question, inputValidation }) => {
 					inputVariant="outlined"
 					disabled={checked}
 					name={question.ID.toString()}
-					value={page ? page.answers[question.ID] : ''}
-					onChange={(event) => inputValidation(question.ID, event.target.value)}
+					value={page ? page.answers[question.ID] : null}
+					onChange={(event) => inputValidation(question.ID, event)}
 				/>
 			</MuiPickersUtilsProvider>
 
