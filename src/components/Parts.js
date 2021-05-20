@@ -14,7 +14,7 @@ const Parts = ({ questionSets }) => {
 					key={part.ID}
 					id={part.ID}>
 					{/*part -> helps defining the page that the question is on*/}
-					<Question questions={part.questions} />
+					<Question questions={part.questions} page={part.ID} />
 				</div>
 			))}
 		</div>

@@ -12,7 +12,7 @@ import { updateAnswers } from '../../reducers/answersReducer'
 const CustomSlider = withStyles({
 	root: {
 		color: 'primary',
-		height: 8,
+		height: 8
 	},
 	thumb: {
 		height: 24,
@@ -22,8 +22,8 @@ const CustomSlider = withStyles({
 		marginTop: -8,
 		marginLeft: -12,
 		'&:focus, &:hover, &$active': {
-			boxShadow: 'inherit',
-		},
+			boxShadow: 'inherit'
+		}
 	},
 	active: {},
 	valueLabel: {
@@ -31,34 +31,38 @@ const CustomSlider = withStyles({
 	},
 	track: {
 		height: 10,
-		borderRadius: 4,
+		borderRadius: 4
 	},
 	rail: {
 		height: 8,
 		borderRadius: 4,
 		backgroundColor: 'secondary'
-	},
+	}
 })(Slider)
 
 const Range = ({ question }) => {
-
 	const dispatch = useDispatch()
-	const answers = useSelector(state => state.answers)
-	const currentPage = useSelector(state => state.currentPage)
+	const answers = useSelector((state) => state.answers)
+	const currentPage = useSelector((state) => state.currentPage)
 
 	return (
 		<Box my={4}>
 			<CustomSlider
-				aria-labelledby="discrete-slider"
-				valueLabelDisplay="auto"
-				value={getAnswerByID(answers, question.page, question.ID) ?? (question.choices.max / 2)}
+				aria-labelledby='discrete-slider'
+				valueLabelDisplay='auto'
+				value={
+					getAnswerByID(answers, question.page, question.ID) ??
+					question.choices.max / 2
+				}
 				name={question.ID.toString()}
 				marks={question.marks}
 				min={question.choices.min}
 				max={question.choices.max}
 				step={question.step}
 				// 'event' required!
-				onChange={(event, newValue) => dispatch(updateAnswers(currentPage, question.ID, newValue))}
+				onChangeCommitted={(event, newValue) =>
+					dispatch(updateAnswers(currentPage, question.ID, newValue))
+				}
 				color='primary'
 			/>
 		</Box>

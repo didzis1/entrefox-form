@@ -18,6 +18,7 @@ import ButtonHandler from './components/ButtonHandler'
 import Summary from './components/Summary'
 import ProgressBar from './components/ProgressBar'
 import questionSets from './data/questions.json'
+import { getAnswerByID } from './utils'
 
 const App = () => {
 	// React state
@@ -28,11 +29,8 @@ const App = () => {
 
 	// Redux store state
 	const currentPage = useSelector((state) => state.currentPage)
-	let firstQuestion = useSelector((state) => state.answers)
-	firstQuestion
-		? firstQuestion.find((question) => question.page === currentPage)
-		: null
-	//console.log('firstQuestion', firstQuestion)
+	const answers = useSelector((state) => state.answers)
+
 	useEffect(() => {
 		window.scrollTo({
 			top: 0,
@@ -43,15 +41,16 @@ const App = () => {
 
 	const handleNextPage = () => {
 		// Gets the first question of the first page (Have you done this survey before)
-		if ('ssfafas' === 'En' && currentPage === 1) {
+		if (getAnswerByID(answers, 1, 1) && currentPage === 1) {
 			return dispatch(skipIncrement())
 		}
+		console.log(getAnswerByID(answers, 1, 1))
 		return dispatch(increment())
 	}
 
 	const handlePreviousPage = () => {
 		// Gets the first question of the first page (Have you done this survey before)
-		if ('ssfafas' === 'En' && currentPage === 3) {
+		if (getAnswerByID(answers, 1, 1) === 'En' && currentPage === 3) {
 			return dispatch(skipDecrement())
 		}
 		return dispatch(decrement())

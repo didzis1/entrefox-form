@@ -25,7 +25,6 @@ const DateField = ({ question }) => {
 			updateAnswers(currentPage, question.ID, !checked ? null : undefined)
 		)
 	}
-
 	return (
 		<Box my={2}>
 			<MuiPickersUtilsProvider utils={DateFnsUtils}>

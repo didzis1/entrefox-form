@@ -7,7 +7,7 @@ import DateField from './components/typeComponents/DateField'
 
 // Makes getting answer value a bit more effortless, prevents repetition
 export const getAnswerByID = (answers, questionPage, questionID) => {
-	const pageData = answers.find((page) => page.id === questionPage)
+	const pageData = answers.find((answer) => answer.page === questionPage)
 	if (!pageData) return undefined
 
 	const answerData = pageData.answers.find(

@@ -6,7 +6,7 @@ import Box from '@material-ui/core/Box'
 
 import typeComponent from '../utils'
 
-const Question = ({ questions }) => {
+const Question = ({ questions, page }) => {
 	return (
 		<>
 			{questions.map((question) => (
@@ -19,7 +19,7 @@ const Question = ({ questions }) => {
 							</Typography>
 						</Box>
 					)}
-					{typeComponent(question)}
+					{typeComponent({ ...question, page })}
 				</Box>
 			))}
 		</>
@@ -27,7 +27,8 @@ const Question = ({ questions }) => {
 }
 
 Question.propTypes = {
-	questions: PropTypes.array
+	questions: PropTypes.array,
+	page: PropTypes.number
 }
 
 export default Question
