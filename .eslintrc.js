@@ -1,48 +1,27 @@
 module.exports = {
-	'env': {
-		'browser': true,
-		'es2021': true,
-		'node': true
+	env: {
+		browser: true,
+		es2021: true,
+		node: true
 	},
-	'extends': [
-		'eslint:recommended',
-		'plugin:react/recommended'
-	],
-	'parserOptions': {
-		'ecmaFeatures': {
-			'jsx': true
+	extends: ['eslint:recommended', 'plugin:react/recommended'],
+	parserOptions: {
+		ecmaFeatures: {
+			jsx: true
 		},
-		'ecmaVersion': 12,
-		'sourceType': 'module'
+		ecmaVersion: 12,
+		sourceType: 'module'
 	},
-	'plugins': [
-		'react'
-	],
-	'rules': {
-		'indent': [
-			'error',
-			'tab'
-		],
-		'linebreak-style': [
-			'error',
-			'windows'
-		],
-		'quotes': [
-			'error',
-			'single'
-		],
-		'semi': [
-			'error',
-			'never'
-		],
-		'eqeqeq': 'error',
+	plugins: ['react'],
+	rules: {
+		indent: ['error', 'tab', { SwitchCase: 1 }],
+		'linebreak-style': ['error', 'windows'],
+		quotes: ['error', 'single'],
+		semi: ['error', 'never'],
+		eqeqeq: 'error',
 		'no-trailing-spaces': 'error',
-		'object-curly-spacing': [
-			'error', 'always'
-		],
-		'arrow-spacing': [
-			'error', { 'before': true, 'after': true }
-		],
+		'object-curly-spacing': ['error', 'always'],
+		'arrow-spacing': ['error', { before: true, after: true }]
 		//'no-console': 0,
 	}
 }

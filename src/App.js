@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { increment, skipIncrement, decrement, skipDecrement } from './reducers/pageCountReducer'
+import {
+	increment,
+	skipIncrement,
+	decrement,
+	skipDecrement
+} from './reducers/pageCountReducer'
 
 import Typography from '@material-ui/core/Typography'
 import Container from '@material-ui/core/Container'
@@ -13,10 +18,8 @@ import ButtonHandler from './components/ButtonHandler'
 import Summary from './components/Summary'
 import ProgressBar from './components/ProgressBar'
 import questionSets from './data/questions.json'
-import { getAnswerByID } from './utils'
 
 const App = () => {
-
 	// React state
 	const [formSubmitted, setFormSubmitted] = useState(false)
 
@@ -24,20 +27,23 @@ const App = () => {
 	const classes = useStyles()
 
 	// Redux store state
-	const currentPage = useSelector(state => state.currentPage)
-	const answers = useSelector(state => state.answers)
-
+	const currentPage = useSelector((state) => state.currentPage)
+	let firstQuestion = useSelector((state) => state.answers)
+	firstQuestion
+		? firstQuestion.find((question) => question.page === currentPage)
+		: null
+	//console.log('firstQuestion', firstQuestion)
 	useEffect(() => {
 		window.scrollTo({
 			top: 0,
 			left: 0,
 			behavior: 'smooth'
 		})
-	}, [ currentPage ])
+	}, [currentPage])
 
 	const handleNextPage = () => {
 		// Gets the first question of the first page (Have you done this survey before)
-		if (getAnswerByID(answers, 1, 1) === 'En' && currentPage === 1) {
+		if ('ssfafas' === 'En' && currentPage === 1) {
 			return dispatch(skipIncrement())
 		}
 		return dispatch(increment())
@@ -45,18 +51,16 @@ const App = () => {
 
 	const handlePreviousPage = () => {
 		// Gets the first question of the first page (Have you done this survey before)
-		if (getAnswerByID(answers, 1, 1) === 'En' && currentPage === 3) {
+		if ('ssfafas' === 'En' && currentPage === 3) {
 			return dispatch(skipDecrement())
 		}
 		return dispatch(decrement())
 	}
 
-
 	const displaySummary = () => {
 		console.log('Summary displayed')
 		setFormSubmitted(true)
 		console.log(formSubmitted)
-		console.log(answers)
 		return <Summary />
 	}
 
@@ -94,45 +98,26 @@ const App = () => {
 	}
 
 	return (
-		<Container
-			className={classes.survey}
-			maxWidth='md'
-		>
-			<Typography
-				variant='h4'
-				component='h1'
-				align='center'
-				gutterBottom
-			>
-			Yrittäjän kehityskeskustelu
+		<Container className={classes.survey} maxWidth='md'>
+			<Typography variant='h4' component='h1' align='center' gutterBottom>
+				Yrittäjän kehityskeskustelu
 			</Typography>
 			<Box pt={2} pb={4} px={3} className={classes.form}>
 				<form onSubmit={displaySummary}>
-					<Parts
-						questionSets={questionSets}
-					/>
+					<Parts questionSets={questionSets} />
 				</form>
 			</Box>
 
 			{/* Buttons in a grid */}
-			<Grid
-				container
-				direction='row'
-				justify='space-between'
-			>
-				<Grid item>
-					{ handlePreviousButton() }
-				</Grid>
-				<Grid item>
-					{ handleNextButton() }
-				</Grid>
+			<Grid container direction='row' justify='space-between'>
+				<Grid item>{handlePreviousButton()}</Grid>
+				<Grid item>{handleNextButton()}</Grid>
 			</Grid>
 			<Box m='auto'>
-				<ProgressBar/>
+				<ProgressBar />
 			</Box>
 		</Container>
 	)
 }
-
 
 export default App

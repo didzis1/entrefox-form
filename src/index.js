@@ -5,7 +5,11 @@ import App from './App'
 import { Provider } from 'react-redux'
 import store from './store'
 
-import { ThemeProvider, createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles'
+import {
+	ThemeProvider,
+	createMuiTheme,
+	responsiveFontSizes
+} from '@material-ui/core/styles'
 import { yellow, lime } from '@material-ui/core/colors'
 
 let theme = createMuiTheme({

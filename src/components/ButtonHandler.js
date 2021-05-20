@@ -17,8 +17,8 @@ const ButtonHandler = ({ text, handlePagination, questionSets }) => {
 		if (!questionSets) return false
 
 		const questionAmount = questionSets.find(page => page.ID === currentPage).questions.length
-		const answerAmount = answers.some(page => page.id === currentPage)
-			? answers.find(page => page.id === currentPage).answers.length
+		const answerAmount = answers.some(answersPage => answersPage.page === currentPage)
+			? answers.find(answersPage => answersPage.page === currentPage).answers.length
 			: 0
 
 		return questionAmount !== answerAmount

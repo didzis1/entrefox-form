@@ -23,11 +23,9 @@ const BorderLinearProgress = withStyles(() => ({
 	}
 }))(LinearProgress)
 
-
 const ProgressBar = () => {
-
 	const styles = useStyles()
-	const currentPage = useSelector(state => state.currentPage)
+	const currentPage = useSelector((state) => state.currentPage)
 	const progress = currentPage * 20
 	// console.log(progress)
 
@@ -35,8 +33,7 @@ const ProgressBar = () => {
 		<Box mt={2} className={styles.progress}>
 			<BorderLinearProgress
 				variant='determinate'
-				value={progress}
-			></BorderLinearProgress>
+				value={progress}></BorderLinearProgress>
 		</Box>
 	)
 }

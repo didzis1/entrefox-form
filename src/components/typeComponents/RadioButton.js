@@ -11,35 +11,41 @@ import { getAnswerByID } from '../../utils'
 import { updateAnswers } from '../../reducers/answersReducer'
 
 const RadioButton = ({ question }) => {
-
 	const dispatch = useDispatch()
-	const answers = useSelector(state => state.answers)
-	const currentPage = useSelector(state => state.currentPage)
+	const answers = useSelector((state) => state.answers)
+	const currentPage = useSelector((state) => state.currentPage)
 
 	return (
 		<Box mt={2}>
 			<RadioGroup
-				value={getAnswerByID(answers, question.page, question.ID) ?? null}
-				name={question.ID.toString()}
-				onChange={(event) => dispatch(updateAnswers(currentPage, event.target.name, event.target.value))}>
-
-				{
-					question.choices.map((choice) => (
-						<Box key={choice.ID}>
-							<FormControlLabel
-								value={choice.text}
-								control={
-									<Radio
-										name={question.ID.toString()}
-										color='primary'
-									/>
-								}
-								label={choice.text}
-							/>
-							<hr style={{ opacity: 0.25 }} />
-						</Box>
-					))
+				value={
+					getAnswerByID(answers, question.page, question.ID) ?? null
 				}
+				name={question.ID.toString()}
+				onChange={(event) =>
+					dispatch(
+						updateAnswers(
+							currentPage,
+							event.target.name,
+							event.target.value
+						)
+					)
+				}>
+				{question.choices.map((choice) => (
+					<Box key={choice.ID}>
+						<FormControlLabel
+							value={choice.text}
+							control={
+								<Radio
+									name={question.ID.toString()}
+									color='primary'
+								/>
+							}
+							label={choice.text}
+						/>
+						<hr style={{ opacity: 0.25 }} />
+					</Box>
+				))}
 			</RadioGroup>
 		</Box>
 	)

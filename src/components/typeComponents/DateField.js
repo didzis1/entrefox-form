@@ -15,28 +15,35 @@ import { getAnswerByID } from '../../utils'
 import { updateAnswers } from '../../reducers/answersReducer'
 
 const DateField = ({ question }) => {
-
 	const [checked, setChecked] = useState(false)
 	const dispatch = useDispatch()
-	const answers = useSelector(state => state.answers)
-	const currentPage = useSelector(state => state.currentPage)
-
+	const answers = useSelector((state) => state.answers)
+	const currentPage = useSelector((state) => state.currentPage)
+	const getValue = getAnswerByID(answers, question.page, question.ID)
+	console.log(getValue)
 	const handleCheckBox = () => {
 		setChecked(!checked)
-		dispatch(updateAnswers(currentPage, question.ID, !checked ? null : undefined))
+		dispatch(
+			updateAnswers(currentPage, question.ID, !checked ? null : undefined)
+		)
 	}
 
 	return (
-		<Box my={2} >
+		<Box my={2}>
 			<MuiPickersUtilsProvider utils={DateFnsUtils}>
 				<KeyboardDatePicker
-					format="dd/MM/yyyy"
-					variant="inline"
-					inputVariant="outlined"
+					format='dd/MM/yyyy'
+					variant='inline'
+					inputVariant='outlined'
 					disabled={checked}
 					name={question.ID.toString()}
-					value={getAnswerByID(answers, question.page, question.ID) ?? null}
-					onChange={(event) => dispatch(updateAnswers(currentPage, question.ID, event))}
+					value={
+						getAnswerByID(answers, question.page, question.ID) ??
+						null
+					}
+					onChange={(event) =>
+						dispatch(updateAnswers(currentPage, question.ID, event))
+					}
 				/>
 			</MuiPickersUtilsProvider>
 
@@ -53,7 +60,7 @@ const DateField = ({ question }) => {
 							color='primary'
 						/>
 					}
-					label="En tiedä tarkkaa päivämäärää"
+					label='En tiedä tarkkaa päivämäärää'
 				/>
 			</Box>
 		</Box>

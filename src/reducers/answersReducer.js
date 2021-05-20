@@ -1,66 +1,66 @@
 const reducer = (state = [], action) => {
 	switch (action.type) {
-	case 'UPDATE':
-
-		// Check if page exists in the state
-		if (state.some(answerPage => answerPage.id === action.page)) {
-
-			// Loop through the state items updating the desired page if its ID == action.page
-			return state.map(answerPage => {
-				if (answerPage.id === action.page) {
-
-					// Check if answer exists in the [state -> page -> answers]
-					if (answerPage.answers.some(answer => answer.id === action.data.id)) {
-
-						// If value is null, remove it from state
-						if (action.data.value === undefined || action.data.value === '')
-							return { ...answerPage, answers: answerPage.answers.filter(answer => (answer.id !== action.data.id)) }
-
-						// Answer exists and gets updated to new value
+		case 'UPDATE':
+			// eslint-disable-next-line no-case-declarations
+			const newData = {
+				id: action.data.id,
+				value: action.data.value
+			}
+			// eslint-disable-next-line no-case-declarations
+			const pageForData = action.data.page
+			// Check if page exists
+			if (state.some((answerPage) => answerPage.page === pageForData)) {
+				return state.map((answersPage) => {
+					// Check if an item already exists inside the state
+					if (
+						answersPage.answers.some(
+							(answer) => answer.id === newData.id
+						)
+					) {
+						// If value is null/undefined/empty filter it out of the state
+						if (
+							newData.value === '' ||
+							newData.value === undefined
+						) {
+							return {
+								...answersPage,
+								answers: answersPage.answers.filter(
+									(answer) => answer.id !== newData.id
+								)
+							}
+						}
 						return {
-							...answerPage,
-							answers: answerPage.answers.map(answer => {
-								if (answer.id === action.data.id){
-
-									return {
-										...answer,
-										id:action.data.id,
-										value:action.data.value
-									}
-								}
-								return answer
-							})
+							...answersPage,
+							answers: answersPage.answers.map((answer) =>
+								answer.id === newData.id ? newData : answer
+							)
 						}
 					}
-
-					// Answer doesnt exist in the [state -> page -> answers], so it gets added
-					return { ...answerPage, answers: answerPage.answers.concat({
-						id:action.data.id,
-						value:action.data.value
-					}) }
-				}
-				return answerPage
+					// Item does not exist in state
+					return {
+						...answersPage,
+						answers: answersPage.answers.concat(newData)
+					}
+				})
+			}
+			// Page doesn't exist => add with items to state
+			return state.concat({
+				page: pageForData,
+				answers: [newData]
 			})
-		}
 
-		// Page doesn't exist in the state so it is added along with the new answer value
-		return state.concat({
-			id: action.page,
-			answers: [{ id:action.data.id, value:action.data.value }]
-		})
-
-	case 'CLEAR':
-		return []
-	default:
-		return state
+		case 'CLEAR':
+			return []
+		default:
+			return state
 	}
 }
 
 export const updateAnswers = (page, id, value) => {
 	return {
 		type: 'UPDATE',
-		page: parseInt(page),
 		data: {
+			page: parseInt(page),
 			id: parseInt(id),
 			value
 		}
