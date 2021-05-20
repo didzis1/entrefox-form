@@ -18,10 +18,7 @@ const reducer = (state = [], action) => {
 						)
 					) {
 						// If value is null/undefined/empty filter it out of the state
-						if (
-							newData.value === '' ||
-							newData.value === undefined
-						) {
+						if (!newData) {
 							return {
 								...answersPage,
 								answers: answersPage.answers.filter(

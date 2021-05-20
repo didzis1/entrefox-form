@@ -19,8 +19,6 @@ const DateField = ({ question }) => {
 	const dispatch = useDispatch()
 	const answers = useSelector((state) => state.answers)
 	const currentPage = useSelector((state) => state.currentPage)
-	const getValue = getAnswerByID(answers, question.page, question.ID)
-	console.log(getValue)
 	const handleCheckBox = () => {
 		setChecked(!checked)
 		dispatch(
