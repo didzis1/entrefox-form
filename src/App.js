@@ -11,6 +11,7 @@ import Typography from '@material-ui/core/Typography'
 import Container from '@material-ui/core/Container'
 import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
+import { Card, CardMedia } from '@material-ui/core'
 
 import useStyles from './styles'
 import Parts from './components/Parts'
@@ -115,6 +116,14 @@ const App = () => {
 			<Box m='auto'>
 				<ProgressBar />
 			</Box>
+			<Card className={classes.card} variant='outlined'>
+				<CardMedia
+					component='img'
+					className={classes.media}
+					image='https://www.entrefox.fi/uploads/2020/04/48f777b7-logot-ef.png'
+					title='EntreFox rahoittajat'
+				/>
+			</Card>
 		</Container>
 	)
 }

@@ -22,6 +22,10 @@ const useStyles = makeStyles((theme) => ({
 		'&:hover': {
 			color: '#FFFFFF'
 		}
+	},
+	card: {
+		maxWidth: 345,
+		margin: '30px auto'
 	}
 }))
 
