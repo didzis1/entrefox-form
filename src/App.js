@@ -42,10 +42,10 @@ const App = () => {
 
 	const handleNextPage = () => {
 		// Gets the first question of the first page (Have you done this survey before)
-		if (getAnswerByID(answers, 1, 1) && currentPage === 1) {
+		console.log(getAnswerByID(answers, 1, 1))
+		if (getAnswerByID(answers, 1, 1) === 'En' && currentPage === 1) {
 			return dispatch(skipIncrement())
 		}
-		console.log(getAnswerByID(answers, 1, 1))
 		return dispatch(increment())
 	}
 

@@ -13,8 +13,6 @@ const Text = ({ question }) => {
 	const answers = useSelector((state) => state.answers)
 	const currentPage = useSelector((state) => state.currentPage)
 
-	console.log(answers)
-
 	return (
 		<>
 			{question.fields.map((field) => {
