@@ -1,39 +1,66 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-
 import { useSelector, useDispatch } from 'react-redux'
+
+import DateFnsUtils from '@date-io/date-fns'
+import {
+	MuiPickersUtilsProvider,
+	KeyboardDatePicker
+} from '@material-ui/pickers'
+import Box from '@material-ui/core/Box'
+import Checkbox from '@material-ui/core/Checkbox'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
+
+import { getAnswerByID } from '../../utils'
 import { updateAnswers } from '../../reducers/answersReducer'
 
 const DateField = ({ question }) => {
 	const [checked, setChecked] = useState(false)
 	const dispatch = useDispatch()
-	const dateAnswer = useSelector(state => state.answers[question.ID])
-	// console.log(dateAnswer)
-
+	const answers = useSelector((state) => state.answers)
+	const currentPage = useSelector((state) => state.currentPage)
 	const handleCheckBox = () => {
 		setChecked(!checked)
-		dispatch((updateAnswers(question.ID, '')))
+		dispatch(
+			updateAnswers(currentPage, question.ID, !checked ? null : undefined)
+		)
 	}
-
 	return (
-		<div className="p-2 sm:p-3 md:p-5">
-			<input
-				type='date'
-				name={question.ID}
-				value={dateAnswer ?? ''}
-				disabled={checked}
-				onChange={(event) => dispatch(updateAnswers(question.ID, event.target.value))}
-			/>
-			<div className="space-x-2 py-3 flex items-center">
-				<input
-					type='checkbox'
-					name='Disable date field'
-					onChange={() => handleCheckBox()}
-					className="rounded border-gray-400 text-indigo-500 focus:text-indigo-600 focus:ring-indigo-600"
+		<Box my={2}>
+			<MuiPickersUtilsProvider utils={DateFnsUtils}>
+				<KeyboardDatePicker
+					format='dd/MM/yyyy'
+					variant='inline'
+					inputVariant='outlined'
+					disabled={checked}
+					name={question.ID.toString()}
+					value={
+						getAnswerByID(answers, question.page, question.ID) ??
+						null
+					}
+					onChange={(event) =>
+						dispatch(updateAnswers(currentPage, question.ID, event))
+					}
 				/>
-				<label>En tiedä tarkkaa päivämäärää</label>
-			</div>
-		</div>
+			</MuiPickersUtilsProvider>
+
+			<Box>
+				<FormControlLabel
+					control={
+						<Checkbox
+							checked={checked}
+							name='Datefield disabler'
+							onChange={() => handleCheckBox()}
+							inputProps={{
+								'aria-label': 'datefield disabler'
+							}}
+							color='primary'
+						/>
+					}
+					label='En tiedä tarkkaa päivämäärää'
+				/>
+			</Box>
+		</Box>
 	)
 }
 

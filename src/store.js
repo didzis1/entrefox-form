@@ -8,7 +8,4 @@ const reducer = combineReducers({
 	answers: answersReducer
 })
 
-export default createStore(
-	reducer,
-	composeWithDevTools()
-)
+export default createStore(reducer, composeWithDevTools())

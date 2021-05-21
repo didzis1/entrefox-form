@@ -1,26 +1,34 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+
+import Typography from '@material-ui/core/Typography'
+import Box from '@material-ui/core/Box'
+
 import typeComponent from '../utils'
 
-const Question = ({ questions }) => {
-
+const Question = ({ questions, page }) => {
 	return (
 		<>
-			{
-				questions.map((question) => (
-					<div key={question.ID} className="pb-3">
-						<h3 className="font-semibold">{question.title}</h3>
-						{ question.description && <small className="italic text-md">{question.description}</small> }
-						{typeComponent(question)}
-					</div>
-				))
-			}
+			{questions.map((question) => (
+				<Box key={question.ID} mt={5}>
+					<Typography variant='h5'>{question.title}</Typography>
+					{question.description && (
+						<Box fontStyle='italic' mt={2}>
+							<Typography variant='body1'>
+								{question.description}
+							</Typography>
+						</Box>
+					)}
+					{typeComponent({ ...question, page })}
+				</Box>
+			))}
 		</>
 	)
 }
 
 Question.propTypes = {
-	questions: PropTypes.array
+	questions: PropTypes.array,
+	page: PropTypes.number
 }
 
 export default Question

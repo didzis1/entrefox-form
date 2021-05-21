@@ -1,15 +1,15 @@
 const reducer = (state = 1, action) => {
-	switch(action.type) {
-	case 'INCREMENT':
-		return state + 1
-	case 'DECREMENT':
-		return state - 1
-	case 'SKIP_INCREMENT':
-		return state + 2
-	case 'SKIP_DECREMENT':
-		return state - 2
-	default:
-		return state
+	switch (action.type) {
+		case 'INCREMENT':
+			return state + 1
+		case 'DECREMENT':
+			return state - 1
+		case 'SKIP_INCREMENT':
+			return state + 2
+		case 'SKIP_DECREMENT':
+			return state - 2
+		default:
+			return state
 	}
 }
 
