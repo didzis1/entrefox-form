@@ -9,10 +9,11 @@ import { updateAnswers } from '../../reducers/answersReducer'
 import { getAnswerByID } from '../../utils'
 
 const Text = ({ question }) => {
-
 	const dispatch = useDispatch()
-	const answers = useSelector(state => state.answers)
-	const currentPage = useSelector(state => state.currentPage)
+	const answers = useSelector((state) => state.answers)
+	const currentPage = useSelector((state) => state.currentPage)
+
+	console.log(answers)
 
 	return (
 		<>
@@ -21,11 +22,25 @@ const Text = ({ question }) => {
 					<Box key={field.ID} my={2}>
 						<TextField
 							name={question.ID[field.ID].toString()}
-							value={getAnswerByID(answers, question.page, question.ID[field.ID]) ?? ''}
-							onChange={(event) => dispatch(updateAnswers(currentPage, event.target.name, event.target.value))}
+							value={
+								getAnswerByID(
+									answers,
+									question.page,
+									question.ID[field.ID]
+								) ?? ''
+							}
+							onChange={(event) =>
+								dispatch(
+									updateAnswers(
+										currentPage,
+										event.target.name,
+										event.target.value
+									)
+								)
+							}
 							multiline
-							rows="4"
-							variant="outlined"
+							rows='4'
+							variant='outlined'
 							fullWidth
 							label={field.text && field.text}
 							InputLabelProps={{
