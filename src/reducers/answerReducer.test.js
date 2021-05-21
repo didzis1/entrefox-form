@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import answerReducer from './answersReducer'
 import deepFreeze from 'deep-freeze'
 
