@@ -24,9 +24,8 @@ const ButtonHandler = ({ text, handlePagination, questionSets }) => {
 			? answers.find((answersPage) => answersPage.page === currentPage)
 					.answers.length
 			: 0
-		return (
-			questionAmount !== answerAmount && !(questionAmount <= answerAmount)
-		)
+		console.log(questionAmount, answerAmount)
+		return !(questionAmount <= answerAmount)
 	}
 	return (
 		<Button

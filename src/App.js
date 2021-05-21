@@ -7,17 +7,8 @@ import {
 	skipDecrement
 } from './reducers/pageCountReducer'
 
-import Typography from '@material-ui/core/Typography'
-import Container from '@material-ui/core/Container'
-import Box from '@material-ui/core/Box'
-import Grid from '@material-ui/core/Grid'
-import { Card, CardMedia } from '@material-ui/core'
-
-import useStyles from './styles'
-import Parts from './components/Parts'
-import ButtonHandler from './components/ButtonHandler'
+import Survey from './components/Survey'
 import Summary from './components/Summary'
-import ProgressBar from './components/ProgressBar'
 import questionSets from './data/questions.json'
 import { getAnswerByID } from './utils'
 
@@ -26,7 +17,6 @@ const App = () => {
 	const [formSubmitted, setFormSubmitted] = useState(false)
 
 	const dispatch = useDispatch()
-	const classes = useStyles()
 
 	// Redux store state
 	const currentPage = useSelector((state) => state.currentPage)
@@ -42,7 +32,6 @@ const App = () => {
 
 	const handleNextPage = () => {
 		// Gets the first question of the first page (Have you done this survey before)
-		console.log(getAnswerByID(answers, 1, 1))
 		if (getAnswerByID(answers, 1, 1) === 'En' && currentPage === 1) {
 			return dispatch(skipIncrement())
 		}
@@ -57,75 +46,23 @@ const App = () => {
 		return dispatch(decrement())
 	}
 
-	const displaySummary = () => {
-		console.log('Summary displayed')
-		setFormSubmitted(true)
-		console.log(formSubmitted)
-		return <Summary />
+	const handleFormSubmit = () => {
+		setFormSubmitted(!formSubmitted)
 	}
 
-	const handlePreviousButton = () => {
-		if (currentPage === 1) {
-			return null
-		} else {
-			return (
-				<ButtonHandler
-					text='Edellinen'
-					handlePagination={handlePreviousPage}
-				/>
-			)
-		}
+	if (formSubmitted) {
+		return <Summary handleFormSubmit={handleFormSubmit} />
+	} else {
+		return (
+			<Survey
+				handleFormSubmit={handleFormSubmit}
+				handleNextPage={handleNextPage}
+				handlePreviousPage={handlePreviousPage}
+				questionSets={questionSets}
+				currentPage={currentPage}
+			/>
+		)
 	}
-
-	const handleNextButton = () => {
-		if (questionSets.length === currentPage) {
-			return (
-				<ButtonHandler
-					text='Olen valmis'
-					handlePagination={displaySummary}
-					questionSets={questionSets}
-				/>
-			)
-		} else {
-			return (
-				<ButtonHandler
-					text='Seuraava'
-					handlePagination={handleNextPage}
-					questionSets={questionSets}
-				/>
-			)
-		}
-	}
-
-	return (
-		<Container className={classes.survey} maxWidth='md'>
-			<Typography variant='h4' component='h1' align='center' gutterBottom>
-				Yrittäjän kehityskeskustelu
-			</Typography>
-			<Box pt={2} pb={4} px={3} className={classes.form}>
-				<form onSubmit={displaySummary}>
-					<Parts questionSets={questionSets} />
-				</form>
-			</Box>
-
-			{/* Buttons in a grid */}
-			<Grid container direction='row' justify='space-between'>
-				<Grid item>{handlePreviousButton()}</Grid>
-				<Grid item>{handleNextButton()}</Grid>
-			</Grid>
-			<Box m='auto'>
-				<ProgressBar />
-			</Box>
-			<Card className={classes.card} variant='outlined'>
-				<CardMedia
-					component='img'
-					className={classes.media}
-					image='https://www.entrefox.fi/uploads/2020/04/48f777b7-logot-ef.png'
-					title='EntreFox rahoittajat'
-				/>
-			</Card>
-		</Container>
-	)
 }
 
 export default App
