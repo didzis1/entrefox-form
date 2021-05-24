@@ -26,18 +26,24 @@ const reducer = (state = [], action) => {
 								)
 							}
 						}
-						return {
-							...answersPage,
-							answers: answersPage.answers.map((answer) =>
-								answer.id === newData.id ? newData : answer
-							)
+						// Item exists => value is updated
+						if (answersPage.page === pageForData) {
+							return {
+								...answersPage,
+								answers: answersPage.answers.map((answer) =>
+									answer.id === newData.id ? newData : answer
+								)
+							}
 						}
 					}
-					// Item does not exist in state
-					return {
-						...answersPage,
-						answers: answersPage.answers.concat(newData)
+					if (answersPage.page === pageForData) {
+						// Item does not exist in state
+						return {
+							...answersPage,
+							answers: answersPage.answers.concat(newData)
+						}
 					}
+					return answersPage
 				})
 			}
 			// Page doesn't exist => add with items to state
