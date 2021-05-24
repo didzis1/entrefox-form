@@ -8,36 +8,37 @@ const reducer = (state = [], action) => {
 			}
 			// eslint-disable-next-line no-case-declarations
 			const pageForData = action.data.page
+
 			// Check if page exists
-			if (state.some((answerPage) => answerPage.page === pageForData)) {
+			if (state.some((answerSet) => answerSet.page === pageForData)) {
 				return state.map((answersPage) => {
-					// Check if an item already exists inside the state
-					if (
-						answersPage.answers.some(
-							(answer) => answer.id === newData.id
-						)
-					) {
-						// If value is null/undefined/empty filter it out of the state
-						if (!newData || newData.value === '') {
-							return {
-								...answersPage,
-								answers: answersPage.answers.filter(
-									(answer) => answer.id !== newData.id
-								)
+					if (answersPage.page === pageForData) {
+						// Check if the answer exists in the page
+						if (
+							answersPage.answers.some(
+								(answer) => answer.id === newData.id
+							)
+						) {
+							// If answer is empty filter it out of the state
+							if (!newData || newData.value === '') {
+								return {
+									...answersPage,
+									answers: answersPage.answers.filter(
+										(answer) => answer.id !== newData.id
+									)
+								}
 							}
-						}
-						// Item exists => value is updated
-						if (answersPage.page === pageForData) {
+							// Answer exists and is not empty => replace it with current answer
 							return {
 								...answersPage,
 								answers: answersPage.answers.map((answer) =>
-									answer.id === newData.id ? newData : answer
+									answer.id === newData.id
+										? { ...answer, ...newData }
+										: answer
 								)
 							}
 						}
-					}
-					if (answersPage.page === pageForData) {
-						// Item does not exist in state
+						// Answer does not exist in the state current page
 						return {
 							...answersPage,
 							answers: answersPage.answers.concat(newData)
@@ -46,6 +47,7 @@ const reducer = (state = [], action) => {
 					return answersPage
 				})
 			}
+
 			// Page doesn't exist => add with items to state
 			return state.concat({
 				page: pageForData,
