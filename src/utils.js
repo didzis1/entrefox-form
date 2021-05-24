@@ -3,6 +3,7 @@ import React from 'react'
 import RadioButton from './components/typeComponents/RadioButton'
 import Range from './components/typeComponents/Range'
 import Text from './components/typeComponents/Text'
+import MultiText from './components/typeComponents/MultiText'
 import DateField from './components/typeComponents/DateField'
 
 // Makes getting answer value a bit more effortless, prevents repetition
@@ -26,6 +27,8 @@ const typeComponent = (question) => {
 			return <Range question={question} />
 		case 'text':
 			return <Text question={question} />
+		case 'multiple-text':
+			return <MultiText question={question} />
 		case 'date':
 			return <DateField question={question} />
 		default:

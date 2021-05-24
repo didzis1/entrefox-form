@@ -1,33 +1,33 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { useSelector, useDispatch } from 'react-redux'
-
-import { TextField, Box } from '@material-ui/core'
-
 import { updateAnswers } from '../../reducers/answersReducer'
 import { getAnswerByID } from '../../utils'
 
-const Text = ({ question }) => {
+import { TextField, Box, Button, Grid } from '@material-ui/core'
+
+import useStyles from '../../styles'
+
+const MultiText = ({ question }) => {
+	console.log(question)
+	//const [optionalFields, setOptionalFields] = useState([])
 	const dispatch = useDispatch()
+	const styles = useStyles()
 	const answers = useSelector((state) => state.answers)
 	const currentPage = useSelector((state) => state.currentPage)
 
 	return (
 		<>
 			{question.fields.map((field) => {
-				console.log(question.ID[field.ID])
 				return (
 					<Box key={field.ID} my={2}>
 						<TextField
-							name={
-								question.ID[field.ID] &&
-								question.ID[field.ID].toString()
-							}
+							name={field.ID && field.ID.toString()}
 							value={
 								getAnswerByID(
 									answers,
 									question.page,
-									question.ID[field.ID]
+									field.ID
 								) ?? ''
 							}
 							onChange={(event) =>
@@ -53,12 +53,20 @@ const Text = ({ question }) => {
 					</Box>
 				)
 			})}
+			<Grid container direction='row' justify='flex-end'>
+				<Button
+					variant='contained'
+					color='primary'
+					className={styles.button}>
+					Lisää uusi tavoite
+				</Button>
+			</Grid>
 		</>
 	)
 }
 
-Text.propTypes = {
+MultiText.propTypes = {
 	question: PropTypes.object
 }
 
-export default Text
+export default MultiText
