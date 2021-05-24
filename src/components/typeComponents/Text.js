@@ -15,7 +15,7 @@ const Text = ({ question }) => {
 	return (
 		<>
 			{question.fields.map((field) => {
-				console.log(question.ID[field.ID])
+				//console.log(question.ID[field.ID])
 				return (
 					<Box key={field.ID} my={2}>
 						<TextField

@@ -9,7 +9,7 @@ import { TextField, Box, Button, Grid } from '@material-ui/core'
 import useStyles from '../../styles'
 
 const MultiText = ({ question }) => {
-	console.log(question)
+	//console.log(question)
 	//const [optionalFields, setOptionalFields] = useState([])
 	const dispatch = useDispatch()
 	const styles = useStyles()
