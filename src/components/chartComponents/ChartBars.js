@@ -65,7 +65,7 @@ const Bar = ({ answers }) => {
 								justify='space-around'
 								xs={8}
 								sm={10}
-								className={classes.gridItem}>
+								className={`${classes.gridItem} ${classes.animatedItem}`}>
 								{value.text === barOne.value ? (
 									<div
 										className={classes.chartBar}
@@ -137,7 +137,7 @@ const Bar = ({ answers }) => {
 }
 
 Bar.propTypes = {
-	answers: PropTypes.object
+	answers: PropTypes.array
 }
 
 export default Bar

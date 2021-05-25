@@ -41,6 +41,19 @@ const useStyles = makeStyles((theme) => ({
 		borderRadius: '3px',
 		border: '1px solid #bdbdbd'
 	},
+	animatedItem: {
+		animation: `$myEffect 2000ms ${theme.transitions.easing.easeInOut}`
+	},
+	'@keyframes myEffect': {
+		'0%': {
+			opacity: 0,
+			transform: 'translateX(-5%)'
+		},
+		'100%': {
+			opacity: 1,
+			transform: 'translateX(0)'
+		}
+	},
 	labelBox: {
 		width: '12px',
 		height: '12px',
