@@ -38,22 +38,22 @@ const useStyles = makeStyles((theme) => ({
 		backgroundColor: '#cacaca',
 		height: '30px',
 		margin: 2,
-		transition: 'all 1s ease-out'
+		borderRadius: '3px',
+		border: '1px solid #bdbdbd'
 	},
-	chartLabel: {},
 	labelBox: {
-		width: 12,
-		height: 12,
-		borderRadius: '5px',
-		padding: 2
+		width: '12px',
+		height: '12px',
+		borderRadius: '3px',
+		margin: '3px'
 	},
 	limeBox: {
-		background: 'lime',
-		border: '1px solid black'
+		background: '#cddc39',
+		border: '2px solid #c0ca33'
 	},
 	yellowBox: {
-		background: 'yellow',
-		border: '1px solid black'
+		background: '#ffeb3b',
+		border: '2px solid #fbc02d'
 	}
 }))
 

@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import ButtonHandler from './ButtonHandler'
-import Bar from './chartComponents/Bar'
+import ChartBars from './chartComponents/ChartBars'
 
 import useStyles from '../styles'
 import { Box, Container, Typography } from '@material-ui/core'
@@ -48,8 +48,23 @@ const Summary = ({ handleFormSubmit }) => {
 					tulevaisuuden tarjoamiin vaatimuksiin ja mahdollisuuksiin.
 				</Typography>
 			</Box>
-			<Box>
-				<Bar answers={answers} />
+			<Box mt={5}>
+				<ChartBars answers={answers} />
+			</Box>
+			<Box mt={10}>
+				<Typography>
+					Arvioit työkykysi olevan asteikolla 1-10 tasolla{' '}
+					{
+						answers
+							.find((answersPage) => answersPage.page === 3)
+							.answers.find((answer) => answer.id === 7).value
+					}
+					. Yrittäjän on tärkeää pitää huolta yrityksen pyörittämisen
+					lisäksi myös itsestään, sillä hyvinvoiva yritys lähtee
+					hyvinvoivasta yrittäjästä. Olemme koonneet tietoa
+					terveyskunnosta, käy halutessasi hakemassa vinkkejä
+					hyvinvointisi kehittämiseen ja ylläpitämiseen.
+				</Typography>
 			</Box>
 		</Container>
 	)

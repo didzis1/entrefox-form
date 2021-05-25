@@ -110,20 +110,23 @@ const Bar = ({ answers }) => {
 					alignItems='center'>
 					<div
 						className={`${classes.labelBox} ${classes.limeBox}`}></div>
-					<Typography>Voimavarat nykyhetkellä</Typography>
+					<Typography variant='body2'>
+						Voimavarat nykyhetkellä
+					</Typography>
 				</Grid>
 				<Grid
 					container
 					item
 					direction='row'
 					justify='center'
-					alignItems='center'>
+					alignItems='center'
+					wrap='nowrap'>
 					<Grid item>
 						<div
 							className={`${classes.labelBox} ${classes.yellowBox}`}></div>
 					</Grid>
 					<Grid item>
-						<Typography>
+						<Typography variant='body2'>
 							Voimavarat suhteessa tulevaisuuteen
 						</Typography>
 					</Grid>
