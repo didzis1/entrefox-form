@@ -1,4 +1,13 @@
-const reducer = (state = [], action) => {
+const initializeSlider = {
+	page: 3,
+	answers: [
+		{
+			id: 7,
+			value: 6
+		}
+	]
+}
+const reducer = (state = [initializeSlider], action) => {
 	switch (action.type) {
 		case 'UPDATE':
 			// eslint-disable-next-line no-case-declarations
