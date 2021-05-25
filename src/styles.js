@@ -26,6 +26,34 @@ const useStyles = makeStyles((theme) => ({
 	card: {
 		maxWidth: 345,
 		margin: '30px auto'
+	},
+	mainGrid: {
+		maxWidth: 850,
+		margin: '5px auto'
+	},
+	textGrid: {
+		margin: '0px auto 30px auto'
+	},
+	chartBar: {
+		backgroundColor: '#cacaca',
+		height: '30px',
+		margin: 2,
+		transition: 'all 1s ease-out'
+	},
+	chartLabel: {},
+	labelBox: {
+		width: 12,
+		height: 12,
+		borderRadius: '5px',
+		padding: 2
+	},
+	limeBox: {
+		background: 'lime',
+		border: '1px solid black'
+	},
+	yellowBox: {
+		background: 'yellow',
+		border: '1px solid black'
 	}
 }))
 
