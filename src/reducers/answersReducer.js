@@ -4,7 +4,7 @@ const reducer = (state = [], action) => {
 			// eslint-disable-next-line no-case-declarations
 			const newData = {
 				id: action.data.id,
-				value: action.data.value
+				value: action.data.value,
 			}
 			// eslint-disable-next-line no-case-declarations
 			const pageForData = action.data.page
@@ -25,7 +25,7 @@ const reducer = (state = [], action) => {
 									...answersPage,
 									answers: answersPage.answers.filter(
 										(answer) => answer.id !== newData.id
-									)
+									),
 								}
 							}
 							// Answer exists and is not empty => replace it with current answer
@@ -35,24 +35,27 @@ const reducer = (state = [], action) => {
 									answer.id === newData.id
 										? { ...answer, ...newData }
 										: answer
-								)
+								),
 							}
 						}
 						// Answer does not exist in the state current page
-						return {
-							...answersPage,
-							answers: answersPage.answers.concat(newData)
-						}
+						if (newData.value !== '')
+							return {
+								...answersPage,
+								answers: answersPage.answers.concat(newData),
+							}
 					}
 					return answersPage
 				})
 			}
 
 			// Page doesn't exist => add with items to state
-			return state.concat({
-				page: pageForData,
-				answers: [newData]
-			})
+			if (newData.value !== '')
+				return state.concat({
+					page: pageForData,
+					answers: [newData],
+				})
+			return state
 
 		case 'CLEAR':
 			return []
@@ -67,14 +70,14 @@ export const updateAnswers = (page, id, value) => {
 		data: {
 			page: parseInt(page),
 			id: parseInt(id),
-			value
-		}
+			value,
+		},
 	}
 }
 
 export const clearAnswers = () => {
 	return {
-		type: 'CLEAR'
+		type: 'CLEAR',
 	}
 }
 

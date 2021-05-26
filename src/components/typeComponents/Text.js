@@ -19,15 +19,12 @@ const Text = ({ question }) => {
 				return (
 					<Box key={field.ID} my={2}>
 						<TextField
-							name={
-								question.ID[field.ID] &&
-								question.ID[field.ID].toString()
-							}
+							name={question.ID && question.ID.toString()}
 							value={
 								getAnswerByID(
 									answers,
 									question.page,
-									question.ID[field.ID]
+									question.ID
 								) ?? ''
 							}
 							onChange={(event) =>
@@ -46,8 +43,8 @@ const Text = ({ question }) => {
 							label={field.text && field.text}
 							InputLabelProps={{
 								style: {
-									fontSize: '1.1rem'
-								}
+									fontSize: '1.1rem',
+								},
 							}}
 						/>
 					</Box>
@@ -58,7 +55,7 @@ const Text = ({ question }) => {
 }
 
 Text.propTypes = {
-	question: PropTypes.object
+	question: PropTypes.object,
 }
 
 export default Text

@@ -28,7 +28,7 @@ const Question = ({ questions, page }) => {
 
 Question.propTypes = {
 	questions: PropTypes.array,
-	page: PropTypes.number
+	page: PropTypes.number,
 }
 
 export default Question

@@ -236,7 +236,7 @@
 				],
 				"type": "text",
 				"required": true,
-				"ID": [10]
+				"ID": 10
 			},
 			{
 				"title": "Miten käytät digitaalisia työkaluja työssäsi?",
@@ -273,35 +273,44 @@
 				"description": "",
 				"fields": [
 					{
-						"text": "Tavoite 1.",
-						"ID": 12
+						"ID": 0,
+						"innerFields": [
+							{
+								"text": "Tavoite 1.",
+								"ID": 0
+							},
+							{
+								"text": "Tavoite 1. on tärkeä, koska ",
+								"ID": 1
+							}
+						]
 					},
 					{
-						"text": "Tavoite 1. on tärkeä, koska ",
-						"ID": 13
+						"ID": 1,
+						"innerFields": [
+							{
+								"text": "Tavoite 2.",
+								"ID": 0
+							},
+							{
+								"text": "Tavoite 2. on tärkeä, koska ",
+								"ID": 1
+							}
+						]
+					},
+					{
+						"ID": 2,
+						"innerFields": [
+							{
+								"text": "Tavoite 3.",
+								"ID": 0
+							},
+							{
+								"text": "Tavoite 3. on tärkeä, koska ",
+								"ID": 1
+							}
+						]
 					}
-				],
-				"optionalFields": [
-					[
-						{
-							"text": "Tavoite 2.",
-							"ID": 14
-						},
-						{
-							"text": "Tavoite 2. on tärkeä, koska ",
-							"ID": 15
-						}
-					],
-					[
-						{
-							"text": "Tavoite 2.",
-							"ID": 16
-						},
-						{
-							"text": "Tavoite 3. on tärkeä, koska ",
-							"ID": 17
-						}
-					]
 				],
 				"type": "multiple-text",
 				"required": true,
