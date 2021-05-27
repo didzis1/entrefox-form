@@ -1,12 +1,19 @@
-const reducer = (state = [], action) => {
+const initializeSlider = {
+	page: 3,
+	answers: [
+		{
+			id: 7,
+			value: 6,
+		},
+	],
+}
+const reducer = (state = [initializeSlider], action) => {
 	switch (action.type) {
-		case 'UPDATE':
-			// eslint-disable-next-line no-case-declarations
+		case 'UPDATE': {
 			const newData = {
 				id: action.data.id,
 				value: action.data.value,
 			}
-			// eslint-disable-next-line no-case-declarations
 			const pageForData = action.data.page
 
 			// Check if page exists
@@ -56,7 +63,7 @@ const reducer = (state = [], action) => {
 					answers: [newData],
 				})
 			return state
-
+		}
 		case 'CLEAR':
 			return []
 		default:
