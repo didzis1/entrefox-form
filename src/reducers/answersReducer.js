@@ -5,7 +5,7 @@ const initialState = questions.map((page) => {
 		page: page.ID,
 		answers: page.questions.map((question) => {
 			switch (question.type) {
-				case 'radio' || 'date':
+				case 'radio':
 					return {
 						id: question.ID,
 						value: null
@@ -14,6 +14,11 @@ const initialState = questions.map((page) => {
 					return {
 						id: question.ID,
 						value: ''
+					}
+				case 'date':
+					return {
+						id: question.ID,
+						value: undefined
 					}
 				default:
 					return {
