@@ -21,9 +21,7 @@ const DateField = ({ question }) => {
 	const currentPage = useSelector((state) => state.currentPage)
 	const handleCheckBox = () => {
 		setChecked(!checked)
-		dispatch(
-			updateAnswers(currentPage, question.ID, !checked ? null : undefined)
-		)
+		dispatch(updateAnswers(currentPage, question.ID, checked ? '' : true))
 	}
 	return (
 		<Box my={2}>

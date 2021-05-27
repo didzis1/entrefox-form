@@ -8,17 +8,27 @@ const initialState = questions.map((page) => {
 				case 'radio':
 					return {
 						id: question.ID,
-						value: null
+						value: ''
 					}
-				case 'text' || 'multi-text':
+				case 'text':
 					return {
 						id: question.ID,
 						value: ''
 					}
+				case 'multi-text':
+					return {
+						id: question.ID,
+						value: ''
+					}
+				case 'range':
+					return {
+						id: question.ID,
+						value: 5
+					}
 				case 'date':
 					return {
 						id: question.ID,
-						value: undefined
+						value: null
 					}
 				default:
 					return {
