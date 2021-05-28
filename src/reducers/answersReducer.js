@@ -41,7 +41,7 @@ const initialState = questions.map((page) => {
 })
 
 const reducer = (state = initialState, action) => {
-	console.log(action)
+	//console.log(state)
 	switch (action.type) {
 		case 'UPDATE': {
 			const newData = {

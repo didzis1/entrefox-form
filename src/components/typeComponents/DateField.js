@@ -21,7 +21,7 @@ const DateField = ({ question }) => {
 	const currentPage = useSelector((state) => state.currentPage)
 	const handleCheckBox = () => {
 		setChecked(!checked)
-		dispatch(updateAnswers(currentPage, question.ID, checked ? '' : true))
+		dispatch(updateAnswers(currentPage, question.ID, checked ? null : true))
 	}
 	return (
 		<Box my={2}>
@@ -30,6 +30,8 @@ const DateField = ({ question }) => {
 					format='dd/MM/yyyy'
 					variant='inline'
 					inputVariant='outlined'
+					label='Päivämäärä'
+					InputAdornmentProps={{ position: 'start' }}
 					disabled={checked}
 					name={question.ID.toString()}
 					value={

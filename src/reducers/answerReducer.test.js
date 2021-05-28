@@ -33,7 +33,7 @@ describe('answerReducer', () => {
 				answers: [
 					{
 						id: 1,
-						value: ''
+						value: 'Test value'
 					}
 				]
 			},
