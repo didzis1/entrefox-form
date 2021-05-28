@@ -6,10 +6,12 @@ import { useSelector } from 'react-redux'
 const Parts = ({ questionSets }) => {
 	const currentPage = useSelector((state) => state.currentPage)
 
+	// Return each part of the questions in their own div
 	return (
 		<div>
 			{questionSets.map((part) => (
 				<div
+					// Part is hidden if the currentPage is not the same as the part ID
 					style={{ display: currentPage === part.ID ? '' : 'none' }}
 					key={part.ID}
 					id={part.ID}>

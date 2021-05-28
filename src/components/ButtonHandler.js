@@ -12,6 +12,7 @@ const ButtonHandler = ({ text, handlePagination, questionSets }) => {
 	const currentPage = useSelector((state) => state.currentPage)
 
 	// Validation logic for input, if questionSets isn't defined ('Edellinen' button), returns false
+	// If validated returns true, 'Seuraava' or 'Olen valmis' button is disabled
 	const validated = () => {
 		if (!questionSets) return false
 
@@ -28,7 +29,7 @@ const ButtonHandler = ({ text, handlePagination, questionSets }) => {
 				answeredQuestions = answeredQuestions + 1
 			}
 		})
-		console.log(answeredQuestions)
+		// console.log(answeredQuestions)
 		// console.log(questionAmount, answerAmount)
 		// If answers are equal to or bigger than questions take off disabled button
 		return !(questionAmount <= answeredQuestions)

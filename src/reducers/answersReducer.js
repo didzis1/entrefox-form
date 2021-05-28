@@ -1,21 +1,13 @@
 import questions from '../data/questions.json'
 
+// Initiate the state with empty values for every question in the questions.json file
 const initialState = questions.map((page) => {
 	return {
 		page: page.ID,
 		answers: page.questions.map((question) => {
 			switch (question.type) {
-				case 'radio':
-					return {
-						id: question.ID,
-						value: ''
-					}
-				case 'text':
-					return {
-						id: question.ID,
-						value: ''
-					}
 				case 'multi-text':
+				case 'text':
 					return {
 						id: question.ID,
 						value: ''
@@ -25,6 +17,7 @@ const initialState = questions.map((page) => {
 						id: question.ID,
 						value: 5
 					}
+				case 'radio':
 				case 'date':
 					return {
 						id: question.ID,
@@ -44,12 +37,15 @@ const reducer = (state = initialState, action) => {
 	//console.log(state)
 	switch (action.type) {
 		case 'UPDATE': {
+			// Assign variables from action.data
 			const newData = {
 				id: action.data.id,
 				value: action.data.value
 			}
 			const dataInPage = action.data.page
+			// Create a new state -> replace old value with new one
 			const newState = state.map((pageToEdit) => {
+				// Change the value in the page it is located at
 				if (pageToEdit.page === dataInPage) {
 					return {
 						...pageToEdit,
@@ -58,10 +54,12 @@ const reducer = (state = initialState, action) => {
 						)
 					}
 				}
+				// Return page data (no values need to be changed here)
 				return {
 					...pageToEdit
 				}
 			})
+			// Replace the old state with new one
 			return newState
 		}
 		case 'CLEAR':
