@@ -1,41 +1,37 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { TextField, Box } from '@material-ui/core'
 
 import { updateAnswers } from '../../reducers/answersReducer'
-import { getAnswerByID } from '../../utils'
+
+import debounce from 'lodash/debounce'
 
 const Text = ({ question }) => {
+	const [textValue, setTextValue] = useState('')
 	const dispatch = useDispatch()
-	const answers = useSelector((state) => state.answers)
 	const currentPage = useSelector((state) => state.currentPage)
+
+	const debounceDispatch = debounce((name, value) => {
+		dispatch(updateAnswers(currentPage, name, value))
+	}, 1000)
+
+	const handleTextChange = (event) => {
+		const [name, value] = [event.target.name, event.target.value]
+		setTextValue(value)
+		debounceDispatch(name, value)
+	}
 
 	return (
 		<>
 			{question.fields.map((field) => {
-				//console.log(question.ID[field.ID])
 				return (
 					<Box key={field.ID} my={2}>
 						<TextField
 							name={question.ID && question.ID.toString()}
-							value={
-								getAnswerByID(
-									answers,
-									question.page,
-									question.ID
-								) ?? ''
-							}
-							onChange={(event) =>
-								dispatch(
-									updateAnswers(
-										currentPage,
-										event.target.name,
-										event.target.value
-									)
-								)
-							}
+							value={textValue}
+							onChange={(event) => handleTextChange(event)}
 							multiline
 							rows='4'
 							variant='outlined'
@@ -43,8 +39,8 @@ const Text = ({ question }) => {
 							label={field.text && field.text}
 							InputLabelProps={{
 								style: {
-									fontSize: '1.1rem',
-								},
+									fontSize: '1.1rem'
+								}
 							}}
 						/>
 					</Box>
@@ -55,7 +51,7 @@ const Text = ({ question }) => {
 }
 
 Text.propTypes = {
-	question: PropTypes.object,
+	question: PropTypes.object
 }
 
 export default Text
