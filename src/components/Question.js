@@ -19,6 +19,7 @@ const Question = ({ questions, page }) => {
 							</Typography>
 						</Box>
 					)}
+					{/* Component is determined based on it's type in typeComponent */}
 					{typeComponent({ ...question, page })}
 				</Box>
 			))}
@@ -28,7 +29,7 @@ const Question = ({ questions, page }) => {
 
 Question.propTypes = {
 	questions: PropTypes.array,
-	page: PropTypes.number,
+	page: PropTypes.number
 }
 
 export default Question

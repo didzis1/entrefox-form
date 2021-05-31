@@ -7,6 +7,7 @@ import {
 	MuiPickersUtilsProvider,
 	KeyboardDatePicker
 } from '@material-ui/pickers'
+
 import Box from '@material-ui/core/Box'
 import Checkbox from '@material-ui/core/Checkbox'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
@@ -21,9 +22,7 @@ const DateField = ({ question }) => {
 	const currentPage = useSelector((state) => state.currentPage)
 	const handleCheckBox = () => {
 		setChecked(!checked)
-		dispatch(
-			updateAnswers(currentPage, question.ID, !checked ? null : undefined)
-		)
+		dispatch(updateAnswers(currentPage, question.ID, checked ? null : true))
 	}
 	return (
 		<Box my={2}>
@@ -32,6 +31,8 @@ const DateField = ({ question }) => {
 					format='dd/MM/yyyy'
 					variant='inline'
 					inputVariant='outlined'
+					label='Päivämäärä'
+					InputAdornmentProps={{ position: 'start' }}
 					disabled={checked}
 					name={question.ID.toString()}
 					value={

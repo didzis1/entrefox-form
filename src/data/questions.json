@@ -42,7 +42,7 @@
 				],
 				"type": "text",
 				"required": true,
-				"ID": [3]
+				"ID": 3
 			},
 			{
 				"title": "Miten tavoitteet ovat toteutuneet?",
@@ -55,7 +55,7 @@
 				],
 				"type": "text",
 				"required": true,
-				"ID": [4]
+				"ID": 4
 			}
 		]
 	},

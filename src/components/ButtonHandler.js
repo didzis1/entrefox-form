@@ -12,20 +12,27 @@ const ButtonHandler = ({ text, handlePagination, questionSets }) => {
 	const currentPage = useSelector((state) => state.currentPage)
 
 	// Validation logic for input, if questionSets isn't defined ('Edellinen' button), returns false
+	// If validated returns true, 'Seuraava' or 'Olen valmis' button is disabled
 	const validated = () => {
 		if (!questionSets) return false
 
 		const questionAmount = questionSets.find(
 			(page) => page.ID === currentPage
 		).questions.length
-		const answerAmount = answers.some(
+		let answeredQuestions = 0
+		const pageAnswers = answers.find(
 			(answersPage) => answersPage.page === currentPage
 		)
-			? answers.find((answersPage) => answersPage.page === currentPage)
-					.answers.length
-			: 0
+		// Loop over each answer in the page and count the answered questions
+		pageAnswers.answers.forEach((answer) => {
+			if (answer.value) {
+				answeredQuestions = answeredQuestions + 1
+			}
+		})
+		// console.log(answeredQuestions)
 		// console.log(questionAmount, answerAmount)
-		return !(questionAmount <= answerAmount)
+		// If answers are equal to or bigger than questions take off disabled button
+		return !(questionAmount <= answeredQuestions)
 	}
 	return (
 		<Button

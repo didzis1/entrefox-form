@@ -10,7 +10,9 @@ import {
 	createMuiTheme,
 	responsiveFontSizes
 } from '@material-ui/core/styles'
-import { yellow, lime } from '@material-ui/core/colors'
+
+import lime from '@material-ui/core/colors/lime'
+import yellow from '@material-ui/core/colors/yellow'
 
 let theme = createMuiTheme({
 	palette: {

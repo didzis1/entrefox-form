@@ -6,20 +6,16 @@ import Text from './components/typeComponents/Text'
 import MultiText from './components/typeComponents/MultiText'
 import DateField from './components/typeComponents/DateField'
 
-// Makes getting answer value a bit more effortless, prevents repetition
 export const getAnswerByID = (answers, questionPage, questionID) => {
-	const pageData = answers.find((answer) => answer.page === questionPage)
-	if (!pageData) return undefined
-
-	const answerData = pageData.answers.find(
-		(answer) => answer.id === questionID
-	)
-	if (!answerData) return undefined
-
-	return answerData.value
+	// Find the page the answer is located at, then find the answer's value based on questionID
+	return answers
+		.find((answer) => answer.page === questionPage)
+		.answers.find((answer) => answer.id === questionID).value
 }
 
 const typeComponent = (question) => {
+	// Each question returns it's corresponding component
+	// Type is assigned in questions.json for each question
 	switch (question.type) {
 		case 'radio':
 			return <RadioButton question={question} />
