@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import typeComponent from '../utils'
 
+// Material UI
 import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
-
-import typeComponent from '../utils'
 
 const Question = ({ questions, page }) => {
 	return (
@@ -19,6 +19,7 @@ const Question = ({ questions, page }) => {
 							</Typography>
 						</Box>
 					)}
+					{/* Component is determined based on it's type in typeComponent */}
 					{typeComponent({ ...question, page })}
 				</Box>
 			))}
@@ -28,7 +29,7 @@ const Question = ({ questions, page }) => {
 
 Question.propTypes = {
 	questions: PropTypes.array,
-	page: PropTypes.number,
+	page: PropTypes.number
 }
 
 export default Question

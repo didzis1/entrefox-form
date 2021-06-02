@@ -2,15 +2,16 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
 import App from './App'
-import { Provider } from 'react-redux'
-import store from './store'
+import FormContextProvider from './contexts/FormContext'
 
 import {
 	ThemeProvider,
 	createMuiTheme,
 	responsiveFontSizes
 } from '@material-ui/core/styles'
-import { yellow, lime } from '@material-ui/core/colors'
+
+import lime from '@material-ui/core/colors/lime'
+import yellow from '@material-ui/core/colors/yellow'
 
 let theme = createMuiTheme({
 	palette: {
@@ -22,10 +23,10 @@ let theme = createMuiTheme({
 theme = responsiveFontSizes(theme)
 
 ReactDOM.render(
-	<Provider store={store}>
+	<FormContextProvider>
 		<ThemeProvider theme={theme}>
 			<App />
 		</ThemeProvider>
-	</Provider>,
+	</FormContextProvider>,
 	document.getElementById('root')
 )

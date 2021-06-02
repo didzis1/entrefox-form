@@ -145,6 +145,12 @@ const useStyles = makeStyles((theme) => ({
 		top: '0px',
 		right: '-30px',
 		transform: 'rotate(35deg)'
+	},
+	logo: {
+		width: '100%',
+		maxWidth: '400px',
+		height: 'auto',
+		margin: 'auto'
 	}
 }))
 
