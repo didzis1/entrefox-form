@@ -1,9 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { useSelector } from 'react-redux'
+import { useForm } from '../contexts/FormContext'
 
+// Material UI
+import LinearProgress from '@material-ui/core/LinearProgress'
+import Box from '@material-ui/core/Box'
+import Typography from '@material-ui/core/Typography'
 import useStyles from '../styles'
-import { LinearProgress, Box, Typography } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
 
 // LinearProgress component is visually upgraded with 'withStyles'
@@ -24,9 +27,8 @@ const BorderLinearProgress = withStyles(() => ({
 
 const ProgressBar = () => {
 	const styles = useStyles()
-	const currentPage = useSelector((state) => state.currentPage)
+	const { currentPage } = useForm()
 	const progress = currentPage * 20
-	// console.log(progress)
 
 	return (
 		<Box display='flex' mt={2} alignItems='center'>

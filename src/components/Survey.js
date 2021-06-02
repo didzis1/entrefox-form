@@ -5,6 +5,7 @@ import Parts from './Parts'
 import ButtonHandler from './ButtonHandler'
 import ProgressBar from './ProgressBar'
 
+// Material UI
 import Typography from '@material-ui/core/Typography'
 import Container from '@material-ui/core/Container'
 import Box from '@material-ui/core/Box'
@@ -13,6 +14,7 @@ import Card from '@material-ui/core/Card'
 import CardMedia from '@material-ui/core/CardMedia'
 import useStyles from '../styles'
 
+// Images
 import entrefox_logo from '../images/entrefox_logo.png'
 
 const Survey = ({
@@ -31,7 +33,7 @@ const Survey = ({
 			return (
 				<ButtonHandler
 					text='Edellinen'
-					handlePagination={handlePreviousPage}
+					handlePagination={() => handlePreviousPage()}
 				/>
 			)
 		}
@@ -42,19 +44,18 @@ const Survey = ({
 			return (
 				<ButtonHandler
 					text='Olen valmis'
-					handlePagination={handleFormSubmit}
-					questionSets={questionSets}
-				/>
-			)
-		} else {
-			return (
-				<ButtonHandler
-					text='Seuraava'
-					handlePagination={handleNextPage}
+					handlePagination={(event) => handleFormSubmit(event)}
 					questionSets={questionSets}
 				/>
 			)
 		}
+		return (
+			<ButtonHandler
+				text='Seuraava'
+				handlePagination={() => handleNextPage()}
+				questionSets={questionSets}
+			/>
+		)
 	}
 
 	return (
@@ -76,7 +77,10 @@ const Survey = ({
 				</Typography>
 				<Box pt={2} pb={4} px={3} className={classes.form}>
 					<form onSubmit={handleFormSubmit}>
-						<Parts questionSets={questionSets} />
+						<Parts
+							questionSets={questionSets}
+							currentPage={currentPage}
+						/>
 					</form>
 				</Box>
 

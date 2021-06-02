@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import typeComponent from '../utils'
 
+// Material UI
 import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
-
-import typeComponent from '../utils'
 
 const Question = ({ questions, page }) => {
 	return (

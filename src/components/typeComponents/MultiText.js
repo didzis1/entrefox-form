@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import { useSelector, useDispatch } from 'react-redux'
-import { updateAnswers } from '../../reducers/answersReducer'
+import { useForm } from '../../contexts/FormContext'
 //import { getAnswerByID } from '../../utils'
 
-import { TextField, Box, Button, Grid } from '@material-ui/core'
-
+// Material UI
+import TextField from '@material-ui/core/TextField'
+import Box from '@material-ui/core/Box'
+import Button from '@material-ui/core/Button'
+import Grid from '@material-ui/core/Grid'
 import useStyles from '../../styles'
 
 const MultiText = ({ question }) => {
-	const dispatch = useDispatch()
 	const styles = useStyles()
-	const currentPage = useSelector((state) => state.currentPage)
 
 	const [fieldData, setFieldData] = useState({})
 	const [fieldCounter, setFieldCounter] = useState(0)
+	const { currentPage, handleInputChange } = useForm()
 
 	/*fieldData = {
 		0: {
@@ -32,13 +33,7 @@ const MultiText = ({ question }) => {
 	useEffect(() => {
 		if (currentPage === question.page) {
 			const timeout = setTimeout(() => {
-				dispatch(
-					updateAnswers(
-						currentPage,
-						question.ID,
-						validatedDispatchData()
-					)
-				)
+				handleInputChange(question.ID, validatedDispatchData())
 			}, 0)
 			return () => clearTimeout(timeout)
 		}
@@ -84,8 +79,8 @@ const MultiText = ({ question }) => {
 			...fieldData,
 			[fieldID]: {
 				...fieldData[fieldID],
-				[innerFieldID]: value,
-			},
+				[innerFieldID]: value
+			}
 		})
 	}
 
@@ -107,7 +102,7 @@ const MultiText = ({ question }) => {
 							key={innerField.ID}
 							my={2}
 							style={{
-								display: field.ID <= fieldCounter ? '' : 'none',
+								display: field.ID <= fieldCounter ? '' : 'none'
 							}}>
 							<TextField
 								name={question.ID.toString()}
@@ -131,8 +126,8 @@ const MultiText = ({ question }) => {
 								label={innerField.text && innerField.text}
 								InputLabelProps={{
 									style: {
-										fontSize: '1.1rem',
-									},
+										fontSize: '1.1rem'
+									}
 								}}
 							/>
 						</Box>
@@ -146,7 +141,7 @@ const MultiText = ({ question }) => {
 					onClick={() => handleClick(-1)}
 					className={styles.button}
 					style={{
-						display: fieldCounter !== 0 ? '' : 'none',
+						display: fieldCounter !== 0 ? '' : 'none'
 					}}>
 					Poista uusin tavoite
 				</Button>
@@ -156,7 +151,7 @@ const MultiText = ({ question }) => {
 					onClick={() => handleClick(1)}
 					className={styles.button}
 					style={{
-						display: fieldCounter !== 2 ? '' : 'none',
+						display: fieldCounter !== 2 ? '' : 'none'
 					}}>
 					Lisää uusi tavoite
 				</Button>
@@ -166,7 +161,7 @@ const MultiText = ({ question }) => {
 }
 
 MultiText.propTypes = {
-	question: PropTypes.object,
+	question: PropTypes.object
 }
 
 export default MultiText

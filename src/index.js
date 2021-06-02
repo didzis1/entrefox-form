@@ -2,8 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
 import App from './App'
-import { Provider } from 'react-redux'
-import store from './store'
+import FormContextProvider from './contexts/FormContext'
 
 import {
 	ThemeProvider,
@@ -24,10 +23,10 @@ let theme = createMuiTheme({
 theme = responsiveFontSizes(theme)
 
 ReactDOM.render(
-	<Provider store={store}>
+	<FormContextProvider>
 		<ThemeProvider theme={theme}>
 			<App />
 		</ThemeProvider>
-	</Provider>,
+	</FormContextProvider>,
 	document.getElementById('root')
 )

@@ -1,28 +1,29 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { useForm } from '../contexts/FormContext'
 
+// Summary components
 import ButtonHandler from './ButtonHandler'
 import ChartBars from './summaryComponents/ChartBars'
 import Gauge from './summaryComponents/Gauge'
 import StickyNote from './summaryComponents/StickyNote'
 
+// Material UI
 import Box from '@material-ui/core/Box'
 import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
 import useStyles from '../styles'
 
-import { useSelector } from 'react-redux'
-
 const Summary = ({ handleFormSubmit }) => {
 	const classes = useStyles()
-	const answers = useSelector((state) => state.answers)
+	const { formData } = useForm()
 	const currentDate = new Date()
 	const [date, month, year] = [
 		currentDate.getDate(),
 		currentDate.getMonth(),
 		currentDate.getFullYear()
 	]
-	const sliderValue = answers
+	const sliderValue = formData
 		.find((answersPage) => answersPage.page === 3)
 		.answers.find((answer) => answer.id === 7).value
 	return (
@@ -51,12 +52,12 @@ const Summary = ({ handleFormSubmit }) => {
 				</Typography>
 				<Typography variant='body1'>
 					Arvioit voimavarojesi olevan yrittäjänä{' '}
-					{answers
+					{formData
 						.find((answersPage) => answersPage.page === 3)
 						.answers.find((answer) => answer.id === 5)
 						.value.toLowerCase()}{' '}
 					ja voimavaroissa olevan{' '}
-					{answers
+					{formData
 						.find((answersPage) => answersPage.page === 3)
 						.answers.find((answer) => answer.id === 6)
 						.value.toLowerCase()}{' '}
@@ -65,7 +66,7 @@ const Summary = ({ handleFormSubmit }) => {
 				</Typography>
 			</Box>
 			<Box mt={5}>
-				<ChartBars answers={answers} />
+				<ChartBars answers={formData} />
 			</Box>
 			<Box mt={10} mb={5}>
 				<Typography variant='body1'>
@@ -90,7 +91,7 @@ const Summary = ({ handleFormSubmit }) => {
 					elämässäsi{' '}
 					<i>
 						{
-							answers
+							formData
 								.find((answersPage) => answersPage.page === 3)
 								.answers.find((answer) => answer.id === 8)
 								.value.toLowerCase()

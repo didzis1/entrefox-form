@@ -1,12 +1,12 @@
 import React from 'react'
-import Question from './Question'
 import PropTypes from 'prop-types'
-import { useSelector } from 'react-redux'
+import { useForm } from '../contexts/FormContext'
+
+import Question from './Question'
 
 const Parts = ({ questionSets }) => {
-	const currentPage = useSelector((state) => state.currentPage)
-
 	// Return each part of the questions in their own div
+	const { currentPage } = useForm()
 	return (
 		<div>
 			{questionSets.map((part) => (

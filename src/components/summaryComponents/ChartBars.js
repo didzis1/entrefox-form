@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+// Material UI
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
-
 import useStyles from '../../styles'
 
 const graphValues = [

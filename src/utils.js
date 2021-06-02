@@ -1,4 +1,5 @@
 import React from 'react'
+import { useForm } from './contexts/FormContext'
 
 import RadioButton from './components/typeComponents/RadioButton'
 import Range from './components/typeComponents/Range'
@@ -6,9 +7,10 @@ import Text from './components/typeComponents/Text'
 import MultiText from './components/typeComponents/MultiText'
 import DateField from './components/typeComponents/DateField'
 
-export const getAnswerByID = (answers, questionPage, questionID) => {
+export const getAnswerByID = (questionPage, questionID) => {
+	const { formData } = useForm()
 	// Find the page the answer is located at, then find the answer's value based on questionID
-	return answers
+	return formData
 		.find((answer) => answer.page === questionPage)
 		.answers.find((answer) => answer.id === questionID).value
 }

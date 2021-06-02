@@ -1,27 +1,15 @@
-import React, { useState, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import {
-	increment,
-	skipIncrement,
-	decrement,
-	skipDecrement
-} from './reducers/pageCountReducer'
+import React, { useEffect } from 'react'
 
 import Survey from './components/Survey'
 import Summary from './components/Summary'
 import questionSets from './data/questions.json'
 import { getAnswerByID } from './utils'
+import { useForm } from './contexts/FormContext'
 
 const App = () => {
-	// React state
-	const [formSubmitted, setFormSubmitted] = useState(false)
-
-	const dispatch = useDispatch()
-
-	// Redux store state
-	const currentPage = useSelector((state) => state.currentPage)
-	const answers = useSelector((state) => state.answers)
-
+	const { currentPage, setCurrentPage, formSubmitted, setFormSubmitted } =
+		useForm()
+	console.log(formSubmitted)
 	useEffect(() => {
 		window.scrollTo({
 			top: 0,
@@ -30,39 +18,40 @@ const App = () => {
 		})
 	}, [currentPage])
 
+	const firstAnswer = getAnswerByID(1, 1)
 	const handleNextPage = () => {
 		// Gets the first question of the first page (Have you done this survey before)
-		if (getAnswerByID(answers, 1, 1) === 'En' && currentPage === 1) {
-			return dispatch(skipIncrement())
-		}
-		return dispatch(increment())
+		firstAnswer === 'En' && currentPage === 1
+			? setCurrentPage(currentPage + 2)
+			: setCurrentPage(currentPage + 1)
 	}
 
 	const handlePreviousPage = () => {
 		// Gets the first question of the first page (Have you done this survey before)
-		if (getAnswerByID(answers, 1, 1) === 'En' && currentPage === 3) {
-			return dispatch(skipDecrement())
-		}
-		return dispatch(decrement())
+		firstAnswer === 'En' && currentPage === 3
+			? setCurrentPage(currentPage - 2)
+			: setCurrentPage(currentPage - 1)
 	}
 
-	const handleFormSubmit = () => {
+	const handleFormSubmit = (event) => {
+		event.preventDefault()
 		setFormSubmitted(!formSubmitted)
 	}
 
 	if (formSubmitted) {
 		return <Summary handleFormSubmit={handleFormSubmit} />
-	} else {
-		return (
-			<Survey
-				handleFormSubmit={handleFormSubmit}
-				handleNextPage={handleNextPage}
-				handlePreviousPage={handlePreviousPage}
-				questionSets={questionSets}
-				currentPage={currentPage}
-			/>
-		)
 	}
+
+	return (
+		<Survey
+			handleFormSubmit={handleFormSubmit}
+			handleNextPage={handleNextPage}
+			handlePreviousPage={handlePreviousPage}
+			questionSets={questionSets}
+			currentPage={currentPage}
+			formSubmitted={formSubmitted}
+		/>
+	)
 }
 
 export default App
