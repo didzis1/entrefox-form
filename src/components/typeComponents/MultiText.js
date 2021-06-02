@@ -13,7 +13,7 @@ const MultiText = ({ question }) => {
 	const styles = useStyles()
 	const currentPage = useSelector((state) => state.currentPage)
 
-	const [fieldData, setFieldData] = useState({})
+	const [fieldData, setFieldData] = useState([])
 	const [fieldCounter, setFieldCounter] = useState(0)
 
 	/*fieldData = {
@@ -25,12 +25,42 @@ const MultiText = ({ question }) => {
 			0: 'value',
 			1: 'value'
 		}
-	}*/
+	}
+
+	/*fieldData = [
+		{
+			ID: 1,
+			values: [
+				{
+					ID: 0,
+					value: value
+				},
+				{
+					ID: 1,
+					value: value
+				}
+			]
+		},
+		{
+			ID: 1,
+			values: [
+				{
+					ID: 0,
+					value: value
+				},
+				{
+					ID: 1,
+					value: value
+				}
+			]
+		}
+	]*/
 
 	// Execute update to redux after user has stopped typing for 1 second. Reduces
 	// the unnecesaary loops in the answersReducer
 	useEffect(() => {
 		if (currentPage === question.page) {
+			//console.log(fieldData)
 			const timeout = setTimeout(() => {
 				dispatch(
 					updateAnswers(
@@ -45,17 +75,13 @@ const MultiText = ({ question }) => {
 	}, [fieldData])
 
 	const validatedDispatchData = () => {
-		let result = fieldData
-
-		Object.keys(fieldData).forEach((field) => {
-			if (
-				Object.keys(fieldData[field]).length !==
-				question.fields[parseInt(field)].innerFields.length
-			)
-				result = removeField(result, field)
-		})
-
-		return Object.keys(result).length !== 0 ? result : ''
+		const result = fieldData.filter(
+			(field) =>
+				field.values.length ===
+				question.fields[parseInt(field.ID)].innerFields.length
+		)
+		//console.log(result)
+		return result.length !== 0 ? result : ''
 	}
 
 	const removeField = (data, fieldID) => {
@@ -65,28 +91,71 @@ const MultiText = ({ question }) => {
 		return newData
 	}
 
-	const removeInnerField = (fieldID, innerField) => {
-		/* eslint-disable no-unused-vars */
-		let { [fieldID]: parentValue, ...newData } = fieldData
-		let { [innerField]: __, ...newInnerData } = parentValue
-		/* eslint-enable no-unused-vars */
+	const removeInnerField = (fieldID, innerFieldID) => {
+		const result = fieldData.map((field) => {
+			if (field.ID === fieldID) {
+				return {
+					...field,
+					values: field.values.filter(
+						(innerField) => innerField.ID !== innerFieldID
+					),
+				}
+			}
+			return field
+		})
 
-		if (Object.keys(newInnerData).length === 0) return setFieldData(newData)
-		setFieldData({ ...newData, [fieldID]: newInnerData })
+		return setFieldData(result)
 	}
 
 	const handleChange = (fieldID, innerFieldID, value) => {
-		if (fieldData[fieldID] !== undefined) {
+		if (fieldData.find((field) => field.ID === fieldID)) {
 			if (value === '') return removeInnerField(fieldID, innerFieldID)
 		}
 
-		setFieldData({
-			...fieldData,
-			[fieldID]: {
-				...fieldData[fieldID],
-				[innerFieldID]: value,
-			},
-		})
+		// Field
+		if (fieldData.some((fieldState) => fieldState.ID === fieldID)) {
+			setFieldData(
+				fieldData.map((fieldState) => {
+					if (fieldState.ID === fieldID) {
+						if (
+							fieldState.values.some(
+								(innerFieldState) =>
+									innerFieldState.ID === innerFieldID
+							)
+						) {
+							return {
+								...fieldState,
+								values: fieldState.values.map((innerField) => {
+									if (innerField.ID === innerFieldID) {
+										return {
+											...innerField,
+											value,
+										}
+									}
+									return innerField
+								}),
+							}
+						}
+						return {
+							...fieldState,
+							values: fieldState.values.concat({
+								ID: innerFieldID,
+								value,
+							}),
+						}
+					}
+					return fieldState
+				})
+			)
+		} else {
+			return setFieldData([
+				...fieldData,
+				{
+					ID: fieldID,
+					values: [{ ID: innerFieldID, value }],
+				},
+			])
+		}
 	}
 
 	const handleClick = (action) => {
@@ -96,6 +165,23 @@ const MultiText = ({ question }) => {
 		if (action < 0) {
 			setFieldData(removeField(fieldData, fieldCounter))
 		}
+	}
+
+	const getValue = (fieldID, innerFieldID) => {
+		//console.log(fieldData)
+		const fieldState = fieldData.find((field) => field.ID === fieldID)
+
+		if (fieldState === undefined) return undefined
+		if (fieldState.values === undefined) return undefined
+
+		const innerField = fieldState.values.find(
+			(innerField) => innerField.ID === innerFieldID
+		)
+
+		if (innerField === undefined) return undefined
+		if (innerField.value === undefined) return undefined
+
+		return innerField.value
 	}
 
 	return (
@@ -111,12 +197,7 @@ const MultiText = ({ question }) => {
 							}}>
 							<TextField
 								name={question.ID.toString()}
-								value={
-									fieldData[field.ID]
-										? fieldData[field.ID][innerField.ID] ??
-										  ''
-										: ''
-								}
+								value={getValue(field.ID, innerField.ID) ?? ''}
 								onChange={(event) =>
 									handleChange(
 										field.ID,
