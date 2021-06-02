@@ -15,13 +15,15 @@ import Typography from '@material-ui/core/Typography'
 import useStyles from '../styles'
 
 const Summary = ({ handleFormSubmit }) => {
+	if (handleFormSubmit === undefined) return ''
 	const classes = useStyles()
 	const { formData } = useForm()
+	console.log(formData)
 	const currentDate = new Date()
 	const [date, month, year] = [
 		currentDate.getDate(),
 		currentDate.getMonth(),
-		currentDate.getFullYear()
+		currentDate.getFullYear(),
 	]
 	const sliderValue = formData
 		.find((answersPage) => answersPage.page === 3)
@@ -139,7 +141,7 @@ const Summary = ({ handleFormSubmit }) => {
 }
 
 Summary.propTypes = {
-	handleFormSubmit: PropTypes.func
+	handleFormSubmit: PropTypes.func,
 }
 
 export default Summary

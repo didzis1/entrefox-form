@@ -14,7 +14,7 @@ const App = () => {
 		window.scrollTo({
 			top: 0,
 			left: 0,
-			behavior: 'smooth'
+			behavior: 'smooth',
 		})
 	}, [currentPage])
 
@@ -38,19 +38,27 @@ const App = () => {
 		setFormSubmitted(!formSubmitted)
 	}
 
-	if (formSubmitted) {
-		return <Summary handleFormSubmit={handleFormSubmit} />
-	}
+	//if (formSubmitted) {
+	//	return <Summary handleFormSubmit={handleFormSubmit} />
+	//}
 
 	return (
-		<Survey
-			handleFormSubmit={handleFormSubmit}
-			handleNextPage={handleNextPage}
-			handlePreviousPage={handlePreviousPage}
-			questionSets={questionSets}
-			currentPage={currentPage}
-			formSubmitted={formSubmitted}
-		/>
+		<>
+			<Summary
+				style={{ display: formSubmitted ? '' : 'none' }}
+				handleFormSubmit={formSubmitted ? handleFormSubmit : undefined}
+			/>
+			<div style={{ display: formSubmitted ? 'none' : '' }}>
+				<Survey
+					handleFormSubmit={handleFormSubmit}
+					handleNextPage={handleNextPage}
+					handlePreviousPage={handlePreviousPage}
+					questionSets={questionSets}
+					currentPage={currentPage}
+					formSubmitted={formSubmitted}
+				/>
+			</div>
+		</>
 	)
 }
 

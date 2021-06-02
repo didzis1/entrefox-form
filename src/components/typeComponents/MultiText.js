@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import { useForm } from '../../contexts/FormContext'
 import PropTypes from 'prop-types'
-import { useSelector, useDispatch } from 'react-redux'
-import { updateAnswers } from '../../reducers/answersReducer'
 //import { getAnswerByID } from '../../utils'
 
 import { TextField, Box, Button, Grid } from '@material-ui/core'
@@ -9,9 +8,8 @@ import { TextField, Box, Button, Grid } from '@material-ui/core'
 import useStyles from '../../styles'
 
 const MultiText = ({ question }) => {
-	const dispatch = useDispatch()
 	const styles = useStyles()
-	const currentPage = useSelector((state) => state.currentPage)
+	const { handleInputChange } = useForm()
 
 	const [fieldData, setFieldData] = useState([])
 	const [fieldCounter, setFieldCounter] = useState(0)
@@ -59,19 +57,11 @@ const MultiText = ({ question }) => {
 	// Execute update to redux after user has stopped typing for 1 second. Reduces
 	// the unnecesaary loops in the answersReducer
 	useEffect(() => {
-		if (currentPage === question.page) {
-			//console.log(fieldData)
-			const timeout = setTimeout(() => {
-				dispatch(
-					updateAnswers(
-						currentPage,
-						question.ID,
-						validatedDispatchData()
-					)
-				)
-			}, 0)
-			return () => clearTimeout(timeout)
-		}
+		//console.log(fieldData)
+		const timeout = setTimeout(() => {
+			handleInputChange(question.ID, validatedDispatchData())
+		}, 0)
+		return () => clearTimeout(timeout)
 	}, [fieldData])
 
 	const validatedDispatchData = () => {
