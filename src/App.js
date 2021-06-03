@@ -9,7 +9,7 @@ import { useForm } from './contexts/FormContext'
 const App = () => {
 	const { currentPage, setCurrentPage, formSubmitted, setFormSubmitted } =
 		useForm()
-	console.log(formSubmitted)
+
 	useEffect(() => {
 		window.scrollTo({
 			top: 0,
