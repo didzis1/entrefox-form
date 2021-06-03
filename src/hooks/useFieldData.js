@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useForm } from '../../contexts/FormContext'
+import { useForm } from '../contexts/FormContext'
 
 export const useFieldData = (question) => {
 	const [fieldData, setFieldData] = useState([])
