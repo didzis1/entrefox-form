@@ -39,20 +39,20 @@ const App = () => {
 		setFormSubmitted(!formSubmitted)
 	}
 
-	if (formSubmitted) {
-		return <Summary handleFormSubmit={handleFormSubmit} />
-	}
-
 	return (
 		<>
-			<Survey
-				handleFormSubmit={handleFormSubmit}
-				handleNextPage={handleNextPage}
-				handlePreviousPage={handlePreviousPage}
-				questionSets={questionSets}
-				currentPage={currentPage}
-				formSubmitted={formSubmitted}
-			/>
+			{formSubmitted ? (
+				<Summary handleFormSubmit={handleFormSubmit} />
+			) : (
+				<Survey
+					handleFormSubmit={handleFormSubmit}
+					handleNextPage={handleNextPage}
+					handlePreviousPage={handlePreviousPage}
+					questionSets={questionSets}
+					currentPage={currentPage}
+					formSubmitted={formSubmitted}
+				/>
+			)}
 			<Footer />
 		</>
 	)
