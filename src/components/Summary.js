@@ -32,6 +32,7 @@ const Summary = ({ handleFormSubmit }) => {
 		<Container className={classes.survey} maxWidth='md'>
 			<ButtonHandler
 				text='Palaa takaisin'
+				colors={{ bg: '#cddc39', bgHover: '#c0ca33' }}
 				handlePagination={handleFormSubmit}
 			/>
 			<Box my={5}>

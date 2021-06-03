@@ -5,11 +5,12 @@ import Summary from './components/Summary'
 import questionSets from './data/questions.json'
 import { getAnswerByID } from './utils'
 import { useForm } from './contexts/FormContext'
+import Footer from './components/Footer'
 
 const App = () => {
 	const { currentPage, setCurrentPage, formSubmitted, setFormSubmitted } =
 		useForm()
-	console.log(formSubmitted)
+
 	useEffect(() => {
 		window.scrollTo({
 			top: 0,
@@ -38,26 +39,21 @@ const App = () => {
 		setFormSubmitted(!formSubmitted)
 	}
 
-	//if (formSubmitted) {
-	//	return <Summary handleFormSubmit={handleFormSubmit} />
-	//}
+	if (formSubmitted) {
+		return <Summary handleFormSubmit={handleFormSubmit} />
+	}
 
 	return (
 		<>
-			<Summary
-				style={{ display: formSubmitted ? '' : 'none' }}
-				handleFormSubmit={formSubmitted ? handleFormSubmit : undefined}
+			<Survey
+				handleFormSubmit={handleFormSubmit}
+				handleNextPage={handleNextPage}
+				handlePreviousPage={handlePreviousPage}
+				questionSets={questionSets}
+				currentPage={currentPage}
+				formSubmitted={formSubmitted}
 			/>
-			<div style={{ display: formSubmitted ? 'none' : '' }}>
-				<Survey
-					handleFormSubmit={handleFormSubmit}
-					handleNextPage={handleNextPage}
-					handlePreviousPage={handlePreviousPage}
-					questionSets={questionSets}
-					currentPage={currentPage}
-					formSubmitted={formSubmitted}
-				/>
-			</div>
+			<Footer />
 		</>
 	)
 }

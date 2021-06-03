@@ -1,15 +1,17 @@
 import React from 'react'
 import { useFieldData } from '../../hooks/useFieldData'
-//import { useFieldData } from './useFieldData'
 import PropTypes from 'prop-types'
 //import { getAnswerByID } from '../../utils'
 
-import { TextField, Box, Button, Grid } from '@material-ui/core'
+import ButtonHandler from '../ButtonHandler'
 
-import useStyles from '../../styles'
+import TextField from '@material-ui/core/TextField'
+import Box from '@material-ui/core/Box'
+import Grid from '@material-ui/core/Grid'
+import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded'
+import AddRoundedIcon from '@material-ui/icons/AddRounded'
 
 const MultiText = ({ question }) => {
-	const styles = useStyles()
 	const { fieldCounter, addField, removeField, getValue, handleChange } =
 		useFieldData(question)
 
@@ -49,27 +51,31 @@ const MultiText = ({ question }) => {
 					)
 				})
 			})}
-			<Grid container direction='row' justify='flex-end'>
-				<Button
-					variant='contained'
-					color='primary'
-					onClick={() => removeField()}
-					className={styles.button}
-					style={{
-						display: fieldCounter !== 0 ? '' : 'none',
-					}}>
-					Poista uusin tavoite
-				</Button>
-				<Button
-					variant='contained'
-					color='primary'
-					onClick={() => addField()}
-					className={styles.button}
-					style={{
-						display: fieldCounter !== 2 ? '' : 'none',
-					}}>
-					Lisää uusi tavoite
-				</Button>
+			<Grid
+				container
+				direction='column'
+				justify='flex-end'
+				alignItems='flex-end'>
+				{fieldCounter !== 2 ? (
+					<Box mt={1} mb={2}>
+						<ButtonHandler
+							variant='contained'
+							colors={{ bg: '#cddc39', bgHover: '#c0ca33' }}
+							handlePagination={() => addField()}
+							startIcon={<AddRoundedIcon />}
+							text='Lisää uusi tavoite'
+						/>
+					</Box>
+				) : null}
+				{fieldCounter !== 0 ? (
+					<ButtonHandler
+						variant='contained'
+						colors={{ bg: '#ffc400', bgHover: '#b28900' }}
+						handlePagination={() => removeField()}
+						startIcon={<DeleteRoundedIcon />}
+						text='Poista uusin tavoite'
+					/>
+				) : null}
 			</Grid>
 		</>
 	)

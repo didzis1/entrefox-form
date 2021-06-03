@@ -15,14 +15,6 @@ const useStyles = makeStyles((theme) => ({
 			paddingRight: '0px'
 		}
 	},
-	button: {
-		backgroundColor: 'primary',
-		color: '#000000',
-		letterSpacing: '2px',
-		'&:hover': {
-			color: '#FFFFFF'
-		}
-	},
 	card: {
 		maxWidth: '345px',
 		margin: '30px auto'
@@ -151,6 +143,10 @@ const useStyles = makeStyles((theme) => ({
 		maxWidth: '400px',
 		height: 'auto',
 		margin: 'auto'
+	},
+	gridList: {
+		width: '100%',
+		height: 'auto'
 	}
 }))
 
