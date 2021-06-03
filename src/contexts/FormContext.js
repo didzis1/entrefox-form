@@ -22,6 +22,7 @@ const FormContextProvider = ({ children }) => {
 		event.preventDefault()
 		setFormSubmitted(!formSubmitted)
 	}
+	console.log(formData)
 	const handleInputChange = (id, value) => {
 		const newData = {
 			id: parseInt(id),

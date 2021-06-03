@@ -7,6 +7,8 @@ import { getAnswerByID } from './utils'
 import { useForm } from './contexts/FormContext'
 import Footer from './components/Footer'
 
+import Box from '@material-ui/core/Box'
+
 const App = () => {
 	const { currentPage, setCurrentPage, formSubmitted, setFormSubmitted } =
 		useForm()
@@ -40,7 +42,7 @@ const App = () => {
 	}
 
 	return (
-		<>
+		<Box pt={5}>
 			{formSubmitted ? (
 				<Summary handleFormSubmit={handleFormSubmit} />
 			) : (
@@ -54,7 +56,7 @@ const App = () => {
 				/>
 			)}
 			<Footer />
-		</>
+		</Box>
 	)
 }
 

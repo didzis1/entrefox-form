@@ -64,7 +64,7 @@ ButtonHandler.propTypes = {
 	text: PropTypes.string,
 	handlePagination: PropTypes.func,
 	questionSets: PropTypes.array,
-	colors: PropTypes.string,
+	colors: PropTypes.object,
 	startIcon: PropTypes.object
 }
 

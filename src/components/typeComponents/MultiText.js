@@ -136,11 +136,11 @@ const MultiText = ({ question }) => {
 			})}
 			<Grid
 				container
-				direction='column'
+				direction='row'
 				justify='flex-end'
 				alignItems='flex-end'>
 				{fieldCounter !== 2 ? (
-					<Box mt={1} mb={2}>
+					<Box mr={2}>
 						<ButtonHandler
 							variant='contained'
 							colors={{ bg: '#cddc39', bgHover: '#c0ca33' }}
