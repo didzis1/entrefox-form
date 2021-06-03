@@ -3,16 +3,16 @@ import PropTypes from 'prop-types'
 import { useForm } from '../../contexts/FormContext'
 //import { getAnswerByID } from '../../utils'
 
+import ButtonHandler from '../ButtonHandler'
+
 // Material UI
 import TextField from '@material-ui/core/TextField'
 import Box from '@material-ui/core/Box'
-import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
-import useStyles from '../../styles'
+import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded'
+import AddRoundedIcon from '@material-ui/icons/AddRounded'
 
 const MultiText = ({ question }) => {
-	const styles = useStyles()
-
 	const [fieldData, setFieldData] = useState({})
 	const [fieldCounter, setFieldCounter] = useState(0)
 	const { currentPage, handleInputChange } = useForm()
@@ -134,27 +134,31 @@ const MultiText = ({ question }) => {
 					)
 				})
 			})}
-			<Grid container direction='row' justify='flex-end'>
-				<Button
-					variant='contained'
-					color='primary'
-					onClick={() => handleClick(-1)}
-					className={styles.button}
-					style={{
-						display: fieldCounter !== 0 ? '' : 'none'
-					}}>
-					Poista uusin tavoite
-				</Button>
-				<Button
-					variant='contained'
-					color='primary'
-					onClick={() => handleClick(1)}
-					className={styles.button}
-					style={{
-						display: fieldCounter !== 2 ? '' : 'none'
-					}}>
-					Lisää uusi tavoite
-				</Button>
+			<Grid
+				container
+				direction='column'
+				justify='flex-end'
+				alignItems='flex-end'>
+				{fieldCounter !== 2 ? (
+					<Box mt={1} mb={2}>
+						<ButtonHandler
+							variant='contained'
+							colors={{ bg: '#cddc39', bgHover: '#c0ca33' }}
+							handlePagination={() => handleClick(1)}
+							startIcon={<AddRoundedIcon />}
+							text='Lisää uusi tavoite'
+						/>
+					</Box>
+				) : null}
+				{fieldCounter !== 0 ? (
+					<ButtonHandler
+						variant='contained'
+						colors={{ bg: '#ffc400', bgHover: '#b28900' }}
+						handlePagination={() => handleClick(-1)}
+						startIcon={<DeleteRoundedIcon />}
+						text='Poista uusin tavoite'
+					/>
+				) : null}
 			</Grid>
 		</>
 	)

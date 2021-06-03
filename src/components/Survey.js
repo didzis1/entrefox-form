@@ -10,8 +10,6 @@ import Typography from '@material-ui/core/Typography'
 import Container from '@material-ui/core/Container'
 import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
-import Card from '@material-ui/core/Card'
-import CardMedia from '@material-ui/core/CardMedia'
 import useStyles from '../styles'
 
 // Images
@@ -33,6 +31,7 @@ const Survey = ({
 			return (
 				<ButtonHandler
 					text='Edellinen'
+					colors={{ bg: '#cddc39', bgHover: '#c0ca33' }}
 					handlePagination={() => handlePreviousPage()}
 				/>
 			)
@@ -44,6 +43,7 @@ const Survey = ({
 			return (
 				<ButtonHandler
 					text='Olen valmis'
+					colors={{ bg: '#ffeb3b', bgHover: '#fbc02d' }}
 					handlePagination={(event) => handleFormSubmit(event)}
 					questionSets={questionSets}
 				/>
@@ -52,6 +52,7 @@ const Survey = ({
 		return (
 			<ButtonHandler
 				text='Seuraava'
+				colors={{ bg: '#cddc39', bgHover: '#c0ca33' }}
 				handlePagination={() => handleNextPage()}
 				questionSets={questionSets}
 			/>
@@ -93,13 +94,6 @@ const Survey = ({
 					<ProgressBar />
 				</Box>
 			</Container>
-			<Card className={classes.card} variant='outlined'>
-				<CardMedia
-					component='img'
-					image='https://www.entrefox.fi/uploads/2020/04/48f777b7-logot-ef.png'
-					title='EntreFox rahoittajat'
-				/>
-			</Card>
 		</>
 	)
 }

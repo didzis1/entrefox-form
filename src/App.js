@@ -5,6 +5,7 @@ import Summary from './components/Summary'
 import questionSets from './data/questions.json'
 import { getAnswerByID } from './utils'
 import { useForm } from './contexts/FormContext'
+import Footer from './components/Footer'
 
 const App = () => {
 	const { currentPage, setCurrentPage, formSubmitted, setFormSubmitted } =
@@ -43,14 +44,17 @@ const App = () => {
 	}
 
 	return (
-		<Survey
-			handleFormSubmit={handleFormSubmit}
-			handleNextPage={handleNextPage}
-			handlePreviousPage={handlePreviousPage}
-			questionSets={questionSets}
-			currentPage={currentPage}
-			formSubmitted={formSubmitted}
-		/>
+		<>
+			<Survey
+				handleFormSubmit={handleFormSubmit}
+				handleNextPage={handleNextPage}
+				handlePreviousPage={handlePreviousPage}
+				questionSets={questionSets}
+				currentPage={currentPage}
+				formSubmitted={formSubmitted}
+			/>
+			<Footer />
+		</>
 	)
 }
 
