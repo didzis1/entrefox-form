@@ -7,6 +7,8 @@ import { getAnswerByID } from './utils'
 import { useForm } from './contexts/FormContext'
 import Footer from './components/Footer'
 
+import Box from '@material-ui/core/Box'
+
 const App = () => {
 	const { currentPage, setCurrentPage, formSubmitted, setFormSubmitted } =
 		useForm()
@@ -39,22 +41,22 @@ const App = () => {
 		setFormSubmitted(!formSubmitted)
 	}
 
-	if (formSubmitted) {
-		return <Summary handleFormSubmit={handleFormSubmit} />
-	}
-
 	return (
-		<>
-			<Survey
-				handleFormSubmit={handleFormSubmit}
-				handleNextPage={handleNextPage}
-				handlePreviousPage={handlePreviousPage}
-				questionSets={questionSets}
-				currentPage={currentPage}
-				formSubmitted={formSubmitted}
-			/>
+		<Box pt={5}>
+			{formSubmitted ? (
+				<Summary handleFormSubmit={handleFormSubmit} />
+			) : (
+				<Survey
+					handleFormSubmit={handleFormSubmit}
+					handleNextPage={handleNextPage}
+					handlePreviousPage={handlePreviousPage}
+					questionSets={questionSets}
+					currentPage={currentPage}
+					formSubmitted={formSubmitted}
+				/>
+			)}
 			<Footer />
-		</>
+		</Box>
 	)
 }
 

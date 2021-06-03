@@ -6,7 +6,6 @@ const useStyles = makeStyles((theme) => ({
 		borderRadius: '5px',
 		paddingTop: '35px',
 		paddingBottom: '25px',
-		margin: '30px auto',
 		boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
 	},
 	form: {
