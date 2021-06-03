@@ -11,7 +11,7 @@ const ButtonHandler = ({
 	handlePagination,
 	questionSets,
 	colors,
-	startIcon
+	startIcon,
 }) => {
 	const { formData, currentPage } = useForm()
 
@@ -22,9 +22,9 @@ const ButtonHandler = ({
 			letterSpacing: '2px',
 			'&:hover': {
 				color: '#FFFFFF',
-				backgroundColor: colors.bgHover
-			}
-		}
+				backgroundColor: colors.bgHover,
+			},
+		},
 	}))(Button)
 
 	// Validation logic for input, if questionSets isn't defined ('Edellinen' button), returns false
@@ -64,8 +64,8 @@ ButtonHandler.propTypes = {
 	text: PropTypes.string,
 	handlePagination: PropTypes.func,
 	questionSets: PropTypes.array,
-	colors: PropTypes.string,
-	startIcon: PropTypes.object
+	colors: PropTypes.object,
+	startIcon: PropTypes.object,
 }
 
 export default ButtonHandler

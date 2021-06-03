@@ -25,7 +25,7 @@ const FormContextProvider = ({ children }) => {
 	const handleInputChange = (id, value) => {
 		const newData = {
 			id: parseInt(id),
-			value
+			value,
 		}
 		// Create a new state variable
 		const newState = formData.map((pageToEdit) => {
@@ -35,12 +35,12 @@ const FormContextProvider = ({ children }) => {
 					...pageToEdit,
 					answers: pageToEdit.answers.map((answer) =>
 						answer.id === newData.id ? newData : answer
-					)
+					),
 				}
 			}
 			// Return page data (no values need to be changed here)
 			return {
-				...pageToEdit
+				...pageToEdit,
 			}
 		})
 		// Replace the old state with new one
@@ -54,7 +54,7 @@ const FormContextProvider = ({ children }) => {
 		handleSubmitChange,
 		handleInputChange,
 		setCurrentPage,
-		setFormSubmitted
+		setFormSubmitted,
 	}
 
 	return <FormContext.Provider value={value}>{children}</FormContext.Provider>

@@ -1,10 +1,29 @@
 import { useState, useEffect } from 'react'
 import { useForm } from '../contexts/FormContext'
 
+const loadFieldValue = (formData, question, setFieldCounter) => {
+	let data = ''
+	formData.forEach((formPage) => {
+		const found = formPage.answers.find(
+			(answer) => answer.id === question.ID
+		)
+		if (found) return (data = found.value)
+	})
+
+	if (data === '') {
+		return []
+	} else {
+		setFieldCounter(data.length - 1)
+		return data
+	}
+}
+
 export const useFieldData = (question) => {
-	const [fieldData, setFieldData] = useState([])
+	const { handleInputChange, formData } = useForm()
 	const [fieldCounter, setFieldCounter] = useState(0)
-	const { handleInputChange } = useForm()
+	const [fieldData, setFieldData] = useState(() =>
+		loadFieldValue(formData, question, setFieldCounter)
+	)
 
 	// Update local state to useForm after small delay to avoid lag
 	useEffect(() => {
