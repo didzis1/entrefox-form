@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 // Material UI
 import Grid from '@material-ui/core/Grid'
+import Box from '@material-ui/core/Box'
 import Typography from '@material-ui/core/Typography'
 import useStyles from '../../styles'
 
@@ -38,7 +39,7 @@ const Bar = ({ answers }) => {
 		<>
 			{graphValues.map((value) => {
 				return (
-					<div key={value.percentage}>
+					<Box key={value.percentage}>
 						<Grid
 							container
 							justify='center'
@@ -67,38 +68,38 @@ const Bar = ({ answers }) => {
 								sm={10}
 								className={`${classes.gridItem} ${classes.animatedItem}`}>
 								{value.text === barOne.value ? (
-									<div
+									<Box
 										className={classes.chartBar}
 										style={{
 											width: `${value.percentage}%`,
 											background: '#cddc39',
 											border: '1px solid #c0ca33'
-										}}></div>
+										}}></Box>
 								) : (
-									<div
+									<Box
 										className={classes.chartBar}
 										style={{
 											width: `${value.percentage}%`
-										}}></div>
+										}}></Box>
 								)}
 								{value.text === barTwo.value ? (
-									<div
+									<Box
 										className={classes.chartBar}
 										style={{
 											width: `${value.percentage}%`,
 											background: '#ffeb3b',
 											border: '1px solid #fbc02d'
-										}}></div>
+										}}></Box>
 								) : (
-									<div
+									<Box
 										className={classes.chartBar}
 										style={{
 											width: `${value.percentage}%`
-										}}></div>
+										}}></Box>
 								)}
 							</Grid>
 						</Grid>
-					</div>
+					</Box>
 				)
 			})}
 			<Grid container direction='row'>
@@ -108,8 +109,8 @@ const Bar = ({ answers }) => {
 					direction='row'
 					justify='center'
 					alignItems='center'>
-					<div
-						className={`${classes.labelBox} ${classes.limeBox}`}></div>
+					<Box
+						className={`${classes.labelBox} ${classes.limeBox}`}></Box>
 					<Typography variant='body2'>
 						Voimavarat nykyhetkellä
 					</Typography>
@@ -122,8 +123,8 @@ const Bar = ({ answers }) => {
 					alignItems='center'
 					wrap='nowrap'>
 					<Grid item>
-						<div
-							className={`${classes.labelBox} ${classes.yellowBox}`}></div>
+						<Box
+							className={`${classes.labelBox} ${classes.yellowBox}`}></Box>
 					</Grid>
 					<Grid item>
 						<Typography variant='body2'>

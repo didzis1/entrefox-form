@@ -1,16 +1,15 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { useForm } from '../../contexts/FormContext'
 //import { getAnswerByID } from '../../utils'
 
-import ButtonHandler from '../ButtonHandler'
-
 // Material UI
-import TextField from '@material-ui/core/TextField'
 import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
-import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded'
+import TextField from '@material-ui/core/TextField'
 import AddRoundedIcon from '@material-ui/icons/AddRounded'
+import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded'
+import ButtonHandler from '../ButtonHandler'
 
 const MultiText = ({ question }) => {
 	const [fieldData, setFieldData] = useState({})
@@ -137,8 +136,8 @@ const MultiText = ({ question }) => {
 			<Grid
 				container
 				direction='row'
-				justify='flex-end'
-				alignItems='flex-end'>
+				justify='center'
+				alignItems='center'>
 				{fieldCounter !== 2 ? (
 					<Box mr={2}>
 						<ButtonHandler

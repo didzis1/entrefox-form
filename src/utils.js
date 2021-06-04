@@ -10,6 +10,7 @@ import DateField from './components/typeComponents/DateField'
 export const getAnswerByID = (questionPage, questionID) => {
 	const { formData } = useForm()
 	// Find the page the answer is located at, then find the answer's value based on questionID
+
 	return formData
 		.find((answer) => answer.page === questionPage)
 		.answers.find((answer) => answer.id === questionID).value

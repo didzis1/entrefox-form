@@ -111,31 +111,28 @@ const useStyles = makeStyles((theme) => ({
 		color: '#c0ca33'
 	},
 	stickyNote: {
-		maxWidth: '300px',
+		minWidth: '290px',
+		maxWidth: '350px',
+		height: '300px',
 		backgroundColor: '#cddc39',
 		margin: 'auto',
 		transform: 'rotate(3deg)',
-		boxShadow: '8px 8px 5px 1px rgba(0, 0, 0, 0.25)'
+		boxShadow: '8px 8px 5px 1px rgba(0, 0, 0, 0.25)',
+		transition: 'transform 0.15s linear',
+		'&:hover': {
+			boxShadow: '10px 10px 7px rgba(0,0,0,.2)',
+			transform: 'scale(1.05)',
+			position: 'relative'
+		}
 	},
-	stickyTapeLeft: {
-		backgroundColor: '#ffeb3b',
-		opacity: '0.9',
-		width: '90px',
-		height: '25px',
+	noteTape: {
+		width: '130px',
+		height: '30px',
 		position: 'absolute',
-		top: '0px',
-		left: '-30px',
-		transform: 'rotate(-35deg)'
-	},
-	stickyTapeRight: {
+		transform: 'rotate(-3deg)',
+		top: '-15px',
 		backgroundColor: '#ffeb3b',
-		opacity: '0.9',
-		width: '90px',
-		height: '25px',
-		position: 'absolute',
-		top: '0px',
-		right: '-30px',
-		transform: 'rotate(35deg)'
+		opacity: 0.7
 	},
 	logo: {
 		width: '100%',
@@ -143,9 +140,32 @@ const useStyles = makeStyles((theme) => ({
 		height: 'auto',
 		margin: 'auto'
 	},
+	scroll: {
+		width: '100%',
+		height: 'auto',
+		margin: 'auto'
+	},
 	gridList: {
 		width: '100%',
 		height: 'auto'
+	},
+	resultLine: {
+		margin: '30px auto',
+		'& div': {
+			backgroundColor: '#cacaca',
+			width: '120px',
+			paddingTop: '10px',
+			paddingBottom: '10px'
+		},
+		'& div:first-child': {
+			backgroundColor: '#cddc39',
+			borderTopLeftRadius: '10px',
+			borderTopRightRadius: '10px'
+		},
+		'& div:last-child': {
+			borderBottomLeftRadius: '10px',
+			borderBottomRightRadius: '10px'
+		}
 	}
 }))
 
