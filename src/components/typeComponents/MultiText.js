@@ -1,4 +1,3 @@
-
 import React from 'react'
 import { useFieldData } from '../../hooks/useFieldData'
 import PropTypes from 'prop-types'
@@ -7,14 +6,11 @@ import PropTypes from 'prop-types'
 // Material UI
 
 import ButtonHandler from '../ButtonHandler'
-
 import TextField from '@material-ui/core/TextField'
 import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
-import TextField from '@material-ui/core/TextField'
 import AddRoundedIcon from '@material-ui/icons/AddRounded'
 import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded'
-import ButtonHandler from '../ButtonHandler'
 
 const MultiText = ({ question }) => {
 	const { fieldCounter, addField, removeField, getValue, handleChange } =
@@ -29,7 +25,7 @@ const MultiText = ({ question }) => {
 							key={innerField.ID}
 							my={2}
 							style={{
-								display: field.ID <= fieldCounter ? '' : 'none',
+								display: field.ID <= fieldCounter ? '' : 'none'
 							}}>
 							<TextField
 								name={question.ID.toString()}
@@ -48,8 +44,8 @@ const MultiText = ({ question }) => {
 								label={innerField.text && innerField.text}
 								InputLabelProps={{
 									style: {
-										fontSize: '1.1rem',
-									},
+										fontSize: '1.1rem'
+									}
 								}}
 							/>
 						</Box>
@@ -87,7 +83,7 @@ const MultiText = ({ question }) => {
 }
 
 MultiText.propTypes = {
-	question: PropTypes.object,
+	question: PropTypes.object
 }
 
 export default MultiText
