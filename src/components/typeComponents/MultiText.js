@@ -1,15 +1,20 @@
+
 import React from 'react'
 import { useFieldData } from '../../hooks/useFieldData'
 import PropTypes from 'prop-types'
 //import { getAnswerByID } from '../../utils'
+
+// Material UI
 
 import ButtonHandler from '../ButtonHandler'
 
 import TextField from '@material-ui/core/TextField'
 import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
-import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded'
+import TextField from '@material-ui/core/TextField'
 import AddRoundedIcon from '@material-ui/icons/AddRounded'
+import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded'
+import ButtonHandler from '../ButtonHandler'
 
 const MultiText = ({ question }) => {
 	const { fieldCounter, addField, removeField, getValue, handleChange } =
@@ -54,8 +59,8 @@ const MultiText = ({ question }) => {
 			<Grid
 				container
 				direction='row'
-				justify='flex-end'
-				alignItems='flex-end'>
+				justify='center'
+				alignItems='center'>
 				{fieldCounter !== 2 ? (
 					<Box mr={2}>
 						<ButtonHandler
