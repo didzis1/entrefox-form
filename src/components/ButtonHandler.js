@@ -49,14 +49,23 @@ const ButtonHandler = ({
 		return !(questionAmount <= answeredQuestions)
 	}
 	return (
-		<ColorButton
-			onClick={handlePagination}
-			type='button'
-			variant='contained'
-			startIcon={startIcon}
-			disabled={validated()}>
-			{text}
-		</ColorButton>
+		<>
+			{validated() ? (
+				<small style={{ paddingRight: '10px' }}>
+					Jokaiseen kysymykseen tulee vastata
+				</small>
+			) : (
+				''
+			)}
+			<ColorButton
+				onClick={handlePagination}
+				type='button'
+				variant='contained'
+				startIcon={startIcon}
+				disabled={validated()}>
+				{text}
+			</ColorButton>
+		</>
 	)
 }
 

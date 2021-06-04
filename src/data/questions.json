@@ -15,7 +15,6 @@
 						"ID": 2
 					}
 				],
-				"required": true,
 				"type": "radio",
 				"ID": 1
 			}
@@ -28,7 +27,6 @@
 				"title": "Koska ole viimeksi käynyt kehityskeskustelun?",
 				"description": "",
 				"type": "date",
-				"required": true,
 				"ID": 2
 			},
 			{
@@ -54,7 +52,6 @@
 					}
 				],
 				"type": "text",
-				"required": true,
 				"ID": 4
 			}
 		]
@@ -88,7 +85,6 @@
 					}
 				],
 				"type": "radio",
-				"required": true,
 				"ID": 5
 			},
 			{
@@ -117,7 +113,6 @@
 					}
 				],
 				"type": "radio",
-				"required": true,
 				"ID": 6
 			},
 			{
@@ -172,7 +167,6 @@
 				],
 				"step": 1,
 				"type": "range",
-				"required": true,
 				"ID": 7
 			},
 			{
@@ -201,7 +195,6 @@
 					}
 				],
 				"type": "radio",
-				"required": true,
 				"ID": 8
 			},
 			{
@@ -222,7 +215,6 @@
 					}
 				],
 				"type": "radio",
-				"required": true,
 				"ID": 9
 			},
 			{
@@ -235,7 +227,6 @@
 					}
 				],
 				"type": "text",
-				"required": true,
 				"ID": 10
 			},
 			{
@@ -260,7 +251,6 @@
 					}
 				],
 				"type": "radio",
-				"required": true,
 				"ID": 11
 			}
 		]
@@ -313,7 +303,6 @@
 					}
 				],
 				"type": "multiple-text",
-				"required": true,
 				"ID": 12
 			}
 		]
@@ -331,7 +320,6 @@
 					}
 				],
 				"type": "text",
-				"required": true,
 				"ID": 18
 			}
 		]
