@@ -19,17 +19,21 @@ import useStyles from '../styles'
 
 // Images
 import entrefox_logo from '../images/entrefox_logo.png'
-import entrefox_scroll from '../images/entrefox_scroll.png'
+import entrefox_scroll from '../images/summaryImages/entrefox_scroll.png'
 
 const Summary = ({ handleFormSubmit }) => {
 	const classes = useStyles()
 	const { formData } = useForm()
+
+	// Get todays date
 	const currentDate = new Date()
 	const [date, month, year] = [
 		currentDate.getDate(),
 		currentDate.getMonth(),
 		currentDate.getFullYear()
 	]
+
+	// Value for question 7
 	const sliderValue = formData
 		.find((answersPage) => answersPage.page === 3)
 		.answers.find((answer) => answer.id === 7).value
@@ -91,8 +95,6 @@ const Summary = ({ handleFormSubmit }) => {
 				</Box>
 			</Box>
 
-			<Divider />
-
 			{/* Question 7 */}
 			<Box my={10}>
 				<Typography variant='body1'>
@@ -114,8 +116,6 @@ const Summary = ({ handleFormSubmit }) => {
 					<Gauge answer={sliderValue} />
 				</Box>
 			</Box>
-
-			<Divider />
 
 			{/* Question 8 */}
 			<Box my={10}>
@@ -164,8 +164,6 @@ const Summary = ({ handleFormSubmit }) => {
 					</Grid>
 				</Grid>
 			</Box>
-
-			<Divider />
 
 			<Box my={10}>
 				<Typography variant='body1'>
