@@ -18,10 +18,14 @@ const initialFormState = questions.map((page) => {
 						value: 5
 					}
 				case 'radio':
-				case 'date':
 					return {
 						id: question.ID,
 						value: null
+					}
+				case 'date':
+					return {
+						id: question.ID,
+						value: new Date()
 					}
 				default:
 					return {
