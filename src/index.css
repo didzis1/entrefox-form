@@ -1,4 +1,6 @@
 /* ./src/index.css */
+html {
+}
 body {
 	background-image: url('./images/background/entrefox_bg.png');
 	background-size: cover;
@@ -6,5 +8,7 @@ body {
 	background-attachment: fixed;
 	height: 100vh;
 	margin: 0;
-	padding: 0;
+	padding: 0 !important;
+	box-sizing: border-box;
+	overflow-y: scroll !important;
 }

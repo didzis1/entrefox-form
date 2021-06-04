@@ -68,14 +68,10 @@ const Survey = ({
 						src={entrefox_logo}
 						alt='EntreFox logo'
 					/>
+					<Typography variant='h4' component='h1' gutterBottom>
+						Yrittäjän kehityskeskustelu
+					</Typography>
 				</Box>
-				<Typography
-					variant='h4'
-					component='h1'
-					align='center'
-					gutterBottom>
-					Yrittäjän kehityskeskustelu
-				</Typography>
 				<Box pt={2} pb={4} px={3} className={classes.form}>
 					<form onSubmit={handleFormSubmit}>
 						<Parts

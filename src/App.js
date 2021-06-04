@@ -8,10 +8,12 @@ import { useForm } from './contexts/FormContext'
 import Footer from './components/Footer'
 
 import Box from '@material-ui/core/Box'
+import useStyles from './styles'
 
 const App = () => {
 	const { currentPage, setCurrentPage, formSubmitted, setFormSubmitted } =
 		useForm()
+	const classes = useStyles()
 
 	useEffect(() => {
 		window.scrollTo({
@@ -42,20 +44,22 @@ const App = () => {
 	}
 
 	return (
-		<Box pt={5}>
-			{formSubmitted ? (
-				<Summary handleFormSubmit={handleFormSubmit} />
-			) : (
-				<Survey
-					handleFormSubmit={handleFormSubmit}
-					handleNextPage={handleNextPage}
-					handlePreviousPage={handlePreviousPage}
-					questionSets={questionSets}
-					currentPage={currentPage}
-					formSubmitted={formSubmitted}
-				/>
-			)}
-			<Footer />
+		<Box className={classes.mainBackground}>
+			<Box pt={5}>
+				{formSubmitted ? (
+					<Summary handleFormSubmit={handleFormSubmit} />
+				) : (
+					<Survey
+						handleFormSubmit={handleFormSubmit}
+						handleNextPage={handleNextPage}
+						handlePreviousPage={handlePreviousPage}
+						questionSets={questionSets}
+						currentPage={currentPage}
+						formSubmitted={formSubmitted}
+					/>
+				)}
+				<Footer />
+			</Box>
 		</Box>
 	)
 }

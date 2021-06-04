@@ -166,7 +166,8 @@ const useStyles = makeStyles((theme) => ({
 			borderBottomLeftRadius: '10px',
 			borderBottomRightRadius: '10px'
 		}
-	}
+	},
+	datePicker: {}
 }))
 
 export default useStyles

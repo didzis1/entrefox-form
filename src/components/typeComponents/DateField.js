@@ -16,6 +16,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel'
 const DateField = ({ question }) => {
 	const [checked, setChecked] = useState(false)
 	const { handleInputChange } = useForm()
+
 	const handleCheckBox = () => {
 		setChecked(!checked)
 		handleInputChange(question.ID, checked ? null : true)
@@ -24,15 +25,15 @@ const DateField = ({ question }) => {
 		<Box my={2}>
 			<MuiPickersUtilsProvider utils={DateFnsUtils}>
 				<KeyboardDatePicker
-					format='dd/MM/yyyy'
+					autoOk
 					variant='inline'
 					inputVariant='outlined'
-					label='Päivämäärä'
-					InputAdornmentProps={{ position: 'start' }}
+					label='Syötä päivämäärä'
+					format='dd/MM/yyyy'
 					disabled={checked}
-					name={question.ID.toString()}
 					value={getAnswerByID(question.page, question.ID)}
-					onChange={(event) => handleInputChange(question.ID, event)}
+					InputAdornmentProps={{ position: 'start' }}
+					onChange={(event) => handleInputChange(event)}
 				/>
 			</MuiPickersUtilsProvider>
 
@@ -44,7 +45,7 @@ const DateField = ({ question }) => {
 							name='Datefield disabler'
 							onChange={() => handleCheckBox()}
 							inputProps={{
-								'aria-label': 'datefield disabler'
+								'aria-label': 'En tiedä tarkkaa päivämäärää'
 							}}
 							color='primary'
 						/>
