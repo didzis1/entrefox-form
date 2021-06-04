@@ -11,7 +11,7 @@ const ButtonHandler = ({
 	handlePagination,
 	questionSets,
 	colors,
-	startIcon
+	startIcon,
 }) => {
 	const { formData, currentPage } = useForm()
 
@@ -22,9 +22,9 @@ const ButtonHandler = ({
 			letterSpacing: '2px',
 			'&:hover': {
 				color: '#FFFFFF',
-				backgroundColor: colors.bgHover
-			}
-		}
+				backgroundColor: colors.bgHover,
+			},
+		},
 	}))(Button)
 
 	// Validation logic for input, if questionSets isn't defined ('Edellinen' button), returns false
@@ -49,14 +49,23 @@ const ButtonHandler = ({
 		return !(questionAmount <= answeredQuestions)
 	}
 	return (
-		<ColorButton
-			onClick={handlePagination}
-			type='button'
-			variant='contained'
-			startIcon={startIcon}
-			disabled={validated()}>
-			{text}
-		</ColorButton>
+		<>
+			{validated() ? (
+				<small style={{ paddingRight: '10px' }}>
+					Jokaiseen kysymykseen tulee vastata
+				</small>
+			) : (
+				''
+			)}
+			<ColorButton
+				onClick={handlePagination}
+				type='button'
+				variant='contained'
+				startIcon={startIcon}
+				disabled={validated()}>
+				{text}
+			</ColorButton>
+		</>
 	)
 }
 
@@ -65,7 +74,7 @@ ButtonHandler.propTypes = {
 	handlePagination: PropTypes.func,
 	questionSets: PropTypes.array,
 	colors: PropTypes.object,
-	startIcon: PropTypes.object
+	startIcon: PropTypes.object,
 }
 
 export default ButtonHandler
