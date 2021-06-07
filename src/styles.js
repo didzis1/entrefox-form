@@ -111,7 +111,7 @@ const useStyles = makeStyles((theme) => ({
 		color: '#c0ca33'
 	},
 	stickyNote: {
-		minWidth: '290px',
+		minWidth: '280px',
 		maxWidth: '350px',
 		height: '300px',
 		backgroundColor: '#cddc39',
@@ -140,11 +140,6 @@ const useStyles = makeStyles((theme) => ({
 		height: 'auto',
 		margin: 'auto'
 	},
-	scroll: {
-		width: '100%',
-		height: 'auto',
-		margin: 'auto'
-	},
 	gridList: {
 		width: '100%',
 		height: 'auto'
@@ -167,7 +162,22 @@ const useStyles = makeStyles((theme) => ({
 			borderBottomRightRadius: '10px'
 		}
 	},
-	datePicker: {}
+	scrollContainer: {
+		position: 'relative',
+		textAlign: 'center'
+	},
+	scrollImage: {
+		width: '100%'
+	},
+	scrollText: {
+		position: 'absolute',
+		width: '100%',
+		height: 'auto',
+		top: '50%',
+		left: '50%',
+		transform: 'translate(-50%, -50%)',
+		overflowWrap: 'break-word'
+	}
 }))
 
 export default useStyles

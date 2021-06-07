@@ -8,6 +8,7 @@ import ChartBars from './summaryComponents/ChartBars'
 import Gauge from './summaryComponents/Gauge'
 import ResultLine from './summaryComponents/ResultLine'
 import StickyNote from './summaryComponents/StickyNote'
+import GoalsScroll from './summaryComponents/GoalsScroll'
 
 // Material UI
 import Box from '@material-ui/core/Box'
@@ -19,19 +20,18 @@ import useStyles from '../styles'
 
 // Images
 import entrefox_logo from '../images/entrefox_logo.png'
-import entrefox_scroll from '../images/summaryImages/entrefox_scroll.png'
 
 const Summary = ({ handleFormSubmit }) => {
 	if (handleFormSubmit === undefined) return ''
 	const classes = useStyles()
 	const { formData } = useForm()
 	// Get todays date
-	console.log(formData)
+	//console.log(formData)
 	const currentDate = new Date()
 	const [date, month, year] = [
 		currentDate.getDate(),
 		currentDate.getMonth(),
-		currentDate.getFullYear(),
+		currentDate.getFullYear()
 	]
 
 	// Value for question 7
@@ -181,14 +181,17 @@ const Summary = ({ handleFormSubmit }) => {
 				</Typography>
 			</Box>
 
-			<Divider />
 			<Box my={10}>
 				<Typography variant='body1'>
 					Työhösi liittyvistä tiedoista ja taidoista kerroit
 					seuraavasti:
 				</Typography>
 				<Box my={4}>
-					<StickyNote />
+					<StickyNote
+						answer={formData
+							.find((answersPage) => answersPage.page === 3)
+							.answers.find((answer) => answer.id === 10)}
+					/>
 				</Box>
 			</Box>
 
@@ -209,10 +212,10 @@ const Summary = ({ handleFormSubmit }) => {
 					kehittämiseksi.
 				</Typography>
 				{/* Scroll with text for question 12 */}
-				<img
-					className={classes.scroll}
-					src={entrefox_scroll}
-					alt='EntreFox logo'
+				<GoalsScroll
+					answer={formData
+						.find((answersPage) => answersPage.page === 4)
+						.answers.find((answer) => answer.id === 12)}
 				/>
 			</Box>
 		</Container>
@@ -220,7 +223,7 @@ const Summary = ({ handleFormSubmit }) => {
 }
 
 Summary.propTypes = {
-	handleFormSubmit: PropTypes.func,
+	handleFormSubmit: PropTypes.func
 }
 
 export default Summary

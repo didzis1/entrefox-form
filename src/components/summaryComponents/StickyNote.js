@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 // Material UI
 import Grid from '@material-ui/core/Grid'
@@ -6,7 +7,8 @@ import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
 import useStyles from '../../styles'
 
-const StickyNote = () => {
+const StickyNote = ({ answer }) => {
+	// console.log(answer)
 	const classes = useStyles()
 	return (
 		<Box>
@@ -18,15 +20,15 @@ const StickyNote = () => {
 				className={classes.stickyNote}>
 				<Box className={classes.noteTape}></Box>
 				<Grid item xs={8}>
-					<Typography variant='body1'>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-						sed do eiusmod tempor incididunt ut labore et dolore
-						magna aliqua.
-					</Typography>
+					<Typography variant='body1'>{answer.value}</Typography>
 				</Grid>
 			</Grid>
 		</Box>
 	)
+}
+
+StickyNote.propTypes = {
+	answer: PropTypes.object
 }
 
 export default StickyNote

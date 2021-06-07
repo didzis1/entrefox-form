@@ -7,7 +7,7 @@ import useStyles from '../../styles'
 
 const ResultLine = ({ answer }) => {
 	const classes = useStyles()
-	console.log(answer.value)
+	console.log(answer)
 	const questionValues = [
 		{
 			text: 'Heikko',
