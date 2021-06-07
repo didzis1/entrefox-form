@@ -36,9 +36,9 @@ const Gauge = ({ answer }) => {
 							<Box
 								className={classes.gaugeFill}
 								style={{
-									transform: `rotate(0.${(
-										answer / 2
-									).toFixed()}turn)`
+									transform: `rotate(0.${
+										(answer / 2) * 10
+									}turn)`
 								}}></Box>
 							<Box className={classes.gaugeCover}>
 								<Typography variant='h2'>{answer}</Typography>
