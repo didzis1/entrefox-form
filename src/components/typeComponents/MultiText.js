@@ -10,7 +10,7 @@ import TextField from '@material-ui/core/TextField'
 import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
 import AddRoundedIcon from '@material-ui/icons/AddRounded'
-import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded'
+import RemoveRoundedIcon from '@material-ui/icons/RemoveRounded'
 
 const MultiText = ({ question }) => {
 	const { fieldCounter, addField, removeField, getValue, handleChange } =
@@ -37,10 +37,14 @@ const MultiText = ({ question }) => {
 										event.target.value
 									)
 								}
-								multiline
 								rows='4'
 								variant='outlined'
 								fullWidth
+								InputProps={{
+									multiline: true,
+									rows: 4
+								}}
+								inputProps={{ maxLength: 300 }}
 								label={innerField.text && innerField.text}
 								InputLabelProps={{
 									style: {
@@ -73,7 +77,7 @@ const MultiText = ({ question }) => {
 						variant='contained'
 						colors={{ bg: '#ffc400', bgHover: '#b28900' }}
 						handlePagination={() => removeField()}
-						startIcon={<DeleteRoundedIcon />}
+						startIcon={<RemoveRoundedIcon />}
 						text='Poista uusin tavoite'
 					/>
 				) : null}

@@ -48,19 +48,6 @@ const FormContextProvider = ({ children }) => {
 		setFormData(newState)
 	}
 
-	const useField = (initState) => {
-		const [value, setValue] = useState(initState)
-
-		const onValueChange = (newValue) => {
-			setValue(newValue)
-		}
-
-		return {
-			value,
-			onValueChange
-		}
-	}
-
 	const value = {
 		formSubmitted,
 		formData,
@@ -68,8 +55,7 @@ const FormContextProvider = ({ children }) => {
 		handleSubmitChange,
 		handleInputChange,
 		setCurrentPage,
-		setFormSubmitted,
-		useField
+		setFormSubmitted
 	}
 
 	return <FormContext.Provider value={value}>{children}</FormContext.Provider>

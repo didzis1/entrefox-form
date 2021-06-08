@@ -66,7 +66,7 @@ const Bar = ({ answers }) => {
 								justify='space-around'
 								xs={8}
 								sm={10}
-								className={`${classes.gridItem} ${classes.animatedItem}`}>
+								className={classes.gridItem}>
 								{value.text === barOne.value ? (
 									<Box
 										className={classes.chartBar}

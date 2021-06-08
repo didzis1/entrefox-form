@@ -21,8 +21,8 @@ import useStyles from '../styles'
 // Images
 import entrefox_logo from '../images/entrefox_logo.png'
 import entrefox_scroll from '../images/summaryImages/entrefox_scroll.png'
-// import entre_askelmerkit from '../images/summaryImages/entre-askelmerkit.svg'
-// import entre_seuraa_kurssia from '../images/summaryImages/entre-seuraa-kurssia.svg'
+import entre_askelmerkit from '../images/summaryImages/entre-askelmerkit.svg'
+import entre_seuraa_kurssia from '../images/summaryImages/entre-seuraa-kurssia.svg'
 
 const Summary = ({ handleFormSubmit }) => {
 	const classes = useStyles()
@@ -40,6 +40,12 @@ const Summary = ({ handleFormSubmit }) => {
 	const sliderValue = formData
 		.find((answersPage) => answersPage.page === 3)
 		.answers.find((answer) => answer.id === 7).value
+
+	console.log(
+		formData
+			.find((answersPage) => answersPage.page === 2)
+			.answers.find((answer) => answer.id === 2).value
+	)
 	return (
 		<Container className={classes.survey} maxWidth='md'>
 			{/* Go back to survey button */}
@@ -72,9 +78,7 @@ const Summary = ({ handleFormSubmit }) => {
 			<Divider />
 			{/* Part one of the summary - Page 3: Questions ID 5 - 11 */}
 			<Box my={8}>
-				<Typography
-					variant='h6'
-					style={{ fontWeight: 'bold', color: '#8f9a27' }}>
+				<Typography variant='h6' className={classes.heading}>
 					OSA 1. Tietoisuus nykyhetkellä
 				</Typography>
 				{/* Questions 5-6 */}
@@ -200,19 +204,34 @@ const Summary = ({ handleFormSubmit }) => {
 			<Divider />
 			{/* Part two of the summary - Page 4: Question 12 (Possible multiple fields in one question) */}
 			<Box my={10}>
-				<Typography
-					variant='h6'
-					style={{ fontWeight: 'bold', color: '#8f9a27' }}>
-					OSA 2. Tehdyt valinnat
-				</Typography>
-			</Box>
+				<Box mb={3}>
+					<Typography variant='h6' className={classes.heading}>
+						OSA 2. Tehdyt valinnat
+					</Typography>
+				</Box>
 
-			<Box my={10}>
-				<Typography variant='body1'>
-					Valitsit seuraavat kolme asiaa, joihin haluat panostaa
-					tulevan puolen vuoden aikana osaamisesi ja/tai hyvinvointisi
-					kehittämiseksi.
-				</Typography>
+				<Grid
+					container
+					direction='row-reverse'
+					justify='space-evenly'
+					alignItems='flex-start'>
+					<Grid item xs={12} md={4}>
+						<Box align='center'>
+							<img
+								className={classes.summaryImage}
+								src={entre_askelmerkit}
+								alt='Askeleet ja limen värinen lippu'
+							/>
+						</Box>
+					</Grid>
+					<Grid item xs={12} md={8}>
+						<Typography variant='body1'>
+							Valitsit seuraavat kolme asiaa, joihin haluat
+							panostaa tulevan puolen vuoden aikana osaamisesi
+							ja/tai hyvinvointisi kehittämiseksi.
+						</Typography>
+					</Grid>
+				</Grid>
 				{/* Scroll with text for question 12 */}
 				<GoalsScroll
 					answer={formData
@@ -225,21 +244,46 @@ const Summary = ({ handleFormSubmit }) => {
 			<Divider />
 			{/* Part three of the summary */}
 			<Box my={10}>
-				<Typography
-					variant='h6'
-					style={{ fontWeight: 'bold', color: '#8f9a27' }}>
-					OSA 3. Askelmerkit tavoitteiden saavuttamiseksi
+				<Box mb={3}>
+					<Typography variant='h6' className={classes.heading}>
+						OSA 3. Askelmerkit tavoitteiden saavuttamiseksi
+					</Typography>
+				</Box>
+				<Typography>
+					Asettamiisi tavoitteisiin pääset näillä askelilla:
 				</Typography>
 			</Box>
 
 			<Divider />
 			{/* Part four of the summary */}
 			<Box my={10}>
-				<Typography
-					variant='h6'
-					style={{ fontWeight: 'bold', color: '#8f9a27' }}>
-					OSA 4. Seuraa tilannettasi ja muuta kurssia tarvittaessa
-				</Typography>
+				<Box mb={3}>
+					<Typography variant='h6' className={classes.heading}>
+						OSA 4. Seuraa tilannettasi ja muuta kurssia tarvittaessa
+					</Typography>
+				</Box>
+				<Grid
+					container
+					direction='row'
+					justify='space-around'
+					alignItems='flex-start'>
+					<Grid item xs={8} md={10}>
+						<Typography variant='body1'>
+							Seuraa kehittymistäsi, mutta muista kuunnella
+							itseäsi matkan varrella. Onko tavoitteet edelleen
+							oikeat, vai tarvitseeko kurssia muuttaa?
+						</Typography>
+					</Grid>
+					<Grid item xs={4} md={2}>
+						<Box align='center'>
+							<img
+								className={classes.summaryImage}
+								src={entre_seuraa_kurssia}
+								alt='Kuva kurssin seurannasta'
+							/>
+						</Box>
+					</Grid>
+				</Grid>
 			</Box>
 			<Divider />
 
@@ -248,10 +292,15 @@ const Summary = ({ handleFormSubmit }) => {
 				.find((answersPage) => answersPage.page === 1)
 				.answers.find((answer) => answer.id === 1).value === 'Kyllä' ? (
 				<Box my={10}>
-					<Typography
-						variant='h6'
-						style={{ fontWeight: 'bold', color: '#8f9a27' }}>
-						OSA 5. Edellinen kehityskeskustelu
+					<Box mb={3}>
+						<Typography variant='h6' className={classes.heading}>
+							OSA 5. Edellinen kehityskeskustelu
+						</Typography>
+					</Box>
+					<Typography>
+						Olet edellisen kerran tehnyt kehityskeskustelun [pvm/en
+						tiedä, kohta 15]. Edellisellä kerralla asetit itsellesi
+						nämä tavoitteet ja askelmerkit:
 					</Typography>
 				</Box>
 			) : null}

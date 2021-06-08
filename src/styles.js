@@ -25,25 +25,16 @@ const useStyles = makeStyles((theme) => ({
 	textGrid: {
 		margin: '0px auto 30px auto'
 	},
+	heading: {
+		fontWeight: 'bold',
+		color: '#8f9a27'
+	},
 	chartBar: {
 		backgroundColor: '#cacaca',
 		height: '30px',
 		margin: '2px',
 		borderRadius: '3px',
 		border: '1px solid #bdbdbd'
-	},
-	animatedItem: {
-		animation: `$chartBarEffect 2000ms ${theme.transitions.easing.easeInOut}`
-	},
-	'@keyframes chartBarEffect': {
-		'0%': {
-			opacity: '0%',
-			transform: 'translateX(-5%)'
-		},
-		'100%': {
-			opacity: '100%',
-			transform: 'translateX(0)'
-		}
 	},
 	labelBox: {
 		width: '12px',
@@ -113,7 +104,7 @@ const useStyles = makeStyles((theme) => ({
 	stickyNote: {
 		minWidth: '280px',
 		maxWidth: '350px',
-		height: '300px',
+		height: '330px',
 		backgroundColor: '#cddc39',
 		margin: 'auto',
 		transform: 'rotate(3deg)',
@@ -176,6 +167,10 @@ const useStyles = makeStyles((theme) => ({
 		left: '50%',
 		transform: 'translate(-50%, -50%)',
 		overflowWrap: 'break-word'
+	},
+	summaryImage: {
+		maxWidth: '350px',
+		width: '100%'
 	}
 }))
 

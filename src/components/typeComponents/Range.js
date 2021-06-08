@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { useForm } from '../../contexts/FormContext'
 
@@ -39,22 +39,24 @@ const CustomSlider = withStyles({
 })(Slider)
 
 const Range = ({ question }) => {
-	const { handleInputChange, useField } = useForm()
-	const { value, onValueChange } = useField(question.choices.max / 2)
+	const [rangeValue, setRangeValue] = useState(question.choices.max / 2)
+	const { handleInputChange } = useForm()
 	return (
 		<Box my={4}>
 			<CustomSlider
 				aria-labelledby='discrete-slider'
 				valueLabelDisplay='auto'
-				value={value}
+				value={rangeValue}
 				name={question.ID.toString()}
 				marks={question.marks}
 				min={question.choices.min}
 				max={question.choices.max}
 				step={question.step}
 				// 'event' required!
-				onChange={(event, newValue) => onValueChange(newValue)}
-				onChangeCommitted={() => handleInputChange(question.ID, value)}
+				onChange={(event, newValue) => setRangeValue(newValue)}
+				onChangeCommitted={() =>
+					handleInputChange(question.ID, rangeValue)
+				}
 				color='primary'
 			/>
 		</Box>
