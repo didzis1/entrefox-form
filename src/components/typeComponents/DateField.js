@@ -33,7 +33,7 @@ const DateField = ({ question }) => {
 					disabled={checked}
 					value={getAnswerByID(question.page, question.ID)}
 					InputAdornmentProps={{ position: 'start' }}
-					onChange={(event) => handleInputChange(event)}
+					onChange={(event) => handleInputChange(question.ID, event)}
 				/>
 			</MuiPickersUtilsProvider>
 
