@@ -44,7 +44,8 @@ const Summary = ({ handleFormSubmit }) => {
 	console.log(
 		formData
 			.find((answersPage) => answersPage.page === 2)
-			.answers.find((answer) => answer.id === 2).value
+			.answers.find((answer) => answer.id === 2)
+			.value.toLocaleString()
 	)
 	return (
 		<Container className={classes.survey} maxWidth='md'>
@@ -297,13 +298,43 @@ const Summary = ({ handleFormSubmit }) => {
 							OSA 5. Edellinen kehityskeskustelu
 						</Typography>
 					</Box>
-					<Typography>
+					<Typography variant='body1'>
 						Olet edellisen kerran tehnyt kehityskeskustelun [pvm/en
-						tiedä, kohta 15]. Edellisellä kerralla asetit itsellesi
-						nämä tavoitteet ja askelmerkit:
+						tiedä, kohta 15]. <br />
+						Edellisellä kerralla asetit itsellesi nämä tavoitteet ja
+						askelmerkit:
 					</Typography>
+					<Box className={classes.textBorder} mb={2}>
+						<Typography variant='body1'>
+							{
+								formData
+									.find(
+										(answersPage) => answersPage.page === 2
+									)
+									.answers.find((answer) => answer.id === 3)
+									.value
+							}
+						</Typography>
+					</Box>
+
+					<Typography variant='body1'>
+						Tavoitteesi toteutuivat:
+					</Typography>
+					<Box className={classes.textBorder}>
+						<Typography variant='body1'>
+							{
+								formData
+									.find(
+										(answersPage) => answersPage.page === 2
+									)
+									.answers.find((answer) => answer.id === 4)
+									.value
+							}
+						</Typography>
+					</Box>
 				</Box>
 			) : null}
+			<Divider />
 		</Container>
 	)
 }

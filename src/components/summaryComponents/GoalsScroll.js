@@ -6,10 +6,8 @@ import useStyles from '../../styles'
 
 import { Box } from '@material-ui/core'
 
+// eslint-disable-next-line no-unused-vars
 const GoalsScroll = ({ answer, image }) => {
-	console.log(image)
-
-	console.log(answer)
 	const classes = useStyles()
 	return (
 		// <Box className={classes.scrollContainer}>

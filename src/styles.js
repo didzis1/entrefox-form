@@ -171,6 +171,9 @@ const useStyles = makeStyles((theme) => ({
 	summaryImage: {
 		maxWidth: '350px',
 		width: '100%'
+	},
+	textBorder: {
+		padding: '6px'
 	}
 }))
 
