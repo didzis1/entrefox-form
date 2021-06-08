@@ -6,82 +6,69 @@ import { useForm } from '../contexts/FormContext'
 import ButtonHandler from './ButtonHandler'
 import ChartBars from './summaryComponents/ChartBars'
 import Gauge from './summaryComponents/Gauge'
-import ResultLine from './summaryComponents/ResultLine'
 import StickyNote from './summaryComponents/StickyNote'
-import GoalsScroll from './summaryComponents/GoalsScroll'
 
 // Material UI
 import Box from '@material-ui/core/Box'
 import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
-import Grid from '@material-ui/core/Grid'
-import Divider from '@material-ui/core/Divider'
 import useStyles from '../styles'
 
-// Images
-import entrefox_logo from '../images/entrefox_logo.png'
-import entrefox_scroll from '../images/summaryImages/entrefox_scroll.png'
-import entre_askelmerkit from '../images/summaryImages/entre-askelmerkit.svg'
-import entre_seuraa_kurssia from '../images/summaryImages/entre-seuraa-kurssia.svg'
+//import html2canvas from 'html2canvas'
+//import jsPDF from 'jspdf'
 
 const Summary = ({ handleFormSubmit }) => {
 	const classes = useStyles()
 	const { formData } = useForm()
-	// Get todays date
-	//console.log(formData)
+
 	const currentDate = new Date()
 	const [date, month, year] = [
 		currentDate.getDate(),
 		currentDate.getMonth(),
-		currentDate.getFullYear()
+		currentDate.getFullYear(),
 	]
+	/*
+	const downloadPDF = () => {
+		html2canvas(document.getElementById('summary')).then((canvas) => {
+			// Your IMAGE_DATA_URI
+			const imgData = canvas.toDataURL('image/png')
+			// Make pdf
+			const pdf = new jsPDF()
+			// add image
+			pdf.addImage(imgData, 'PNG', 0, 0)
+			// Save document
+			pdf.save('charts.pdf')
+		})
+	}*/
 
-	// Value for question 7
 	const sliderValue = formData
 		.find((answersPage) => answersPage.page === 3)
 		.answers.find((answer) => answer.id === 7).value
-
-	console.log(
-		formData
-			.find((answersPage) => answersPage.page === 2)
-			.answers.find((answer) => answer.id === 2).value
-	)
 	return (
-		<Container className={classes.survey} maxWidth='md'>
-			{/* Go back to survey button */}
+		<Container id={'summary'} className={classes.survey} maxWidth='md'>
 			<ButtonHandler
 				text='Palaa takaisin'
 				colors={{ bg: '#cddc39', bgHover: '#c0ca33' }}
 				handlePagination={handleFormSubmit}
 			/>
-
-			{/* Header with EntreFox logo */}
 			<Box my={5}>
-				<Box align='center'>
-					<img
-						className={classes.logo}
-						src={entrefox_logo}
-						alt='EntreFox logo'
-					/>
-				</Box>
 				<Typography
 					variant='h4'
 					component='h1'
 					align='center'
 					gutterBottom>
-					Kehityskeskustelun koonti
+					Kehityskeskustelun yhteenveto
 				</Typography>
 				<Typography variant='h6' align='center'>
 					Olet käynyt kehityskeskustelun {date}.{month}.{year}.
 				</Typography>
 			</Box>
-			<Divider />
-			{/* Part one of the summary - Page 3: Questions ID 5 - 11 */}
-			<Box my={8}>
-				<Typography variant='h6' className={classes.heading}>
+			<Box my={5} mx={1}>
+				<Typography
+					variant='h6'
+					style={{ fontWeight: 'bold', color: '#8f9a27' }}>
 					OSA 1. Tietoisuus nykyhetkellä
 				</Typography>
-				{/* Questions 5-6 */}
 				<Typography variant='body1'>
 					Arvioit voimavarojesi olevan yrittäjänä{' '}
 					{formData
@@ -96,14 +83,11 @@ const Summary = ({ handleFormSubmit }) => {
 					suhteessa tulevaisuuden tarjoamiin vaatimuksiin ja
 					mahdollisuuksiin.
 				</Typography>
-				{/* Chart for questions */}
-				<Box mt={3}>
-					<ChartBars answers={formData} />
-				</Box>
 			</Box>
-
-			{/* Question 7 */}
-			<Box my={10}>
+			<Box mt={5}>
+				<ChartBars answers={formData} />
+			</Box>
+			<Box mt={10} mb={5}>
 				<Typography variant='body1'>
 					Arvioit työkykysi olevan asteikolla 1-10 tasolla{' '}
 					{sliderValue}. Yrittäjän on tärkeää pitää huolta yrityksen
@@ -118,65 +102,37 @@ const Summary = ({ handleFormSubmit }) => {
 					, käy halutessasi hakemassa vinkkejä hyvinvointisi
 					kehittämiseen ja ylläpitämiseen.
 				</Typography>
-				<Box my={5}>
-					{/* Gauge for question */}
-					<Gauge answer={sliderValue} />
-				</Box>
 			</Box>
-
-			{/* Question 8 */}
-			<Box my={10}>
-				<Grid
-					container
-					direction='row'
-					justify='space-evenly'
-					alignItems='center'>
-					<Grid item xs={7}>
-						<Typography variant='body1'>
-							Arviosi mukaan työ, vapaa-aika ja lepo ovat
-							tasapainossa elämässäsi{' '}
-							<i>
-								{
-									formData
-										.find(
-											(answersPage) =>
-												answersPage.page === 3
-										)
-										.answers.find(
-											(answer) => answer.id === 8
-										)
-										.value.toLowerCase()
-										.split(' ')[0]
-								}{' '}
-								tavalla
-							</i>
-							. Hoidat työtehtäväsi sitä mukaa, kun niitä
-							ilmestyy. Voit syventyä ajankäyttöösi ja tutustua
-							vinkkeihimme{' '}
-							<a
-								className={classes.linkTag}
-								target='blank'
-								href='https://www.entrefox.fi/ajanhallinta/'>
-								ajanhallinnan teemassa
-							</a>
-							.
-						</Typography>
-					</Grid>
-					<Grid item xs={5}>
-						<ResultLine
-							answer={formData
+			<Gauge answer={sliderValue} />
+			<Box my={5}>
+				<Typography variant='body1'>
+					Arviosi mukaan työ, vapaa-aika ja lepo ovat tasapainossa
+					elämässäsi{' '}
+					<i>
+						{
+							formData
 								.find((answersPage) => answersPage.page === 3)
-								.answers.find((answer) => answer.id === 8)}
-						/>
-					</Grid>
-				</Grid>
-			</Box>
-
-			<Box my={10}>
+								.answers.find((answer) => answer.id === 8)
+								.value.toLowerCase()
+								.split(' ')[0]
+						}{' '}
+						tavalla
+					</i>
+					. Hoidat työtehtäväsi sitä mukaa, kun niitä ilmestyy. Voit
+					syventyä ajankäyttöösi ja tutustua vinkkeihimme{' '}
+					<a
+						className={classes.linkTag}
+						target='blank'
+						href='https://www.entrefox.fi/ajanhallinta/'>
+						ajanhallinnan teemassa
+					</a>
+					.
+				</Typography>
+				graph here
 				<Typography variant='body1'>
 					Digitaalisten työkalujen osalta osaat käyttää yrityksessäsi
 					käytössä olevia digitallisia työkaluja ja niiden erilaisia
-					ominaisuuksia. ??????????{' '}
+					ominaisuuksia.{' '}
 					<a
 						className={classes.linkTag}
 						target='blank'
@@ -185,131 +141,24 @@ const Summary = ({ handleFormSubmit }) => {
 					</a>{' '}
 					on käsitelty yrittäjän monipuolisia osaamisalueita.
 				</Typography>
+				{/* Tähän tulee gauge */}
 			</Box>
 
-			<Box my={10}>
-				<Typography variant='body1'>
+			<Box>
+				<Typography variant='body1' align='center'>
 					Työhösi liittyvistä tiedoista ja taidoista kerroit
 					seuraavasti:
 				</Typography>
 				<Box my={4}>
-					<StickyNote
-						answer={formData
-							.find((answersPage) => answersPage.page === 3)
-							.answers.find((answer) => answer.id === 10)}
-					/>
+					<StickyNote />
 				</Box>
 			</Box>
-
-			<Divider />
-			{/* Part two of the summary - Page 4: Question 12 (Possible multiple fields in one question) */}
-			<Box my={10}>
-				<Box mb={3}>
-					<Typography variant='h6' className={classes.heading}>
-						OSA 2. Tehdyt valinnat
-					</Typography>
-				</Box>
-
-				<Grid
-					container
-					direction='row-reverse'
-					justify='space-evenly'
-					alignItems='flex-start'>
-					<Grid item xs={12} md={4}>
-						<Box align='center'>
-							<img
-								className={classes.summaryImage}
-								src={entre_askelmerkit}
-								alt='Askeleet ja limen värinen lippu'
-							/>
-						</Box>
-					</Grid>
-					<Grid item xs={12} md={8}>
-						<Typography variant='body1'>
-							Valitsit seuraavat kolme asiaa, joihin haluat
-							panostaa tulevan puolen vuoden aikana osaamisesi
-							ja/tai hyvinvointisi kehittämiseksi.
-						</Typography>
-					</Grid>
-				</Grid>
-				{/* Scroll with text for question 12 */}
-				<GoalsScroll
-					answer={formData
-						.find((answersPage) => answersPage.page === 4)
-						.answers.find((answer) => answer.id === 12)}
-					image={entrefox_scroll}
-				/>
-			</Box>
-
-			<Divider />
-			{/* Part three of the summary */}
-			<Box my={10}>
-				<Box mb={3}>
-					<Typography variant='h6' className={classes.heading}>
-						OSA 3. Askelmerkit tavoitteiden saavuttamiseksi
-					</Typography>
-				</Box>
-				<Typography>
-					Asettamiisi tavoitteisiin pääset näillä askelilla:
-				</Typography>
-			</Box>
-
-			<Divider />
-			{/* Part four of the summary */}
-			<Box my={10}>
-				<Box mb={3}>
-					<Typography variant='h6' className={classes.heading}>
-						OSA 4. Seuraa tilannettasi ja muuta kurssia tarvittaessa
-					</Typography>
-				</Box>
-				<Grid
-					container
-					direction='row'
-					justify='space-around'
-					alignItems='flex-start'>
-					<Grid item xs={8} md={10}>
-						<Typography variant='body1'>
-							Seuraa kehittymistäsi, mutta muista kuunnella
-							itseäsi matkan varrella. Onko tavoitteet edelleen
-							oikeat, vai tarvitseeko kurssia muuttaa?
-						</Typography>
-					</Grid>
-					<Grid item xs={4} md={2}>
-						<Box align='center'>
-							<img
-								className={classes.summaryImage}
-								src={entre_seuraa_kurssia}
-								alt='Kuva kurssin seurannasta'
-							/>
-						</Box>
-					</Grid>
-				</Grid>
-			</Box>
-			<Divider />
-
-			{/* Part five of the summary - ONLY IF USER ANSWERED YES TO FIRST QUESTION */}
-			{formData
-				.find((answersPage) => answersPage.page === 1)
-				.answers.find((answer) => answer.id === 1).value === 'Kyllä' ? (
-				<Box my={10}>
-					<Box mb={3}>
-						<Typography variant='h6' className={classes.heading}>
-							OSA 5. Edellinen kehityskeskustelu
-						</Typography>
-					</Box>
-					<Typography>
-						Olet edellisen kerran tehnyt kehityskeskustelun [pvm/en
-						tiedä, kohta 15]. Edellisellä kerralla asetit itsellesi
-						nämä tavoitteet ja askelmerkit:
-					</Typography>
-				</Box>
-			) : null}
 		</Container>
 	)
 }
 
 Summary.propTypes = {
-	handleFormSubmit: PropTypes.func
+	handleFormSubmit: PropTypes.func,
 }
 
 export default Summary
