@@ -1,4 +1,5 @@
 import React, { useState, useContext, createContext } from 'react'
+import PropTypes from 'prop-types'
 import initialFormState from './initialFormState'
 
 const FormContext = createContext(null)
@@ -13,7 +14,6 @@ export const useForm = () => {
 	return context
 }
 
-// eslint-disable-next-line react/prop-types
 const FormContextProvider = ({ children }) => {
 	const [formData, setFormData] = useState(initialFormState)
 	const [currentPage, setCurrentPage] = useState(1)
@@ -73,6 +73,10 @@ const FormContextProvider = ({ children }) => {
 	}
 
 	return <FormContext.Provider value={value}>{children}</FormContext.Provider>
+}
+
+FormContextProvider.propTypes = {
+	children: PropTypes.object
 }
 
 export default FormContextProvider
