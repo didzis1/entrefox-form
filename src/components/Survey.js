@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { validatedButton } from '../utils'
 
 import Parts from './Parts'
 import ButtonHandler from './ButtonHandler'
@@ -82,10 +83,32 @@ const Survey = ({
 				</Box>
 
 				{/* Buttons in a grid */}
-				<Grid container direction='row' justify='space-between'>
+				{/* <Grid
+					container
+					direction='row'
+					justify='space-between'
+					alignItems='center'>
 					<Grid item>{handlePreviousButton()}</Grid>
 					<Grid item>{handleNextButton()}</Grid>
+				</Grid> */}
+
+				<Grid
+					container
+					direction='row'
+					justify='space-between'
+					alignItems='center'>
+					<Grid item>
+						<Box>{handlePreviousButton()}</Box>
+					</Grid>
+					<Grid item>{handleNextButton()}</Grid>
 				</Grid>
+				<Box textAlign='right' m={1}>
+					{validatedButton() ? (
+						<Typography variant='caption'>
+							Jokaiseen kysymykseen tulee vastata
+						</Typography>
+					) : null}
+				</Box>
 				<Box m='auto'>
 					<ProgressBar />
 				</Box>

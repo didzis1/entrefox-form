@@ -20,9 +20,9 @@ import useStyles from '../styles'
 
 // Images
 import entrefox_logo from '../images/entrefox_logo.png'
+import entrefox_scroll from '../images/summaryImages/entrefox_scroll.png'
 
 const Summary = ({ handleFormSubmit }) => {
-	if (handleFormSubmit === undefined) return ''
 	const classes = useStyles()
 	const { formData } = useForm()
 	// Get todays date
@@ -67,9 +67,9 @@ const Summary = ({ handleFormSubmit }) => {
 					Olet käynyt kehityskeskustelun {date}.{month}.{year}.
 				</Typography>
 			</Box>
-
+			<Divider />
 			{/* Part one of the summary - Page 3: Questions ID 5 - 11 */}
-			<Box my={10}>
+			<Box my={8}>
 				<Typography
 					variant='h6'
 					style={{ fontWeight: 'bold', color: '#8f9a27' }}>
@@ -205,7 +205,7 @@ const Summary = ({ handleFormSubmit }) => {
 				</Typography>
 			</Box>
 
-			<Box>
+			<Box my={10}>
 				<Typography variant='body1'>
 					Valitsit seuraavat kolme asiaa, joihin haluat panostaa
 					tulevan puolen vuoden aikana osaamisesi ja/tai hyvinvointisi
@@ -216,8 +216,43 @@ const Summary = ({ handleFormSubmit }) => {
 					answer={formData
 						.find((answersPage) => answersPage.page === 4)
 						.answers.find((answer) => answer.id === 12)}
+					image={entrefox_scroll}
 				/>
 			</Box>
+
+			<Divider />
+			{/* Part three of the summary */}
+			<Box my={10}>
+				<Typography
+					variant='h6'
+					style={{ fontWeight: 'bold', color: '#8f9a27' }}>
+					OSA 3. Askelmerkit tavoitteiden saavuttamiseksi
+				</Typography>
+			</Box>
+
+			<Divider />
+			{/* Part four of the summary */}
+			<Box my={10}>
+				<Typography
+					variant='h6'
+					style={{ fontWeight: 'bold', color: '#8f9a27' }}>
+					OSA 4. Seuraa tilannettasi ja muuta kurssia tarvittaessa
+				</Typography>
+			</Box>
+			<Divider />
+
+			{/* Part five of the summary - ONLY IF USER ANSWERED YES TO FIRST QUESTION */}
+			{formData
+				.find((answersPage) => answersPage.page === 1)
+				.answers.find((answer) => answer.id === 1).value === 'Kyllä' ? (
+				<Box my={10}>
+					<Typography
+						variant='h6'
+						style={{ fontWeight: 'bold', color: '#8f9a27' }}>
+						OSA 5. Edellinen kehityskeskustelu
+					</Typography>
+				</Box>
+			) : null}
 		</Container>
 	)
 }

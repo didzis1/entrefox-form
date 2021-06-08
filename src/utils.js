@@ -1,5 +1,6 @@
 import React from 'react'
 import { useForm } from './contexts/FormContext'
+import questionSets from './data/questions.json'
 
 import RadioButton from './components/typeComponents/RadioButton'
 import Range from './components/typeComponents/Range'
@@ -14,6 +15,25 @@ export const getAnswerByID = (questionPage, questionID) => {
 	return formData
 		.find((answer) => answer.page === questionPage)
 		.answers.find((answer) => answer.id === questionID).value
+}
+
+// If validatedButton returns true, 'Seuraava' or 'Olen valmis' button is disabled
+export const validatedButton = () => {
+	const { formData, currentPage } = useForm()
+	const questionAmount = questionSets.find((page) => page.ID === currentPage)
+		.questions.length
+	let answeredQuestions = 0
+
+	// Loop over each answer in the page and count the answered questions
+	formData
+		.find((answersPage) => answersPage.page === currentPage)
+		?.answers.forEach((answer) => {
+			if (answer.value) {
+				answeredQuestions++
+			}
+		})
+	// If answers are equal to or bigger than questions take off disabled button
+	return !(questionAmount <= answeredQuestions)
 }
 
 const typeComponent = (question) => {
@@ -34,5 +54,4 @@ const typeComponent = (question) => {
 			throw new Error('Type not found...')
 	}
 }
-
 export default typeComponent

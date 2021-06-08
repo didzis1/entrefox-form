@@ -163,8 +163,7 @@ const useStyles = makeStyles((theme) => ({
 		}
 	},
 	scrollContainer: {
-		position: 'relative',
-		textAlign: 'center'
+		width: '100%'
 	},
 	scrollImage: {
 		width: '100%'
