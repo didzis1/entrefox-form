@@ -14,22 +14,38 @@ import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
 import useStyles from '../styles'
 
+//import html2canvas from 'html2canvas'
+//import jsPDF from 'jspdf'
+
 const Summary = ({ handleFormSubmit }) => {
-	if (handleFormSubmit === undefined) return ''
 	const classes = useStyles()
 	const { formData } = useForm()
-	console.log(formData)
+
 	const currentDate = new Date()
 	const [date, month, year] = [
 		currentDate.getDate(),
 		currentDate.getMonth(),
 		currentDate.getFullYear(),
 	]
+	/*
+	const downloadPDF = () => {
+		html2canvas(document.getElementById('summary')).then((canvas) => {
+			// Your IMAGE_DATA_URI
+			const imgData = canvas.toDataURL('image/png')
+			// Make pdf
+			const pdf = new jsPDF()
+			// add image
+			pdf.addImage(imgData, 'PNG', 0, 0)
+			// Save document
+			pdf.save('charts.pdf')
+		})
+	}*/
+
 	const sliderValue = formData
 		.find((answersPage) => answersPage.page === 3)
 		.answers.find((answer) => answer.id === 7).value
 	return (
-		<Container className={classes.survey} maxWidth='md'>
+		<Container id={'summary'} className={classes.survey} maxWidth='md'>
 			<ButtonHandler
 				text='Palaa takaisin'
 				colors={{ bg: '#cddc39', bgHover: '#c0ca33' }}

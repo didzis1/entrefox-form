@@ -272,6 +272,10 @@
 							{
 								"text": "Tavoite 1. on tärkeä, koska ",
 								"ID": 1
+							},
+							{
+								"text": "Päätä askelmerkit tavoitteeseen 1. Mitä? Milloin? Missä? Kenen kanssa? ",
+								"ID": 2
 							}
 						]
 					},
@@ -285,6 +289,10 @@
 							{
 								"text": "Tavoite 2. on tärkeä, koska ",
 								"ID": 1
+							},
+							{
+								"text": "Päätä askelmerkit tavoitteeseen 2. Mitä? Milloin? Missä? Kenen kanssa? ",
+								"ID": 2
 							}
 						]
 					},
@@ -298,6 +306,10 @@
 							{
 								"text": "Tavoite 3. on tärkeä, koska ",
 								"ID": 1
+							},
+							{
+								"text": "Päätä askelmerkit tavoitteeseen 3. Mitä? Milloin? Missä? Kenen kanssa? ",
+								"ID": 2
 							}
 						]
 					}
