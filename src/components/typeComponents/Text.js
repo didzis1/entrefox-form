@@ -2,14 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import debounce from 'lodash.debounce'
 import { useForm } from '../../contexts/FormContext'
-import { useField } from '../../hooks/useField'
 
 // Material UI
 import TextField from '@material-ui/core/TextField'
 import Box from '@material-ui/core/Box'
 
 const Text = ({ question }) => {
-	const { handleInputChange } = useForm()
+	const { handleInputChange, useField } = useForm()
 	const { value, onValueChange } = useField('')
 
 	const handleOnChange = (event) => {

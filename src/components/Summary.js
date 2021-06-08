@@ -21,6 +21,8 @@ import useStyles from '../styles'
 // Images
 import entrefox_logo from '../images/entrefox_logo.png'
 import entrefox_scroll from '../images/summaryImages/entrefox_scroll.png'
+// import entre_askelmerkit from '../images/summaryImages/entre-askelmerkit.svg'
+// import entre_seuraa_kurssia from '../images/summaryImages/entre-seuraa-kurssia.svg'
 
 const Summary = ({ handleFormSubmit }) => {
 	const classes = useStyles()

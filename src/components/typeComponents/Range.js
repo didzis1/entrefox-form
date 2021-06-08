@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { useForm } from '../../contexts/FormContext'
-import { useField } from '../../hooks/useField'
 
 // Material UI
 import Slider from '@material-ui/core/Slider'
@@ -40,7 +39,7 @@ const CustomSlider = withStyles({
 })(Slider)
 
 const Range = ({ question }) => {
-	const { handleInputChange } = useForm()
+	const { handleInputChange, useField } = useForm()
 	const { value, onValueChange } = useField(question.choices.max / 2)
 	return (
 		<Box my={4}>
