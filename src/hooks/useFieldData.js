@@ -57,7 +57,7 @@ export const useFieldData = (question) => {
 						...field,
 						values: field.values.filter(
 							(innerField) => innerField.ID !== innerFieldID
-						),
+						)
 				  }
 				: field
 		})
@@ -84,19 +84,19 @@ export const useFieldData = (question) => {
 									if (innerField.ID === innerFieldID) {
 										return {
 											...innerField,
-											value,
+											value
 										}
 									}
 									return innerField
-								}),
+								})
 							}
 						}
 						return {
 							...fieldState,
 							values: fieldState.values.concat({
 								ID: innerFieldID,
-								value,
-							}),
+								value
+							})
 						}
 					}
 					return fieldState
@@ -106,8 +106,8 @@ export const useFieldData = (question) => {
 					...fieldData,
 					{
 						ID: fieldID,
-						values: [{ ID: innerFieldID, value }],
-					},
+						values: [{ ID: innerFieldID, value }]
+					}
 				]
 			}
 		})
@@ -142,6 +142,6 @@ export const useFieldData = (question) => {
 		addField,
 		removeField,
 		getValue,
-		handleChange,
+		handleChange
 	}
 }

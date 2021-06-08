@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import debounce from 'lodash.debounce'
 import { useForm } from '../../contexts/FormContext'
-import { getAnswerByID } from '../../utils'
+import { useField } from '../../hooks/useField'
 
 // Material UI
 import TextField from '@material-ui/core/TextField'
@@ -9,6 +10,16 @@ import Box from '@material-ui/core/Box'
 
 const Text = ({ question }) => {
 	const { handleInputChange } = useForm()
+	const { value, onValueChange } = useField('')
+
+	const handleOnChange = (event) => {
+		onValueChange(event.target.value)
+		handleDebouncedDispatch(event)
+	}
+
+	const handleDebouncedDispatch = debounce((event) => {
+		handleInputChange(event.target.name, event.target.value)
+	}, 400)
 
 	return (
 		<>
@@ -17,13 +28,8 @@ const Text = ({ question }) => {
 					<Box key={field.ID} my={2}>
 						<TextField
 							name={question.ID && question.ID.toString()}
-							value={getAnswerByID(question.page, question.ID)}
-							onChange={(event) =>
-								handleInputChange(
-									event.target.name,
-									event.target.value
-								)
-							}
+							value={value}
+							onChange={(event) => handleOnChange(event)}
 							multiline
 							rows='4'
 							variant='outlined'
