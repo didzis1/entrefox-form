@@ -9,6 +9,7 @@ import { Box } from '@material-ui/core'
 // eslint-disable-next-line no-unused-vars
 const GoalsScroll = ({ answer, image }) => {
 	const classes = useStyles()
+	console.log(answer)
 	return (
 		// <Box className={classes.scrollContainer}>
 		// 	<img
@@ -22,7 +23,7 @@ const GoalsScroll = ({ answer, image }) => {
 		// 	</Box>
 		// </Box>
 		<Box className={classes.scrollContainer}>
-			{answer.value.map((answerSets) => {
+			{/* {answer.value.map((answerSets) => {
 				return (
 					<Box key={answerSets.id}>
 						Tavoite {answerSets.ID + 1}
@@ -31,13 +32,13 @@ const GoalsScroll = ({ answer, image }) => {
 						})}
 					</Box>
 				)
-			})}
+			})} */}
 		</Box>
 	)
 }
 
 GoalsScroll.propTypes = {
-	answer: PropTypes.object,
+	answer: PropTypes.array,
 	image: PropTypes.string
 }
 

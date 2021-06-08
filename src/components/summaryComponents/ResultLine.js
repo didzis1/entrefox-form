@@ -50,7 +50,7 @@ const ResultLine = ({ answer }) => {
 }
 
 ResultLine.propTypes = {
-	answer: PropTypes.object
+	answer: PropTypes.string
 }
 
 export default ResultLine

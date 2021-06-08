@@ -1,12 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { useForm } from '../contexts/FormContext'
+import { getAnswerByID } from '../utils'
 
 // Summary components
 import ButtonHandler from './ButtonHandler'
 import ChartBars from './summaryComponents/ChartBars'
 import Gauge from './summaryComponents/Gauge'
-import ResultLine from './summaryComponents/ResultLine'
+//import ResultLine from './summaryComponents/ResultLine'
 import StickyNote from './summaryComponents/StickyNote'
 import GoalsScroll from './summaryComponents/GoalsScroll'
 
@@ -24,29 +25,32 @@ import entrefox_scroll from '../images/summaryImages/entrefox_scroll.png'
 import entre_askelmerkit from '../images/summaryImages/entre-askelmerkit.svg'
 import entre_seuraa_kurssia from '../images/summaryImages/entre-seuraa-kurssia.svg'
 
+const dateToYMD = (date) => {
+	return `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`
+}
+
 const Summary = ({ handleFormSubmit }) => {
 	const classes = useStyles()
 	const { formData } = useForm()
 	// Get todays date
 	//console.log(formData)
-	const currentDate = new Date()
-	const [date, month, year] = [
-		currentDate.getDate(),
-		currentDate.getMonth(),
-		currentDate.getFullYear()
-	]
+	const currentDate = dateToYMD(new Date())
 
 	// Value for question 7
-	const sliderValue = formData
-		.find((answersPage) => answersPage.page === 3)
-		.answers.find((answer) => answer.id === 7).value
+	const sliderValue = getAnswerByID(3, 7)
 
-	console.log(
-		formData
-			.find((answersPage) => answersPage.page === 2)
-			.answers.find((answer) => answer.id === 2)
-			.value.toLocaleString()
-	)
+	// Check if user remembers the date he last answered the survey
+	let previouslyDoneSurvey
+	if (typeof getAnswerByID(2, 2) === 'object') {
+		previouslyDoneSurvey =
+			'Olet edellisen kerran tehnyt kehityskeskustelun ' +
+			dateToYMD(getAnswerByID(2, 2)) +
+			'.'
+	} else {
+		previouslyDoneSurvey =
+			'Olet ennen tehnyt kehityskeskustelun, mutta et muistanut tarkkaa päivämäärää.'
+	}
+
 	return (
 		<Container className={classes.survey} maxWidth='md'>
 			{/* Go back to survey button */}
@@ -73,7 +77,7 @@ const Summary = ({ handleFormSubmit }) => {
 					Kehityskeskustelun koonti
 				</Typography>
 				<Typography variant='h6' align='center'>
-					Olet käynyt kehityskeskustelun {date}.{month}.{year}.
+					Olet käynyt kehityskeskustelun {currentDate}.
 				</Typography>
 			</Box>
 			<Divider />
@@ -85,17 +89,9 @@ const Summary = ({ handleFormSubmit }) => {
 				{/* Questions 5-6 */}
 				<Typography variant='body1'>
 					Arvioit voimavarojesi olevan yrittäjänä{' '}
-					{formData
-						.find((answersPage) => answersPage.page === 3)
-						.answers.find((answer) => answer.id === 5)
-						.value.toLowerCase()}{' '}
-					ja voimavaroissa olevan{' '}
-					{formData
-						.find((answersPage) => answersPage.page === 3)
-						.answers.find((answer) => answer.id === 6)
-						.value.toLowerCase()}{' '}
-					suhteessa tulevaisuuden tarjoamiin vaatimuksiin ja
-					mahdollisuuksiin.
+					{getAnswerByID(3, 5).toLowerCase()} ja voimavaroissa olevan{' '}
+					{getAnswerByID(3, 6).toLowerCase()} suhteessa tulevaisuuden
+					tarjoamiin vaatimuksiin ja mahdollisuuksiin.
 				</Typography>
 				{/* Chart for questions */}
 				<Box mt={3}>
@@ -127,50 +123,24 @@ const Summary = ({ handleFormSubmit }) => {
 
 			{/* Question 8 */}
 			<Box my={10}>
-				<Grid
-					container
-					direction='row'
-					justify='space-evenly'
-					alignItems='center'>
-					<Grid item xs={7}>
-						<Typography variant='body1'>
-							Arviosi mukaan työ, vapaa-aika ja lepo ovat
-							tasapainossa elämässäsi{' '}
-							<i>
-								{
-									formData
-										.find(
-											(answersPage) =>
-												answersPage.page === 3
-										)
-										.answers.find(
-											(answer) => answer.id === 8
-										)
-										.value.toLowerCase()
-										.split(' ')[0]
-								}{' '}
-								tavalla
-							</i>
-							. Hoidat työtehtäväsi sitä mukaa, kun niitä
-							ilmestyy. Voit syventyä ajankäyttöösi ja tutustua
-							vinkkeihimme{' '}
-							<a
-								className={classes.linkTag}
-								target='blank'
-								href='https://www.entrefox.fi/ajanhallinta/'>
-								ajanhallinnan teemassa
-							</a>
-							.
-						</Typography>
-					</Grid>
-					<Grid item xs={5}>
-						<ResultLine
-							answer={formData
-								.find((answersPage) => answersPage.page === 3)
-								.answers.find((answer) => answer.id === 8)}
-						/>
-					</Grid>
-				</Grid>
+				<Typography variant='body1'>
+					Arviosi mukaan työ, vapaa-aika ja lepo ovat tasapainossa
+					elämässäsi{' '}
+					<i>
+						{getAnswerByID(3, 8).toLowerCase().split(' ')[0]}{' '}
+						tavalla
+					</i>
+					. Hoidat työtehtäväsi sitä mukaa, kun niitä ilmestyy. Voit
+					syventyä ajankäyttöösi ja tutustua vinkkeihimme{' '}
+					<a
+						className={classes.linkTag}
+						target='blank'
+						href='https://www.entrefox.fi/ajanhallinta/'>
+						ajanhallinnan teemassa
+					</a>
+					.
+				</Typography>
+				<Typography variant='h6'>Insert gauge here</Typography>
 			</Box>
 
 			<Box my={10}>
@@ -194,11 +164,7 @@ const Summary = ({ handleFormSubmit }) => {
 					seuraavasti:
 				</Typography>
 				<Box my={4}>
-					<StickyNote
-						answer={formData
-							.find((answersPage) => answersPage.page === 3)
-							.answers.find((answer) => answer.id === 10)}
-					/>
+					<StickyNote answer={getAnswerByID(3, 10)} />
 				</Box>
 			</Box>
 
@@ -234,10 +200,9 @@ const Summary = ({ handleFormSubmit }) => {
 					</Grid>
 				</Grid>
 				{/* Scroll with text for question 12 */}
+				<Typography variant='h6'>Insert answers in a Grid</Typography>
 				<GoalsScroll
-					answer={formData
-						.find((answersPage) => answersPage.page === 4)
-						.answers.find((answer) => answer.id === 12)}
+					answer={getAnswerByID(4, 12)}
 					image={entrefox_scroll}
 				/>
 			</Box>
@@ -289,9 +254,7 @@ const Summary = ({ handleFormSubmit }) => {
 			<Divider />
 
 			{/* Part five of the summary - ONLY IF USER ANSWERED YES TO FIRST QUESTION */}
-			{formData
-				.find((answersPage) => answersPage.page === 1)
-				.answers.find((answer) => answer.id === 1).value === 'Kyllä' ? (
+			{getAnswerByID(1, 1) === 'Kyllä' ? (
 				<Box my={10}>
 					<Box mb={3}>
 						<Typography variant='h6' className={classes.heading}>
@@ -299,37 +262,22 @@ const Summary = ({ handleFormSubmit }) => {
 						</Typography>
 					</Box>
 					<Typography variant='body1'>
-						Olet edellisen kerran tehnyt kehityskeskustelun [pvm/en
-						tiedä, kohta 15]. <br />
+						{previouslyDoneSurvey} <br />
 						Edellisellä kerralla asetit itsellesi nämä tavoitteet ja
 						askelmerkit:
 					</Typography>
 					<Box className={classes.textBorder} mb={2}>
 						<Typography variant='body1'>
-							{
-								formData
-									.find(
-										(answersPage) => answersPage.page === 2
-									)
-									.answers.find((answer) => answer.id === 3)
-									.value
-							}
+							{getAnswerByID(2, 3)}
 						</Typography>
 					</Box>
 
 					<Typography variant='body1'>
 						Tavoitteesi toteutuivat:
 					</Typography>
-					<Box className={classes.textBorder}>
+					<Box>
 						<Typography variant='body1'>
-							{
-								formData
-									.find(
-										(answersPage) => answersPage.page === 2
-									)
-									.answers.find((answer) => answer.id === 4)
-									.value
-							}
+							{getAnswerByID(2, 4)}
 						</Typography>
 					</Box>
 				</Box>
