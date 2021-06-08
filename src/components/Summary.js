@@ -176,35 +176,26 @@ const Summary = ({ handleFormSubmit }) => {
 						OSA 2. Tehdyt valinnat
 					</Typography>
 				</Box>
+				<Box mb={3}>
+					<Typography variant='body1'>
+						Valitsit seuraavat kolme asiaa, joihin haluat panostaa
+						tulevan puolen vuoden aikana osaamisesi ja/tai
+						hyvinvointisi kehittämiseksi.
+					</Typography>
+				</Box>
 
-				<Grid
-					container
-					direction='row-reverse'
-					justify='space-evenly'
-					alignItems='flex-start'>
-					<Grid item xs={12} md={4}>
-						<Box align='center'>
-							<img
-								className={classes.summaryImage}
-								src={entre_askelmerkit}
-								alt='Askeleet ja limen värinen lippu'
-							/>
-						</Box>
-					</Grid>
-					<Grid item xs={12} md={8}>
-						<Typography variant='body1'>
-							Valitsit seuraavat kolme asiaa, joihin haluat
-							panostaa tulevan puolen vuoden aikana osaamisesi
-							ja/tai hyvinvointisi kehittämiseksi.
-						</Typography>
-					</Grid>
-				</Grid>
 				{/* Scroll with text for question 12 */}
-				<Typography variant='h6'>Insert answers in a Grid</Typography>
 				<GoalsScroll
 					answer={getAnswerByID(4, 12)}
 					image={entrefox_scroll}
 				/>
+				<Box align='center'>
+					<img
+						className={classes.summaryImage}
+						src={entre_askelmerkit}
+						alt='Askeleet ja limen värinen lippu'
+					/>
+				</Box>
 			</Box>
 
 			<Divider />

@@ -172,8 +172,14 @@ const useStyles = makeStyles((theme) => ({
 		maxWidth: '350px',
 		width: '100%'
 	},
-	textBorder: {
-		padding: '6px'
+	goalBox: {
+		width: '650px',
+		maxWidth: '100%',
+		height: 'auto',
+		backgroundColor: '#faffeb',
+		borderRadius: '10px',
+		padding: '10px 15px',
+		marginBottom: '10px'
 	}
 }))
 
