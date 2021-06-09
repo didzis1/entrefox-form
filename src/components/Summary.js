@@ -57,11 +57,11 @@ const Summary = ({ handleFormSubmit }) => {
 	const downloadPDF = () => {
 		var element = document.getElementById('summary')
 		var opt = {
-			margin: 1,
+			margin: 0.5,
 			filename: 'myfile.pdf',
 			image: { type: 'jpeg' },
 			html2canvas: { scale: 2 },
-			jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+			jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
 		}
 		html2pdf().from(element).set(opt).save()
 	}
@@ -116,6 +116,8 @@ const Summary = ({ handleFormSubmit }) => {
 					{/* Chart for questions */}
 					<Box mt={3}>
 						<ChartBars answers={formData} />
+						{/* div to mark the end of a page for the PDF */}
+						<div className='html2pdf__page-break'></div>
 					</Box>
 				</Box>
 
@@ -180,6 +182,8 @@ const Summary = ({ handleFormSubmit }) => {
 				</Box>
 
 				<Box my={10}>
+					{/* div to mark the end of a page for the PDF */}
+					<div className='html2pdf__page-break'></div>
 					<Typography variant='body1'>
 						Työhösi liittyvistä tiedoista ja taidoista kerroit
 						seuraavasti:
@@ -204,7 +208,6 @@ const Summary = ({ handleFormSubmit }) => {
 							ja/tai hyvinvointisi kehittämiseksi.
 						</Typography>
 					</Box>
-
 					{/* Scroll with text for question 12 */}
 					<GoalsPaper answer={getAnswerByID(4, 12)} />
 				</Box>
@@ -212,6 +215,8 @@ const Summary = ({ handleFormSubmit }) => {
 				<Divider />
 				{/* Part three of the summary */}
 				<Box my={10}>
+					{/* div to mark the end of a page for the PDF */}
+					<div className='html2pdf__page-break'></div>
 					<Box mb={3}>
 						<Typography variant='h6' className={classes.heading}>
 							OSA 3. Askelmerkit tavoitteiden saavuttamiseksi
@@ -289,16 +294,13 @@ const Summary = ({ handleFormSubmit }) => {
 					</Box>
 				) : null}
 				<Divider />
-
-				{/* div to mark the end of a page for the PDF */}
-				<div className='html2pdf__page-break'></div>
 			</div>
 		</Container>
 	)
 }
 
 Summary.propTypes = {
-	handleFormSubmit: PropTypes.func
+	handleFormSubmit: PropTypes.func,
 }
 
 export default Summary
