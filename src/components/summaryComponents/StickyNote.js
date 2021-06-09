@@ -8,6 +8,7 @@ import Box from '@material-ui/core/Box'
 import useStyles from '../../styles'
 
 const StickyNote = ({ answer }) => {
+	// console.log(answer)
 	const classes = useStyles()
 	return (
 		<Box>
@@ -19,7 +20,7 @@ const StickyNote = ({ answer }) => {
 				className={classes.stickyNote}>
 				<Box className={classes.noteTape}></Box>
 				<Grid item xs={8}>
-					<Typography variant='body1'>{answer}</Typography>
+					<Typography variant='body1'>{answer.value}</Typography>
 				</Grid>
 			</Grid>
 		</Box>
@@ -27,7 +28,7 @@ const StickyNote = ({ answer }) => {
 }
 
 StickyNote.propTypes = {
-	answer: PropTypes.string
+	answer: PropTypes.object
 }
 
 export default StickyNote

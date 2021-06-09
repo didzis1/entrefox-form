@@ -5,9 +5,9 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import useStyles from '../../styles'
 
-// eslint-disable-next-line no-unused-vars
 const ResultLine = ({ answer }) => {
 	const classes = useStyles()
+	console.log(answer)
 	const questionValues = [
 		{
 			text: 'Heikko',
@@ -50,7 +50,7 @@ const ResultLine = ({ answer }) => {
 }
 
 ResultLine.propTypes = {
-	answer: PropTypes.string
+	answer: PropTypes.object
 }
 
 export default ResultLine
