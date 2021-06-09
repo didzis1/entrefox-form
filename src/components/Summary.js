@@ -21,7 +21,7 @@ import useStyles from '../styles'
 
 // Images
 import entrefox_logo from '../images/entrefox_logo.png'
-import entrefox_scroll from '../images/summaryImages/entrefox_scroll.png'
+import entrefox_badge from '../images/summaryImages/entrefox_badge.png'
 import entre_askelmerkit from '../images/summaryImages/entre-askelmerkit.svg'
 import entre_seuraa_kurssia from '../images/summaryImages/entre-seuraa-kurssia.svg'
 
@@ -185,10 +185,6 @@ const Summary = ({ handleFormSubmit }) => {
 				</Box>
 
 				{/* Scroll with text for question 12 */}
-				<GoalsScroll
-					answer={getAnswerByID(4, 12)}
-					image={entrefox_scroll}
-				/>
 				<Box align='center'>
 					<img
 						className={classes.summaryImage}
@@ -196,6 +192,10 @@ const Summary = ({ handleFormSubmit }) => {
 						alt='Askeleet ja limen värinen lippu'
 					/>
 				</Box>
+				<GoalsScroll
+					answer={getAnswerByID(4, 12)}
+					badge={entrefox_badge}
+				/>
 			</Box>
 
 			<Divider />
