@@ -197,7 +197,7 @@ const Summary = ({ handleFormSubmit }) => {
 							OSA 2. Tehdyt valinnat
 						</Typography>
 					</Box>
-					<Box mb={3}>
+					<Box mb={10}>
 						<Typography variant='body1'>
 							Valitsit seuraavat kolme asiaa, joihin haluat
 							panostaa tulevan puolen vuoden aikana osaamisesi
