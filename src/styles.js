@@ -6,58 +6,58 @@ const useStyles = makeStyles((theme) => ({
 		borderRadius: '5px',
 		paddingTop: '35px',
 		paddingBottom: '25px',
-		boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+		boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
 	},
 	form: {
 		[theme.breakpoints.down('sm')]: {
 			paddingLeft: '0px',
-			paddingRight: '0px',
-		},
+			paddingRight: '0px'
+		}
 	},
 	card: {
 		maxWidth: '345px',
-		margin: '30px auto',
+		margin: '30px auto'
 	},
 	mainGrid: {
 		maxWidth: '850px',
-		margin: '5px auto',
+		margin: '5px auto'
 	},
 	textGrid: {
-		margin: '0px auto 30px auto',
+		margin: '0px auto 30px auto'
 	},
 	heading: {
 		fontWeight: 'bold',
-		color: '#8f9a27',
+		color: '#8f9a27'
 	},
 	chartBar: {
 		backgroundColor: '#cacaca',
 		height: '30px',
 		margin: '2px',
 		borderRadius: '3px',
-		border: '1px solid #bdbdbd',
+		border: '1px solid #bdbdbd'
 	},
 	labelBox: {
 		width: '12px',
 		height: '12px',
 		borderRadius: '3px',
-		margin: '3px',
+		margin: '3px'
 	},
 	limeBox: {
 		background: '#cddc39',
-		border: '2px solid #c0ca33',
+		border: '2px solid #c0ca33'
 	},
 	yellowBox: {
 		background: '#ffeb3b',
-		border: '2px solid #fbc02d',
+		border: '2px solid #fbc02d'
 	},
 	gaugeGrid: {
 		maxWidth: '350px',
-		margin: 'auto',
+		margin: 'auto'
 	},
 	gauge: {
 		width: '100%',
 		maxWidth: '250px',
-		margin: 'auto',
+		margin: 'auto'
 	},
 	gaugeBody: {
 		width: '100%',
@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
 		position: 'relative',
 		borderTopLeftRadius: '100% 200%',
 		borderTopRightRadius: '100% 200%',
-		overflow: 'hidden',
+		overflow: 'hidden'
 	},
 	gaugeFill: {
 		position: 'absolute',
@@ -77,7 +77,7 @@ const useStyles = makeStyles((theme) => ({
 		height: '100%',
 		backgroundColor: '#cddc39',
 		transformOrigin: 'center top',
-		transition: 'transform 1s ease-out',
+		transition: 'transform 1s ease-out'
 	},
 	gaugeCover: {
 		width: '75%',
@@ -93,13 +93,13 @@ const useStyles = makeStyles((theme) => ({
 		alignItems: 'center',
 		justifyContent: 'center',
 		paddingBottom: '25%',
-		boxSizing: 'border-box',
+		boxSizing: 'border-box'
 	},
 	gaugeLabel: {
-		maxWidth: '30px',
+		maxWidth: '30px'
 	},
 	linkTag: {
-		color: '#c0ca33',
+		color: '#c0ca33'
 	},
 	stickyNote: {
 		minWidth: '280px',
@@ -113,8 +113,8 @@ const useStyles = makeStyles((theme) => ({
 		'&:hover': {
 			boxShadow: '10px 10px 7px rgba(0,0,0,.2)',
 			transform: 'scale(1.05)',
-			position: 'relative',
-		},
+			position: 'relative'
+		}
 	},
 	noteTape: {
 		width: '130px',
@@ -123,17 +123,17 @@ const useStyles = makeStyles((theme) => ({
 		transform: 'rotate(-3deg)',
 		top: '-15px',
 		backgroundColor: '#ffeb3b',
-		opacity: 0.7,
+		opacity: 0.7
 	},
 	logo: {
 		width: '100%',
 		maxWidth: '400px',
 		height: 'auto',
-		margin: 'auto',
+		margin: 'auto'
 	},
 	gridList: {
 		width: '100%',
-		height: 'auto',
+		height: 'auto'
 	},
 	resultLine: {
 		margin: '30px auto',
@@ -141,23 +141,23 @@ const useStyles = makeStyles((theme) => ({
 			backgroundColor: '#cacaca',
 			width: '120px',
 			paddingTop: '10px',
-			paddingBottom: '10px',
+			paddingBottom: '10px'
 		},
 		'& div:first-child': {
 			backgroundColor: '#cddc39',
 			borderTopLeftRadius: '10px',
-			borderTopRightRadius: '10px',
+			borderTopRightRadius: '10px'
 		},
 		'& div:last-child': {
 			borderBottomLeftRadius: '10px',
-			borderBottomRightRadius: '10px',
-		},
+			borderBottomRightRadius: '10px'
+		}
 	},
 	scrollContainer: {
-		width: '100%',
+		width: '100%'
 	},
 	scrollImage: {
-		width: '100%',
+		width: '100%'
 	},
 	scrollText: {
 		position: 'absolute',
@@ -166,12 +166,29 @@ const useStyles = makeStyles((theme) => ({
 		top: '50%',
 		left: '50%',
 		transform: 'translate(-50%, -50%)',
-		overflowWrap: 'break-word',
+		overflowWrap: 'break-word'
 	},
 	summaryImage: {
 		maxWidth: '350px',
-		width: '100%',
+		marginTop: '10px',
+		width: '100%'
 	},
+	goalBox: {
+		width: '90%',
+		height: 'auto',
+		minHeight: '600px',
+		backgroundColor: '#cddc39',
+		borderRadius: '10px',
+		paddingBottom: '80px',
+		margin: 'auto'
+	},
+	badge: {
+		marginTop: '-50px',
+		marginLeft: '35px'
+	},
+	goalText: {
+		padding: '20px'
+	}
 }))
 
 export default useStyles

@@ -20,7 +20,7 @@ const StickyNote = ({ answer }) => {
 				className={classes.stickyNote}>
 				<Box className={classes.noteTape}></Box>
 				<Grid item xs={8}>
-					<Typography variant='body1'>{answer.value}</Typography>
+					<Typography variant='body1'>{answer}</Typography>
 				</Grid>
 			</Grid>
 		</Box>
