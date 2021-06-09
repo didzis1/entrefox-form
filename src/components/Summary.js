@@ -20,8 +20,8 @@ import Divider from '@material-ui/core/Divider'
 import useStyles from '../styles'
 
 // Images
-import entrefox_logo from '../images/entrefox_logo.png'
 import entrefox_stocks from '../images/summaryImages/entrefox_stocks.png'
+import entrefox_business from '../images/summaryImages/entrefox_business.png'
 
 import html2pdf from 'html2pdf.js'
 //import html2canvas from 'html2canvas'
@@ -54,6 +54,32 @@ const Summary = ({ handleFormSubmit }) => {
 			'Olet ennen tehnyt kehityskeskustelun, mutta et muistanut tarkkaa päivämäärää.'
 	}
 
+	const questionNine = (answer) => {
+		switch (answer) {
+			case 'Teen tehtäviäni yleensä sitä mukaa, kun niitä ilmestyy.':
+				return 'Hoidat työtehtäväsi sitä mukaa, kun niitä ilmestyy. '
+			case 'Teen yleensä töistäni aikataulun, jota pyrin noudattamaan.':
+				return 'Teet töistäsi aikataulun, jota pyrit noudattamaan. '
+			case 'Suunnittelen ja priorisoin säännöllisesti työtehtäväni keskittyen olennaiseen.':
+				return 'Suunnittelet ja priorisoit säännöllisesti työtehtäväsi kesittyen olennaiseen. '
+		}
+	}
+
+	const questionEleven = (answer) => {
+		switch (answer) {
+			case 'En tiedä lainkaan, kuinka hyödyntää digitaalisia työkaluja (esim. sovelluksia, ohjelmia, verkkosivuja) yrityksessäni.':
+				return 'et tiedä lainkaan, kuinka hyödyntää digitaalisia työkaluja (esim. sovelluksia, ohjelmia, verkkosivuja) yrityksessäsi.'
+			case 'Tiedän, millaisia digitaalisia työkaluja voisin hyödyntää yrityksessäni ja olen kokeillut muutamia.':
+				return 'tiedät, millaisia digitaalisia työkaluja voisit hyödyntää yrityksessäsi ja olet kokeillut muutamia.'
+			case 'Osaan käyttää useita digitaalisia työkaluja sekä hyödyntää niiden ominaisuuksia.':
+				return 'osaat käyttää useita digitaalisia työkaluja sekä hyödyntää niiden ominaisuuksia.'
+			case 'Seuraan aktiivisesti erilaisten digitaalisten palvelujen kehittymistä ja otan uusia työkaluja käyttöön tarpeen mukaan.':
+				return 'seuraat aktiivisesti erilaisten digitaalisten palvelujen kehittymistä ja otat uusia työkaluja käyttöön tarpeen mukaan.'
+			case 'Teen yleensä töistäni aikataulun, jota pyrin noudattamaan.':
+				return 'teet yleensä töistäsi aikataulun, jota pyrit noudattamaan.'
+		}
+	}
+
 	const downloadPDF = () => {
 		var element = document.getElementById('summary')
 		var opt = {
@@ -81,13 +107,6 @@ const Summary = ({ handleFormSubmit }) => {
 			<div id={'summary'}>
 				{/* Header with EntreFox logo */}
 				<Box my={5}>
-					<Box align='center'>
-						<img
-							className={classes.logo}
-							src={entrefox_logo}
-							alt='EntreFox logo'
-						/>
-					</Box>
 					<Typography
 						variant='h4'
 						component='h1'
@@ -95,6 +114,12 @@ const Summary = ({ handleFormSubmit }) => {
 						gutterBottom>
 						Kehityskeskustelun koonti
 					</Typography>
+					<Box align='center'>
+						<img
+							src={entrefox_business}
+							className={classes.headingImage}
+						/>
+					</Box>
 					<Typography variant='h6' align='center'>
 						Olet käynyt kehityskeskustelun {currentDate}.
 					</Typography>
@@ -153,7 +178,7 @@ const Summary = ({ handleFormSubmit }) => {
 							{getAnswerByID(3, 8).toLowerCase().split(' ')[0]}{' '}
 							tavalla
 						</i>
-						. Hoidat työtehtäväsi sitä mukaa, kun niitä ilmestyy.
+						. {questionNine(getAnswerByID(3, 9))}
 						Voit syventyä ajankäyttöösi ja tutustua vinkkeihimme{' '}
 						<a
 							className={classes.linkTag}
@@ -168,9 +193,10 @@ const Summary = ({ handleFormSubmit }) => {
 
 				<Box my={10}>
 					<Typography variant='body1'>
-						Digitaalisten työkalujen osalta osaat käyttää
-						yrityksessäsi käytössä olevia digitallisia työkaluja ja
-						niiden erilaisia ominaisuuksia. ??????????{' '}
+						Digitaalisten työkalujen osalta{' '}
+						<Box component='span' fontStyle='italic'>
+							{questionEleven(getAnswerByID(3, 11))}
+						</Box>{' '}
 						<a
 							className={classes.linkTag}
 							target='blank'
@@ -260,7 +286,6 @@ const Summary = ({ handleFormSubmit }) => {
 						</Grid>
 					</Grid>
 				</Box>
-				<Divider />
 
 				{/* Part five of the summary - ONLY IF USER ANSWERED YES TO FIRST QUESTION */}
 				{getAnswerByID(1, 1) === 'Kyllä' ? (
@@ -278,7 +303,7 @@ const Summary = ({ handleFormSubmit }) => {
 							tavoitteet ja askelmerkit:
 						</Typography>
 						<Box className={classes.textBorder} mb={2}>
-							<Typography variant='body1'>
+							<Typography variant='h6'>
 								{getAnswerByID(2, 3)}
 							</Typography>
 						</Box>
@@ -287,7 +312,7 @@ const Summary = ({ handleFormSubmit }) => {
 							Tavoitteesi toteutuivat:
 						</Typography>
 						<Box>
-							<Typography variant='body1'>
+							<Typography variant='h6'>
 								{getAnswerByID(2, 4)}
 							</Typography>
 						</Box>

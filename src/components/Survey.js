@@ -13,9 +13,6 @@ import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
 import useStyles from '../styles'
 
-// Images
-import entrefox_logo from '../images/entrefox_logo.png'
-
 const Survey = ({
 	handleFormSubmit,
 	questionSets,
@@ -64,11 +61,6 @@ const Survey = ({
 		<>
 			<Container className={classes.survey} maxWidth='md'>
 				<Box align='center'>
-					<img
-						className={classes.logo}
-						src={entrefox_logo}
-						alt='EntreFox logo'
-					/>
 					<Typography variant='h4' component='h1' gutterBottom>
 						Yrittäjän kehityskeskustelu
 					</Typography>
@@ -81,17 +73,15 @@ const Survey = ({
 						/>
 					</form>
 				</Box>
-
-				{/* Buttons in a grid */}
-				{/* <Grid
-					container
-					direction='row'
-					justify='space-between'
-					alignItems='center'>
-					<Grid item>{handlePreviousButton()}</Grid>
-					<Grid item>{handleNextButton()}</Grid>
-				</Grid> */}
-
+				{/* Helper text if button is disabled */}
+				<Box textAlign='right'>
+					{validatedButton() ? (
+						<Typography variant='caption'>
+							Jokaiseen kysymykseen tulee vastata
+						</Typography>
+					) : null}
+				</Box>
+				{/* Previous and Next buttons */}
 				<Grid
 					container
 					direction='row'
@@ -102,13 +92,6 @@ const Survey = ({
 					</Grid>
 					<Grid item>{handleNextButton()}</Grid>
 				</Grid>
-				<Box textAlign='right' m={1}>
-					{validatedButton() ? (
-						<Typography variant='caption'>
-							Jokaiseen kysymykseen tulee vastata
-						</Typography>
-					) : null}
-				</Box>
 				<Box m='auto'>
 					<ProgressBar />
 				</Box>

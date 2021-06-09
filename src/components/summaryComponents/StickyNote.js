@@ -28,7 +28,7 @@ const StickyNote = ({ answer }) => {
 }
 
 StickyNote.propTypes = {
-	answer: PropTypes.object
+	answer: PropTypes.string
 }
 
 export default StickyNote

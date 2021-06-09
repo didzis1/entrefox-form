@@ -29,6 +29,9 @@ const useStyles = makeStyles((theme) => ({
 		fontWeight: 'bold',
 		color: '#8f9a27'
 	},
+	headingImage: {
+		width: '80%'
+	},
 	chartBar: {
 		backgroundColor: '#cacaca',
 		height: '30px',

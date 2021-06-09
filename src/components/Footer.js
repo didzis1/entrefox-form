@@ -1,5 +1,10 @@
 import React from 'react'
-//import PropTypes from 'prop-types'
+
+// Material UI
+import Grid from '@material-ui/core/Grid'
+import Box from '@material-ui/core/Box'
+import Typography from '@material-ui/core/Typography'
+import useStyles from '../styles'
 
 // Import logos
 import turkuamk_logo from '../images/footer/turkuamk_logo.png'
@@ -7,10 +12,7 @@ import hy_logo from '../images/footer/hy_logo.png'
 import tyoterveyslaitos_logo from '../images/footer/tyoterveyslaitos_logo.png'
 import esr_logo from '../images/footer/esr_logo.png'
 import vipuvoimaa_logo from '../images/footer/vipuvoimaa_logo.png'
-
-import Grid from '@material-ui/core/Grid'
-import Box from '@material-ui/core/Box'
-import useStyles from '../styles'
+import entrefox_logo from '../images/footer/entrefox_logo.png'
 
 const Footer = () => {
 	const classes = useStyles()
@@ -62,6 +64,28 @@ const Footer = () => {
 								src={vipuvoimaa_logo}
 								className={classes.gridList}
 							/>
+						</Box>
+					</Grid>
+				</Grid>
+				<Grid
+					container
+					item
+					direction='column'
+					alignItems='center'
+					justify='center'>
+					<Grid item xs={6}>
+						<Box>
+							<img
+								src={entrefox_logo}
+								className={classes.gridList}
+							/>
+						</Box>
+					</Grid>
+					<Grid item>
+						<Box my={3}>
+							<Typography variant='subtitle2'>
+								Toteutettu EntreFox hankkeessa 2021
+							</Typography>
 						</Box>
 					</Grid>
 				</Grid>
