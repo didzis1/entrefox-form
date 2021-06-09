@@ -170,6 +170,24 @@ const useStyles = makeStyles((theme) => ({
 	},
 	summaryImage: {
 		maxWidth: '350px',
+		width: '100%'
+	},
+	goalBox: {
+		width: '90%',
+		height: 'auto',
+		minHeight: '600px',
+		backgroundColor: '#cddc39',
+		borderRadius: '10px',
+		paddingBottom: '80px',
+		margin: 'auto'
+	},
+	badge: {
+		marginTop: '-50px',
+		marginLeft: '35px'
+	},
+	goalText: {
+		padding: '20px'
+	}
 		width: '100%',
 	},
 }))
