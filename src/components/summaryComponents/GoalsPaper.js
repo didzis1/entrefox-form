@@ -10,7 +10,7 @@ import Grid from '@material-ui/core/Grid'
 
 // Images
 import entrefox_badge from '../../images/summaryImages/entrefox_badge.png'
-import entre_askelmerkit from '../../images/summaryImages/entre-askelmerkit.svg'
+import entrefox_steps from '../../images/summaryImages/entrefox_steps.png'
 
 // eslint-disable-next-line no-unused-vars
 const GoalsScroll = ({ answer }) => {
@@ -26,7 +26,7 @@ const GoalsScroll = ({ answer }) => {
 				<Grid item xs={10} sm={6} md={7}>
 					<img
 						className={classes.summaryImage}
-						src={entre_askelmerkit}
+						src={entrefox_steps}
 						alt='Askeleet ja limen värinen lippu'
 					/>
 				</Grid>

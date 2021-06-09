@@ -21,7 +21,7 @@ import useStyles from '../styles'
 
 // Images
 import entrefox_logo from '../images/entrefox_logo.png'
-import entre_seuraa_kurssia from '../images/summaryImages/entre-seuraa-kurssia.svg'
+import entrefox_stocks from '../images/summaryImages/entrefox_stocks.png'
 
 import html2pdf from 'html2pdf.js'
 //import html2canvas from 'html2canvas'
@@ -61,7 +61,7 @@ const Summary = ({ handleFormSubmit }) => {
 			filename: 'myfile.pdf',
 			image: { type: 'jpeg' },
 			html2canvas: { scale: 2 },
-			jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
+			jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
 		}
 		html2pdf().from(element).set(opt).save()
 	}
@@ -253,7 +253,7 @@ const Summary = ({ handleFormSubmit }) => {
 							<Box align='center'>
 								<img
 									className={classes.summaryImage}
-									src={entre_seuraa_kurssia}
+									src={entrefox_stocks}
 									alt='Kuva kurssin seurannasta'
 								/>
 							</Box>
@@ -300,7 +300,7 @@ const Summary = ({ handleFormSubmit }) => {
 }
 
 Summary.propTypes = {
-	handleFormSubmit: PropTypes.func,
+	handleFormSubmit: PropTypes.func
 }
 
 export default Summary
