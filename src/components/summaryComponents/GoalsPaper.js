@@ -8,15 +8,28 @@ import Box from '@material-ui/core/Box'
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
 
+// Images
+import entrefox_badge from '../../images/summaryImages/entrefox_badge.png'
+import entre_askelmerkit from '../../images/summaryImages/entre-askelmerkit.svg'
+
 // eslint-disable-next-line no-unused-vars
-const GoalsScroll = ({ answer, badge }) => {
+const GoalsScroll = ({ answer }) => {
 	const classes = useStyles()
 	return (
 		<Grid container className={classes.goalBox} direction='column'>
-			<Grid item>
-				<Box className={classes.badge}>
-					<img src={badge} />
-				</Box>
+			<Grid container item direction='row' justify='space-around'>
+				<Grid item xs={12} md={5}>
+					<Box className={classes.badge}>
+						<img src={entrefox_badge} />
+					</Box>
+				</Grid>
+				<Grid item xs={10} sm={6} md={7}>
+					<img
+						className={classes.summaryImage}
+						src={entre_askelmerkit}
+						alt='Askeleet ja limen värinen lippu'
+					/>
+				</Grid>
 			</Grid>
 			<Grid item>
 				<Box className={classes.goalText}>
@@ -71,8 +84,7 @@ const GoalsScroll = ({ answer, badge }) => {
 }
 
 GoalsScroll.propTypes = {
-	answer: PropTypes.array,
-	badge: PropTypes.string
+	answer: PropTypes.array
 }
 
 export default GoalsScroll

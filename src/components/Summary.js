@@ -9,7 +9,7 @@ import ChartBars from './summaryComponents/ChartBars'
 import Gauge from './summaryComponents/Gauge'
 //import ResultLine from './summaryComponents/ResultLine'
 import StickyNote from './summaryComponents/StickyNote'
-import GoalsScroll from './summaryComponents/GoalsScroll'
+import GoalsPaper from './summaryComponents/GoalsPaper'
 
 // Material UI
 import Box from '@material-ui/core/Box'
@@ -21,8 +21,6 @@ import useStyles from '../styles'
 
 // Images
 import entrefox_logo from '../images/entrefox_logo.png'
-import entrefox_badge from '../images/summaryImages/entrefox_badge.png'
-import entre_askelmerkit from '../images/summaryImages/entre-askelmerkit.svg'
 import entre_seuraa_kurssia from '../images/summaryImages/entre-seuraa-kurssia.svg'
 
 import html2pdf from 'html2pdf.js'
@@ -208,17 +206,7 @@ const Summary = ({ handleFormSubmit }) => {
 					</Box>
 
 					{/* Scroll with text for question 12 */}
-					<Box align='center'>
-						<img
-							className={classes.summaryImage}
-							src={entre_askelmerkit}
-							alt='Askeleet ja limen värinen lippu'
-						/>
-					</Box>
-					<GoalsScroll
-						answer={getAnswerByID(4, 12)}
-						badge={entrefox_badge}
-					/>
+					<GoalsPaper answer={getAnswerByID(4, 12)} />
 				</Box>
 
 				<Divider />

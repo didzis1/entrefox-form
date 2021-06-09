@@ -170,6 +170,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 	summaryImage: {
 		maxWidth: '350px',
+		marginTop: '10px',
 		width: '100%'
 	},
 	goalBox: {
