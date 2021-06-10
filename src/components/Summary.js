@@ -18,6 +18,7 @@ import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
 import Divider from '@material-ui/core/Divider'
 import useStyles from '../styles'
+import GetAppIcon from '@material-ui/icons/GetApp'
 
 // Images
 import entrefox_stocks from '../images/summaryImages/entrefox_stocks.png'
@@ -98,11 +99,6 @@ const Summary = ({ handleFormSubmit }) => {
 				text='Palaa takaisin'
 				colors={{ bg: '#cddc39', bgHover: '#c0ca33' }}
 				handlePagination={handleFormSubmit}
-			/>
-			<ButtonHandler
-				text='Lataa PDF'
-				colors={{ bg: '#cddc39', bgHover: '#c0ca33' }}
-				handlePagination={downloadPDF}
 			/>
 			<div id={'summary'}>
 				{/* Header with EntreFox logo */}
@@ -320,6 +316,14 @@ const Summary = ({ handleFormSubmit }) => {
 				) : null}
 				<Divider />
 			</div>
+			<Box mt={2}>
+				<ButtonHandler
+					text='Lataa PDF'
+					colors={{ bg: '#cddc39', bgHover: '#c0ca33' }}
+					startIcon={<GetAppIcon />}
+					handlePagination={downloadPDF}
+				/>
+			</Box>
 		</Container>
 	)
 }

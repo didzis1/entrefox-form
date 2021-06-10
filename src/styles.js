@@ -179,7 +179,6 @@ const useStyles = makeStyles((theme) => ({
 	goalBox: {
 		width: '90%',
 		height: 'auto',
-		minHeight: '550px',
 		backgroundColor: '#cddc39',
 		borderRadius: '10px',
 		paddingBottom: '20px',

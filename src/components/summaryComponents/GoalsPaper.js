@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 
 // Material UI
 import useStyles from '../../styles'
-
 import Box from '@material-ui/core/Box'
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
@@ -13,12 +12,13 @@ import entrefox_badge from '../../images/summaryImages/entrefox_badge.png'
 import entrefox_steps from '../../images/summaryImages/entrefox_steps.png'
 
 const GoalsScroll = ({ answer }) => {
+	const classes = useStyles()
+
+	// Find values from multi-text with first two fields
 	const filteredAnswers = answer.map((answers) =>
 		answers.values.filter((answer) => answer.ID !== 2)
 	)
-	console.log(filteredAnswers.map((answers) => console.log(answers)))
 
-	const classes = useStyles()
 	return (
 		<Grid container className={classes.goalBox} direction='column'>
 			<Grid container item direction='row' justify='space-around'>
