@@ -12,8 +12,12 @@ import Grid from '@material-ui/core/Grid'
 import entrefox_badge from '../../images/summaryImages/entrefox_badge.png'
 import entrefox_steps from '../../images/summaryImages/entrefox_steps.png'
 
-// eslint-disable-next-line no-unused-vars
 const GoalsScroll = ({ answer }) => {
+	const filteredAnswers = answer.map((answers) =>
+		answers.values.filter((answer) => answer.ID !== 2)
+	)
+	console.log(filteredAnswers.map((answers) => console.log(answers)))
+
 	const classes = useStyles()
 	return (
 		<Grid container className={classes.goalBox} direction='column'>
@@ -31,54 +35,20 @@ const GoalsScroll = ({ answer }) => {
 					/>
 				</Grid>
 			</Grid>
-			<Grid item>
-				<Box className={classes.goalText}>
-					<Typography variant='h6'>Tavoite 1</Typography>
-					<Typography variant='body1'>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-						Quisque augue leo, mattis at efficitur at, blandit sit
-						amet ante. Nam et accumsan ante. Sed tristique, massa
-						eget efficitur semper, quam arcu pellentesque felis, at
-						auctor elit mi sit amet risus. Sed diam lacus, accumsan
-						non feugiat vel, volutpat ac nibh. Proin elementum metus
-						iaculis diam pulvinar facilisis. Sed id nulla nulla.
-						Integer porta sit amet dolor non luctus. Quisque pretium
-						eros sem, ac tempor felis pellentesque vitae.
-					</Typography>
-				</Box>
-			</Grid>
-			<Grid item>
-				<Box className={classes.goalText}>
-					<Typography variant='h6'>Tavoite 2</Typography>
-					<Typography variant='body1'>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-						Quisque augue leo, mattis at efficitur at, blandit sit
-						amet ante. Nam et accumsan ante. Sed tristique, massa
-						eget efficitur semper, quam arcu pellentesque felis, at
-						auctor elit mi sit amet risus. Sed diam lacus, accumsan
-						non feugiat vel, volutpat ac nibh. Proin elementum metus
-						iaculis diam pulvinar facilisis. Sed id nulla nulla.
-						Integer porta sit amet dolor non luctus. Quisque pretium
-						eros sem, ac tempor felis pellentesque vitae.
-					</Typography>
-				</Box>
-			</Grid>
-			<Grid item>
-				<Box className={classes.goalText}>
-					<Typography variant='h6'>Tavoite 3</Typography>
-					<Typography variant='body1'>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-						Quisque augue leo, mattis at efficitur at, blandit sit
-						amet ante. Nam et accumsan ante. Sed tristique, massa
-						eget efficitur semper, quam arcu pellentesque felis, at
-						auctor elit mi sit amet risus. Sed diam lacus, accumsan
-						non feugiat vel, volutpat ac nibh. Proin elementum metus
-						iaculis diam pulvinar facilisis. Sed id nulla nulla.
-						Integer porta sit amet dolor non luctus. Quisque pretium
-						eros sem, ac tempor felis pellentesque vitae.
-					</Typography>
-				</Box>
-			</Grid>
+			{filteredAnswers.map((answers, index) => {
+				return (
+					<Grid key={index} item>
+						<Box className={classes.goalText}>
+							<Typography variant='h6'>
+								{answers[0].value}
+							</Typography>
+							<Typography variant='body1'>
+								{answers[1].value}
+							</Typography>
+						</Box>
+					</Grid>
+				)
+			})}
 		</Grid>
 	)
 }
