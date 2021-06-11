@@ -9,6 +9,21 @@ import useStyles from '../../styles'
 
 const NumberGauge = ({ answer }) => {
 	console.log(answer)
+
+	// const gaugeValues = () => {
+	// 	switch (answer) {
+	// 		case 1:
+	// 			return { fill: 0.1, needle: -0.16 }
+	// 		case 2:
+	// 			return { fill: 0.2, needle: -0.06 }
+	// 		case 3:
+	// 			return { fill: 0.25, needle: 0 }
+	// 		case 4:
+	// 			return { fill: 0.4, needle: 0.15 }
+	// 		case 5:
+	// 			return { fill: 0.5, needle: 0.25 }
+	// 	}
+	// }
 	const classes = useStyles()
 	return (
 		<>
@@ -37,9 +52,7 @@ const NumberGauge = ({ answer }) => {
 							<Box
 								className={classes.gaugeFill}
 								style={{
-									transform: `rotate(0.${
-										(answer / 2) * 10
-									}turn)`
+									transform: `rotate(${0.05 * answer}turn)`
 								}}></Box>
 							<Box className={classes.gaugeCover}>
 								<Typography variant='h2'>{answer}</Typography>

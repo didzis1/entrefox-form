@@ -184,16 +184,16 @@ const useStyles = makeStyles((theme) => ({
 		overflowWrap: 'break-word'
 	},
 	summaryImage: {
-		maxWidth: '350px',
+		maxWidth: '500px',
 		marginTop: '10px',
-		width: '100%'
+		width: '90%'
 	},
 	goalBox: {
 		width: '90%',
 		height: 'auto',
 		backgroundColor: '#cddc39',
 		borderRadius: '10px',
-		paddingBottom: '20px',
+		paddingBottom: '30px',
 		margin: '100px auto'
 	},
 	badge: {
