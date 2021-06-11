@@ -39,7 +39,10 @@ const GoalsScroll = ({ answers }) => {
 							variant='body1'
 							className={classes.noteText}
 							key={answers.ID}>
-							Tavoite: {answer.values[0].value}
+							<Box component='span' fontWeight='bold'>
+								Tavoite:
+							</Box>{' '}
+							{answer.values[0].value}
 						</Typography>
 					</Box>
 				</Grid>
@@ -49,7 +52,10 @@ const GoalsScroll = ({ answers }) => {
 							variant='body1'
 							className={classes.noteText}
 							key={answers.ID}>
-							Tavoite on tärkeä, koska: {answer.values[1].value}
+							<Box component='span' fontWeight='bold'>
+								Tavoite on tärkeä, koska:
+							</Box>{' '}
+							{answer.values[1].value}
 						</Typography>
 					</Box>
 				</Grid>
@@ -59,7 +65,9 @@ const GoalsScroll = ({ answers }) => {
 							variant='body1'
 							className={classes.noteText}
 							key={answers.ID}>
-							Askelmerkit tavoitteen saavuttamiseksi:{' '}
+							<Box component='span' fontWeight='bold'>
+								Askelmerkit tavoitteen saavuttamiseksi:
+							</Box>{' '}
 							{answer.values[2].value}
 						</Typography>
 					</Box>

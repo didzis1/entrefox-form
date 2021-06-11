@@ -132,7 +132,7 @@ const Summary = ({ handleFormSubmit }) => {
 				</Box>
 				<Divider />
 				{/* Page 3: Questions ID 5 - 11 */}
-				<Box my={8}>
+				<Box mt={10} mb={5}>
 					<Typography variant='h5' className={classes.heading}>
 						Tietoisuus nykyhetkellä
 					</Typography>
@@ -169,14 +169,14 @@ const Summary = ({ handleFormSubmit }) => {
 						, käy halutessasi hakemassa vinkkejä hyvinvointisi
 						kehittämiseen ja ylläpitämiseen.
 					</Typography>
-					<Box my={5}>
+					<Box mt={5}>
 						{/* Gauge for question 7 */}
 						<NumberGauge answer={sliderValue} />
 					</Box>
 				</Box>
 
 				{/* Question 8 - 9 */}
-				<Box my={10}>
+				<Box mt={10}>
 					<Typography variant='body1'>
 						Arviosi mukaan työ, vapaa-aika ja lepo ovat tasapainossa
 						elämässäsi{' '}
@@ -193,11 +193,13 @@ const Summary = ({ handleFormSubmit }) => {
 						</a>
 						.
 					</Typography>
-					<TextGauge answer={questionEight} />
+					<Box mt={5}>
+						<TextGauge answer={questionEight} />
+					</Box>
 				</Box>
 
 				{/* Question 11 */}
-				<Box my={10}>
+				<Box mt={10} mb={2}>
 					<Typography variant='body1'>
 						Digitaalisten työkalujen osalta{' '}
 						<Box component='span' fontStyle='italic'>
@@ -213,7 +215,7 @@ const Summary = ({ handleFormSubmit }) => {
 					</Typography>
 				</Box>
 				{/* Question 10 */}
-				<Box my={10}>
+				<Box mb={10}>
 					{/* div to mark the end of a page for the PDF */}
 					<div className='html2pdf__page-break'></div>
 					<Typography variant='body1'>
