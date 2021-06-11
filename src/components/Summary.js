@@ -19,6 +19,7 @@ import Grid from '@material-ui/core/Grid'
 import Divider from '@material-ui/core/Divider'
 import useStyles from '../styles'
 import GetAppRoundedIcon from '@material-ui/icons/GetAppRounded'
+import CheckCircleOutlineRoundedIcon from '@material-ui/icons/CheckCircleOutlineRounded'
 
 // Images
 import entrefox_stocks from '../images/summaryImages/entrefox_stocks.png'
@@ -28,6 +29,7 @@ import html2pdf from 'html2pdf.js'
 //import html2canvas from 'html2canvas'
 //import jsPDF from 'jspdf'
 
+// Convert date to dd.MM.YYYY format
 const dateToYMD = (date) => {
 	return `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`
 }
@@ -37,13 +39,12 @@ const Summary = ({ handleFormSubmit }) => {
 	const { formData } = useForm()
 
 	// Get todays date
-	//console.log(formData)
 	const currentDate = dateToYMD(new Date())
 
-	// Value for question 7
+	// Value for question 7 (in variable, since used in multiple places)
 	const sliderValue = getAnswerByID(3, 7)
 
-	// Check if user remembers the date he last answered the survey
+	// Check if user remembers the date he last answered the survey (Page 2 - Question 2)
 	let previouslyDoneSurvey
 	if (typeof getAnswerByID(2, 2) === 'object') {
 		previouslyDoneSurvey =
@@ -52,7 +53,7 @@ const Summary = ({ handleFormSubmit }) => {
 			'.'
 	} else {
 		previouslyDoneSurvey =
-			'Olet ennen tehnyt kehityskeskustelun, mutta et muistanut tarkkaa päivämäärää.'
+			'Olet ennen tehnyt kehityskeskustelun, mutta tarkka päivämäärä ei ole tiedossa.'
 	}
 
 	const questionNine = (answer) => {
@@ -104,11 +105,18 @@ const Summary = ({ handleFormSubmit }) => {
 				{/* Header with EntreFox logo */}
 				<Box my={5}>
 					<Typography
+						component='h1'
+						variant='h3'
+						color='primary'
+						align='center'>
+						Yrittäjän
+					</Typography>
+					<Typography
 						variant='h4'
 						component='h1'
 						align='center'
 						gutterBottom>
-						Kehityskeskustelun koonti
+						kehityskeskustelun koonti
 					</Typography>
 					<Box align='center'>
 						<img
@@ -121,10 +129,10 @@ const Summary = ({ handleFormSubmit }) => {
 					</Typography>
 				</Box>
 				<Divider />
-				{/* Part one of the summary - Page 3: Questions ID 5 - 11 */}
+				{/* Page 3: Questions ID 5 - 11 */}
 				<Box my={8}>
-					<Typography variant='h6' className={classes.heading}>
-						OSA 1. Tietoisuus nykyhetkellä
+					<Typography variant='h5' className={classes.heading}>
+						Tietoisuus nykyhetkellä
 					</Typography>
 					{/* Questions 5-6 */}
 					<Typography variant='body1'>
@@ -160,12 +168,12 @@ const Summary = ({ handleFormSubmit }) => {
 						kehittämiseen ja ylläpitämiseen.
 					</Typography>
 					<Box my={5}>
-						{/* Gauge for question */}
+						{/* Gauge for question 7 */}
 						<Gauge answer={sliderValue} />
 					</Box>
 				</Box>
 
-				{/* Question 8 */}
+				{/* Question 8 - 9 */}
 				<Box my={10}>
 					<Typography variant='body1'>
 						Arviosi mukaan työ, vapaa-aika ja lepo ovat tasapainossa
@@ -187,6 +195,7 @@ const Summary = ({ handleFormSubmit }) => {
 					<Typography variant='h6'>Insert gauge here</Typography>
 				</Box>
 
+				{/* Question 11 */}
 				<Box my={10}>
 					<Typography variant='body1'>
 						Digitaalisten työkalujen osalta{' '}
@@ -202,7 +211,7 @@ const Summary = ({ handleFormSubmit }) => {
 						on käsitelty yrittäjän monipuolisia osaamisalueita.
 					</Typography>
 				</Box>
-
+				{/* Question 10 */}
 				<Box my={10}>
 					{/* div to mark the end of a page for the PDF */}
 					<div className='html2pdf__page-break'></div>
@@ -216,46 +225,31 @@ const Summary = ({ handleFormSubmit }) => {
 				</Box>
 
 				<Divider />
-				{/* Part two of the summary - Page 4: Question 12 (Possible multiple fields in one question) */}
+				{/* Page 4: Question 12 (Possible multiple fields in one question) */}
 				<Box my={10}>
 					<Box mb={3}>
-						<Typography variant='h6' className={classes.heading}>
-							OSA 2. Tehdyt valinnat
+						<Typography variant='h5' className={classes.heading}>
+							Tehdyt valinnat
 						</Typography>
 					</Box>
 					<Box mb={10}>
 						<Typography variant='body1'>
-							Valitsit seuraavat kolme asiaa, joihin haluat
-							panostaa tulevan puolen vuoden aikana osaamisesi
-							ja/tai hyvinvointisi kehittämiseksi.
+							Valitsit seuraavat asiat, joihin haluat panostaa
+							tulevan puolen vuoden aikana osaamisesi ja/tai
+							hyvinvointisi kehittämiseksi.
 						</Typography>
 					</Box>
-					{/* Scroll with text for question 12 */}
-					<GoalsPaper answer={getAnswerByID(4, 12)} />
+					{/* Paper with EntreFox badge including fields in question 12 */}
+					<GoalsPaper answers={getAnswerByID(4, 12)} />
 				</Box>
 
 				<Divider />
-				{/* Part three of the summary */}
-				<Box my={10}>
-					{/* div to mark the end of a page for the PDF */}
-					<div className='html2pdf__page-break'></div>
-					<Box mb={3}>
-						<Typography variant='h6' className={classes.heading}>
-							OSA 3. Askelmerkit tavoitteiden saavuttamiseksi
-						</Typography>
-					</Box>
-					<Typography>
-						Asettamiisi tavoitteisiin pääset näillä askelilla:
-					</Typography>
-				</Box>
 
-				<Divider />
-				{/* Part four of the summary */}
+				{/* No questions - info text with image */}
 				<Box my={10}>
 					<Box mb={3}>
-						<Typography variant='h6' className={classes.heading}>
-							OSA 4. Seuraa tilannettasi ja muuta kurssia
-							tarvittaessa
+						<Typography variant='h5' className={classes.heading}>
+							Seuraa tilannettasi ja muuta kurssia tarvittaessa
 						</Typography>
 					</Box>
 					<Grid
@@ -283,32 +277,39 @@ const Summary = ({ handleFormSubmit }) => {
 					</Grid>
 				</Box>
 
-				{/* Part five of the summary - ONLY IF USER ANSWERED YES TO FIRST QUESTION */}
+				{/* Extra part of the survey - ONLY IF USER ANSWERED YES TO FIRST QUESTION */}
+				{/* Page 2 - Questions 2-4 */}
 				{getAnswerByID(1, 1) === 'Kyllä' ? (
 					<Box my={10}>
 						<Box mb={3}>
 							<Typography
-								variant='h6'
+								variant='h5'
 								className={classes.heading}>
-								OSA 5. Edellinen kehityskeskustelu
+								Edellinen kehityskeskustelu
 							</Typography>
 						</Box>
 						<Typography variant='body1'>
 							{previouslyDoneSurvey} <br />
-							Edellisellä kerralla asetit itsellesi nämä
-							tavoitteet ja askelmerkit:
 						</Typography>
-						<Box className={classes.textBorder} mb={2}>
+						<Box mt={2}>
 							<Typography variant='h6'>
+								{' '}
+								Edellisellä kerralla asetit itsellesi nämä
+								tavoitteet ja askelmerkit
+							</Typography>
+						</Box>
+
+						<Box className={classes.textBorder} mb={2}>
+							<Typography variant='body1'>
 								{getAnswerByID(2, 3)}
 							</Typography>
 						</Box>
 
-						<Typography variant='body1'>
-							Tavoitteesi toteutuivat:
+						<Typography variant='h6'>
+							Tavoitteesi toteutuivat
 						</Typography>
 						<Box>
-							<Typography variant='h6'>
+							<Typography variant='body1'>
 								{getAnswerByID(2, 4)}
 							</Typography>
 						</Box>
@@ -317,12 +318,35 @@ const Summary = ({ handleFormSubmit }) => {
 				<Divider />
 			</div>
 			<Box mt={2}>
-				<ButtonHandler
-					text='Lataa PDF'
-					colors={{ bg: '#cddc39', bgHover: '#c0ca33' }}
-					startIcon={<GetAppRoundedIcon />}
-					handlePagination={downloadPDF}
-				/>
+				<Grid
+					container
+					direction='row'
+					justify='space-between'
+					alignItems='center'>
+					<Grid item>
+						<Box>
+							<ButtonHandler
+								text='Lataa PDF'
+								colors={{ bg: '#cddc39', bgHover: '#c0ca33' }}
+								startIcon={<GetAppRoundedIcon />}
+								handlePagination={downloadPDF}
+							/>
+						</Box>
+					</Grid>
+					<Grid item>
+						<Box>
+							<ButtonHandler
+								href='https://www.entrefox.fi/kehityskeskustelu/'
+								text='Päättä kehityskeskustelu'
+								startIcon={<CheckCircleOutlineRoundedIcon />}
+								colors={{
+									bg: '#ffeb3b',
+									bgHover: '#fbc02d'
+								}}
+							/>
+						</Box>
+					</Grid>
+				</Grid>
 			</Box>
 		</Container>
 	)

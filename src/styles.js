@@ -106,7 +106,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 	stickyNote: {
 		minWidth: '280px',
-		maxWidth: '350px',
+		width: '350px',
 		height: '330px',
 		backgroundColor: '#cddc39',
 		margin: 'auto',
@@ -127,6 +127,9 @@ const useStyles = makeStyles((theme) => ({
 		top: '-15px',
 		backgroundColor: '#ffeb3b',
 		opacity: 0.7
+	},
+	noteText: {
+		wordWrap: 'break-word'
 	},
 	logo: {
 		width: '100%',
@@ -182,7 +185,7 @@ const useStyles = makeStyles((theme) => ({
 		backgroundColor: '#cddc39',
 		borderRadius: '10px',
 		paddingBottom: '20px',
-		margin: 'auto'
+		margin: '100px auto'
 	},
 	badge: {
 		marginTop: '-50px',
@@ -190,6 +193,9 @@ const useStyles = makeStyles((theme) => ({
 	},
 	goalText: {
 		padding: '20px'
+	},
+	partThreeText: {
+		fontSize: '18px'
 	}
 }))
 

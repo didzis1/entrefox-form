@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button'
 //import Box from '@material-ui/core/Box'
 import { withStyles } from '@material-ui/core'
 
-const ButtonHandler = ({ text, handlePagination, colors, startIcon }) => {
+const ButtonHandler = ({ text, handlePagination, colors, startIcon, href }) => {
 	const ColorButton = withStyles(() => ({
 		root: {
 			backgroundColor: colors.bg,
@@ -19,6 +19,18 @@ const ButtonHandler = ({ text, handlePagination, colors, startIcon }) => {
 			}
 		}
 	}))(Button)
+
+	if (href) {
+		return (
+			<ColorButton
+				href={href}
+				type='button'
+				variant='contained'
+				startIcon={startIcon}>
+				{text}
+			</ColorButton>
+		)
+	}
 
 	return (
 		<>
@@ -39,7 +51,8 @@ ButtonHandler.propTypes = {
 	handlePagination: PropTypes.func,
 	questionSets: PropTypes.array,
 	colors: PropTypes.object,
-	startIcon: PropTypes.object
+	startIcon: PropTypes.object,
+	href: PropTypes.string
 }
 
 export default ButtonHandler
