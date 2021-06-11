@@ -7,7 +7,8 @@ import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
 import useStyles from '../../styles'
 
-const Gauge = ({ answer }) => {
+const NumberGauge = ({ answer }) => {
+	console.log(answer)
 	const classes = useStyles()
 	return (
 		<>
@@ -62,8 +63,8 @@ const Gauge = ({ answer }) => {
 	)
 }
 
-Gauge.propTypes = {
+NumberGauge.propTypes = {
 	answer: PropTypes.number
 }
 
-export default Gauge
+export default NumberGauge

@@ -6,8 +6,8 @@ import { getAnswerByID } from '../utils'
 // Summary components
 import ButtonHandler from './ButtonHandler'
 import ChartBars from './summaryComponents/ChartBars'
-import Gauge from './summaryComponents/Gauge'
-//import ResultLine from './summaryComponents/ResultLine'
+import NumberGauge from './summaryComponents/NumberGauge'
+import TextGauge from './summaryComponents/TextGauge'
 import StickyNote from './summaryComponents/StickyNote'
 import GoalsPaper from './summaryComponents/GoalsPaper'
 
@@ -55,6 +55,8 @@ const Summary = ({ handleFormSubmit }) => {
 		previouslyDoneSurvey =
 			'Olet ennen tehnyt kehityskeskustelun, mutta tarkka päivämäärä ei ole tiedossa.'
 	}
+
+	const questionEight = getAnswerByID(3, 8)
 
 	const questionNine = (answer) => {
 		switch (answer) {
@@ -169,7 +171,7 @@ const Summary = ({ handleFormSubmit }) => {
 					</Typography>
 					<Box my={5}>
 						{/* Gauge for question 7 */}
-						<Gauge answer={sliderValue} />
+						<NumberGauge answer={sliderValue} />
 					</Box>
 				</Box>
 
@@ -179,8 +181,7 @@ const Summary = ({ handleFormSubmit }) => {
 						Arviosi mukaan työ, vapaa-aika ja lepo ovat tasapainossa
 						elämässäsi{' '}
 						<i>
-							{getAnswerByID(3, 8).toLowerCase().split(' ')[0]}{' '}
-							tavalla
+							{questionEight.toLowerCase().split(' ')[0]} tavalla
 						</i>
 						. {questionNine(getAnswerByID(3, 9))}
 						Voit syventyä ajankäyttöösi ja tutustua vinkkeihimme{' '}
@@ -192,7 +193,7 @@ const Summary = ({ handleFormSubmit }) => {
 						</a>
 						.
 					</Typography>
-					<Typography variant='h6'>Insert gauge here</Typography>
+					<TextGauge answer={questionEight} />
 				</Box>
 
 				{/* Question 11 */}

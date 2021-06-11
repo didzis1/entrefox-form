@@ -79,8 +79,17 @@ const useStyles = makeStyles((theme) => ({
 		width: 'inherit',
 		height: '100%',
 		backgroundColor: '#cddc39',
-		transformOrigin: 'center top',
-		transition: 'transform 1s ease-out'
+		transformOrigin: 'center top'
+	},
+	gaugeNeedle: {
+		width: '2%',
+		height: '75%',
+		background: '#000',
+		borderRadius: '30%',
+		position: 'absolute',
+		top: '20%',
+		left: '50%',
+		transformOrigin: 'center bottom'
 	},
 	gaugeCover: {
 		width: '75%',
@@ -106,7 +115,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 	stickyNote: {
 		minWidth: '280px',
-		width: '350px',
+		maxWidth: '350px',
 		height: '330px',
 		backgroundColor: '#cddc39',
 		margin: 'auto',

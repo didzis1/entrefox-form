@@ -28,26 +28,37 @@ const GoalsScroll = ({ answers }) => {
 						</Box>
 					</Grid>
 					<Grid item>
-						<Typography variant='h4'>Tavoitteesi</Typography>
+						<Box mx={2} my={1}>
+							<Typography variant='h4'>Tavoitteesi</Typography>
+						</Box>
 					</Grid>
 				</Grid>
 				<Grid item>
 					<Box mx={2} my={1}>
-						<Typography variant='body1' key={answers.ID}>
+						<Typography
+							variant='body1'
+							className={classes.noteText}
+							key={answers.ID}>
 							Tavoite: {answer.values[0].value}
 						</Typography>
 					</Box>
 				</Grid>
 				<Grid item>
 					<Box mx={2} my={1}>
-						<Typography variant='body1' key={answers.ID}>
+						<Typography
+							variant='body1'
+							className={classes.noteText}
+							key={answers.ID}>
 							Tavoite on tärkeä, koska: {answer.values[1].value}
 						</Typography>
 					</Box>
 				</Grid>
 				<Grid item>
 					<Box mx={2} my={1}>
-						<Typography variant='body1' key={answers.ID}>
+						<Typography
+							variant='body1'
+							className={classes.noteText}
+							key={answers.ID}>
 							Askelmerkit tavoitteen saavuttamiseksi:{' '}
 							{answer.values[2].value}
 						</Typography>
