@@ -326,7 +326,7 @@ const Summary = ({ handleFormSubmit }) => {
 					direction='row'
 					justify='space-between'
 					alignItems='center'>
-					<Grid item xs={12}>
+					<Grid item xs={12} sm={6}>
 						<Box>
 							<ButtonHandler
 								text='Lataa PDF'
@@ -336,7 +336,7 @@ const Summary = ({ handleFormSubmit }) => {
 							/>
 						</Box>
 					</Grid>
-					<Grid item xs={3}>
+					<Grid item xs={3} sm={4}>
 						<Box mt={2} mb={1}>
 							<ButtonHandler
 								href='https://www.entrefox.fi/kehityskeskustelu/'
