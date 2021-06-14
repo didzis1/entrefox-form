@@ -298,7 +298,7 @@ const Summary = ({ handleFormSubmit }) => {
 							<Typography variant='h6'>
 								{' '}
 								Edellisellä kerralla asetit itsellesi nämä
-								tavoitteet ja askelmerkit
+								tavoitteet ja askelmerkit:
 							</Typography>
 						</Box>
 
@@ -309,7 +309,7 @@ const Summary = ({ handleFormSubmit }) => {
 						</Box>
 
 						<Typography variant='h6'>
-							Tavoitteesi toteutuivat
+							Tavoitteesi toteutuivat:
 						</Typography>
 						<Box>
 							<Typography variant='body1'>
@@ -326,7 +326,7 @@ const Summary = ({ handleFormSubmit }) => {
 					direction='row'
 					justify='space-between'
 					alignItems='center'>
-					<Grid item>
+					<Grid item xs={12}>
 						<Box>
 							<ButtonHandler
 								text='Lataa PDF'
@@ -336,8 +336,8 @@ const Summary = ({ handleFormSubmit }) => {
 							/>
 						</Box>
 					</Grid>
-					<Grid item>
-						<Box>
+					<Grid item xs={3}>
+						<Box mt={2} mb={1}>
 							<ButtonHandler
 								href='https://www.entrefox.fi/kehityskeskustelu/'
 								text='Päättä kehityskeskustelu'
