@@ -6,6 +6,7 @@ import PropTypes from 'prop-types'
 // Material UI
 
 import ButtonHandler from '../ButtonHandler'
+import InputLabel from '@material-ui/core/InputLabel'
 import TextField from '@material-ui/core/TextField'
 import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
@@ -27,6 +28,11 @@ const MultiText = ({ question }) => {
 							style={{
 								display: field.ID <= fieldCounter ? '' : 'none'
 							}}>
+							<Box mb={1} mt={3}>
+								<InputLabel>
+									{innerField.text && innerField.text}
+								</InputLabel>
+							</Box>
 							<TextField
 								name={question.ID.toString()}
 								value={getValue(field.ID, innerField.ID)}
@@ -45,7 +51,6 @@ const MultiText = ({ question }) => {
 									rows: 4
 								}}
 								inputProps={{ maxLength: 300 }}
-								label={innerField.text && innerField.text}
 								InputLabelProps={{
 									style: {
 										fontSize: '1.1rem'
