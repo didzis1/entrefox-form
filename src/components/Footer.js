@@ -33,7 +33,7 @@ const Footer = () => {
 							/>
 						</Box>
 					</Grid>
-					<Grid item xs={8} sm={5} md={4}>
+					<Grid item xs={9} sm={5} md={4}>
 						<Box my={2} px={2}>
 							<img src={hy_logo} className={classes.gridList} />
 						</Box>
@@ -73,8 +73,8 @@ const Footer = () => {
 					direction='column'
 					alignItems='center'
 					justify='center'>
-					<Grid item xs={6}>
-						<Box>
+					<Grid item xs={8} sm={6}>
+						<Box my={2}>
 							<img
 								src={entrefox_logo}
 								className={classes.gridList}
