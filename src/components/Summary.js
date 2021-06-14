@@ -84,9 +84,13 @@ const Summary = ({ handleFormSubmit }) => {
 		}
 	}
 
-	const downloadPDF = () => {
-		var element = document.getElementById('summary')
-		var opt = {
+	const downloadPDF = async () => {
+		await window.scrollTo({
+			top: 0,
+			left: 0
+		})
+		const element = document.getElementById('summary')
+		const opt = {
 			margin: 0.5,
 			filename: 'myfile.pdf',
 			image: { type: 'jpeg' },
@@ -337,7 +341,7 @@ const Summary = ({ handleFormSubmit }) => {
 							/>
 						</Box>
 					</Grid>
-					<Grid item xs={12} sm={6}>
+					<Grid item xs={12} sm={4}>
 						<Box mt={2} mb={1}>
 							<ButtonHandler
 								href='https://www.entrefox.fi/kehityskeskustelu/'
