@@ -62,7 +62,7 @@ const MultiText = ({ question }) => {
 				justify='center'
 				alignItems='center'>
 				{fieldCounter !== 2 ? (
-					<Box mr={2}>
+					<Box mx={1} my={1}>
 						<ButtonHandler
 							variant='contained'
 							colors={{ bg: '#cddc39', bgHover: '#c0ca33' }}
