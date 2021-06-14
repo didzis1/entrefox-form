@@ -103,6 +103,7 @@ const Summary = ({ handleFormSubmit }) => {
 				colors={{ bg: '#cddc39', bgHover: '#c0ca33' }}
 				handlePagination={handleFormSubmit}
 			/>
+			{/* PDF starts from here */}
 			<div id={'summary'}>
 				{/* Header with EntreFox logo */}
 				<Box my={5}>
@@ -326,7 +327,7 @@ const Summary = ({ handleFormSubmit }) => {
 					direction='row'
 					justify='space-between'
 					alignItems='center'>
-					<Grid item xs={12} sm={6}>
+					<Grid item xs={12} sm={3}>
 						<Box>
 							<ButtonHandler
 								text='Lataa PDF'
@@ -336,7 +337,7 @@ const Summary = ({ handleFormSubmit }) => {
 							/>
 						</Box>
 					</Grid>
-					<Grid item xs={3} sm={4}>
+					<Grid item xs={12} sm={6}>
 						<Box mt={2} mb={1}>
 							<ButtonHandler
 								href='https://www.entrefox.fi/kehityskeskustelu/'
