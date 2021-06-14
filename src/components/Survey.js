@@ -79,7 +79,9 @@ const Survey = ({
 						<Typography variant='caption'>
 							Jokaiseen kysymykseen tulee vastata
 						</Typography>
-					) : null}
+					) : (
+						<Box mt={2.5}></Box>
+					)}
 				</Box>
 				{/* Previous and Next buttons */}
 				<Grid
