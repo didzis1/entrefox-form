@@ -116,7 +116,8 @@ const useStyles = makeStyles((theme) => ({
 	stickyNote: {
 		minWidth: '280px',
 		maxWidth: '350px',
-		height: '330px',
+		minHeight: '330px',
+		maxHeight: 'auto',
 		backgroundColor: '#cddc39',
 		margin: 'auto',
 		transform: 'rotate(3deg)',

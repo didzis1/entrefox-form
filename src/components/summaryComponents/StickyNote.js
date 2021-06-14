@@ -19,10 +19,14 @@ const StickyNote = ({ answer }) => {
 				alignItems='center'
 				className={classes.stickyNote}>
 				<Box className={classes.noteTape}></Box>
-				<Grid item xs={8}>
-					<Typography className={classes.noteText} variant='body1'>
-						{answer}
-					</Typography>
+				<Grid item xs={12}>
+					<Box p={2}>
+						<Typography
+							className={classes.noteText}
+							variant='body1'>
+							{answer}
+						</Typography>
+					</Box>
 				</Grid>
 			</Grid>
 		</Box>
