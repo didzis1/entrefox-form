@@ -32,7 +32,6 @@ const Text = ({ question }) => {
 								multiline: true,
 								rows: 4
 							}}
-							inputProps={{ maxLength: 300 }}
 							InputLabelProps={{
 								style: {
 									fontSize: '1.1rem'
