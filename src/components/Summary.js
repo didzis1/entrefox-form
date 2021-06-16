@@ -228,7 +228,7 @@ const Summary = ({ handleFormSubmit }) => {
 					</Box>
 				</Box>
 				<div className='html2pdf__page-break'></div>
-				<Divider />
+				<Divider data-html2canvas-ignore="true"/>
 				{/* Page 4: Question 12 (Possible multiple fields in one question) */}
 				<Box my={10}>
 					<Box mb={3}>
@@ -247,7 +247,7 @@ const Summary = ({ handleFormSubmit }) => {
 					<GoalsPaper answers={getAnswerByID(4, 12)} />
 				</Box>
 
-				<Divider />
+				<Divider data-html2canvas-ignore="true"/>
 				<div className='html2pdf__page-break'></div>
 				{/* No questions - info text with image */}
 				<Box my={10}>
@@ -319,7 +319,7 @@ const Summary = ({ handleFormSubmit }) => {
 						</Box>
 					</Box>
 				) : null}
-				<Divider />
+				<Divider data-html2canvas-ignore="true"/>
 			</Box>
 			<Box mt={2}>
 				<Grid
