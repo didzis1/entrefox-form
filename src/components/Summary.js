@@ -26,8 +26,6 @@ import entrefox_stocks from '../images/summaryImages/entrefox_stocks.png'
 import entrefox_business from '../images/summaryImages/entrefox_business.png'
 
 import html2pdf from 'html2pdf.js'
-//import html2canvas from 'html2canvas'
-//import jsPDF from 'jspdf'
 
 // Convert date to dd.MM.YYYY format
 const dateToYMD = (date) => {
@@ -90,14 +88,17 @@ const Summary = ({ handleFormSubmit }) => {
 			left: 0
 		})
 		const element = document.getElementById('summary')
+		element.style.padding = '72px'
 		const opt = {
 			margin: 0.5,
 			filename: 'myfile.pdf',
 			image: { type: 'jpeg' },
 			html2canvas: { scale: 2 },
-			jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+			jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
+			pagebreak: { mode: ['avoid-all', 'css', 'legacy', 'whiteline'] }
 		}
-		html2pdf().from(element).set(opt).save()
+		await html2pdf().from(element).set(opt).save()
+		element.style.padding = ''
 	}
 
 	return (
@@ -107,8 +108,7 @@ const Summary = ({ handleFormSubmit }) => {
 				colors={{ bg: '#cddc39', bgHover: '#c0ca33' }}
 				handlePagination={handleFormSubmit}
 			/>
-			{/* PDF starts from here */}
-			<div id={'summary'}>
+			<Box id={'summary'}>
 				{/* Header with EntreFox logo */}
 				<Box my={5}>
 					<Typography
@@ -152,8 +152,6 @@ const Summary = ({ handleFormSubmit }) => {
 					{/* Chart for questions */}
 					<Box mt={3}>
 						<ChartBars answers={formData} />
-						{/* div to mark the end of a page for the PDF */}
-						<div className='html2pdf__page-break'></div>
 					</Box>
 				</Box>
 
@@ -221,8 +219,6 @@ const Summary = ({ handleFormSubmit }) => {
 				</Box>
 				{/* Question 10 */}
 				<Box mb={10}>
-					{/* div to mark the end of a page for the PDF */}
-					<div className='html2pdf__page-break'></div>
 					<Typography variant='body1'>
 						Työhösi liittyvistä tiedoista ja taidoista kerroit
 						seuraavasti:
@@ -324,7 +320,7 @@ const Summary = ({ handleFormSubmit }) => {
 					</Box>
 				) : null}
 				<Divider />
-			</div>
+			</Box>
 			<Box mt={2}>
 				<Grid
 					container
