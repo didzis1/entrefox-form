@@ -15,24 +15,26 @@ const App = () => {
 		useForm()
 	const classes = useStyles()
 
+	// Scroll to top when page is changed
 	useEffect(() => {
 		window.scrollTo({
 			top: 0,
 			left: 0,
-			behavior: 'smooth',
+			behavior: 'smooth'
 		})
 	}, [currentPage])
 
-	const firstAnswer = getAnswerByID(1, 1)
+	const firstAnswer = getAnswerByID(1, 1) // First question's value
+
 	const handleNextPage = () => {
-		// Gets the first question of the first page (Have you done this survey before)
+		// Check if 'Seuraava' needs to skip one page based on first question's answer
 		firstAnswer === 'En' && currentPage === 1
 			? setCurrentPage(currentPage + 2)
 			: setCurrentPage(currentPage + 1)
 	}
 
 	const handlePreviousPage = () => {
-		// Gets the first question of the first page (Have you done this survey before)
+		// Check if 'Edellinen' needs to skip one page based on first question's answer
 		firstAnswer === 'En' && currentPage === 3
 			? setCurrentPage(currentPage - 2)
 			: setCurrentPage(currentPage - 1)

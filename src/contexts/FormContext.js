@@ -14,19 +14,22 @@ export const useForm = () => {
 	return context
 }
 
+// Update FormContext provider
 const FormContextProvider = ({ children }) => {
-	const [formData, setFormData] = useState(initialFormState)
-	const [currentPage, setCurrentPage] = useState(1)
-	const [formSubmitted, setFormSubmitted] = useState(false)
+	const [formData, setFormData] = useState(initialFormState) // Form is controlled and data is saved in state
+	const [currentPage, setCurrentPage] = useState(1) // Keeping track on visible page
+	const [formSubmitted, setFormSubmitted] = useState(false) // Value changes on form submit or 'Palaa takaisin' button
+
 	const handleSubmitChange = (event) => {
 		event.preventDefault()
 		setFormSubmitted(!formSubmitted)
 	}
-	//console.log(formData)
+
+	// Update formData state
 	const handleInputChange = (id, value) => {
 		const newData = {
 			id: parseInt(id),
-			value,
+			value
 		}
 		// Create a new state variable
 		const newState = formData.map((pageToEdit) => {
@@ -36,18 +39,19 @@ const FormContextProvider = ({ children }) => {
 					...pageToEdit,
 					answers: pageToEdit.answers.map((answer) =>
 						answer.id === newData.id ? newData : answer
-					),
+					)
 				}
 			}
 			// Return page data (no values need to be changed here)
 			return {
-				...pageToEdit,
+				...pageToEdit
 			}
 		})
 		// Replace the old state with new one
 		setFormData(newState)
 	}
 
+	// Return all necessary variables and functions to children
 	const value = {
 		formSubmitted,
 		formData,
@@ -55,14 +59,14 @@ const FormContextProvider = ({ children }) => {
 		handleSubmitChange,
 		handleInputChange,
 		setCurrentPage,
-		setFormSubmitted,
+		setFormSubmitted
 	}
 
 	return <FormContext.Provider value={value}>{children}</FormContext.Provider>
 }
 
 FormContextProvider.propTypes = {
-	children: PropTypes.object,
+	children: PropTypes.object
 }
 
 export default FormContextProvider
