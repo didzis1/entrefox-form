@@ -88,9 +88,8 @@ const Summary = ({ handleFormSubmit }) => {
 			left: 0
 		})
 		const element = document.getElementById('summary')
-		element.style.padding = '72px'
+		element.style.padding = '0px 72px 0px 72px'
 		const opt = {
-			margin: 0.5,
 			filename: 'myfile.pdf',
 			image: { type: 'jpeg' },
 			html2canvas: { scale: 2 },
