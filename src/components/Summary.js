@@ -88,6 +88,7 @@ const Summary = ({ handleFormSubmit }) => {
 			left: 0
 		})
 		const element = document.getElementById('summary')
+		element.style.padding = '72px'
 		const opt = {
 			margin: 0.5,
 			filename: 'myfile.pdf',
@@ -96,7 +97,8 @@ const Summary = ({ handleFormSubmit }) => {
 			jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
 			pagebreak: { mode: ['avoid-all', 'css', 'legacy', 'whiteline'] }
 		}
-		html2pdf().from(element).set(opt).save()
+		await html2pdf().from(element).set(opt).save()
+		element.style.padding = ''
 	}
 
 	return (
@@ -106,7 +108,7 @@ const Summary = ({ handleFormSubmit }) => {
 				colors={{ bg: '#cddc39', bgHover: '#c0ca33' }}
 				handlePagination={handleFormSubmit}
 			/>
-			<Box id={'summary'} p={9}>
+			<Box id={'summary'}>
 				{/* Header with EntreFox logo */}
 				<Box my={5}>
 					<Typography
