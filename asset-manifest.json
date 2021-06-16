@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "./static/css/main.6ef7009f.chunk.css",
-    "main.js": "./static/js/main.a7793ca8.chunk.js",
-    "main.js.map": "./static/js/main.a7793ca8.chunk.js.map",
+    "main.js": "./static/js/main.fcc3ba70.chunk.js",
+    "main.js.map": "./static/js/main.fcc3ba70.chunk.js.map",
     "runtime-main.js": "./static/js/runtime-main.38312865.js",
     "runtime-main.js.map": "./static/js/runtime-main.38312865.js.map",
-    "static/js/2.ccf3dc62.chunk.js": "./static/js/2.ccf3dc62.chunk.js",
-    "static/js/2.ccf3dc62.chunk.js.map": "./static/js/2.ccf3dc62.chunk.js.map",
+    "static/js/2.23123ddd.chunk.js": "./static/js/2.23123ddd.chunk.js",
+    "static/js/2.23123ddd.chunk.js.map": "./static/js/2.23123ddd.chunk.js.map",
     "index.html": "./index.html",
     "static/css/main.6ef7009f.chunk.css.map": "./static/css/main.6ef7009f.chunk.css.map",
-    "static/js/2.ccf3dc62.chunk.js.LICENSE.txt": "./static/js/2.ccf3dc62.chunk.js.LICENSE.txt",
+    "static/js/2.23123ddd.chunk.js.LICENSE.txt": "./static/js/2.23123ddd.chunk.js.LICENSE.txt",
     "static/media/entrefox_badge.a2e72b3d.png": "./static/media/entrefox_badge.a2e72b3d.png",
     "static/media/index.css": "./static/media/entrefox_bg.15b07221.png",
     "static/media/entrefox_business.2cd48424.png": "./static/media/entrefox_business.2cd48424.png",
@@ -23,8 +23,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.38312865.js",
-    "static/js/2.ccf3dc62.chunk.js",
+    "static/js/2.23123ddd.chunk.js",
     "static/css/main.6ef7009f.chunk.css",
-    "static/js/main.a7793ca8.chunk.js"
+    "static/js/main.fcc3ba70.chunk.js"
   ]
 }
