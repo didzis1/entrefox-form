@@ -15,4 +15,4 @@ Install necessary dependencies with: `npm install`
 
 To run the project in development mode: `npm start`
 
-Generate the build version of the project: `npm build`
+Generate the build version of the project: `npm run build`
