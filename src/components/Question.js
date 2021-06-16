@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
 
 const Question = ({ questions, page }) => {
+	// Render all questions on page
 	return (
 		<>
 			{questions.map((question) => (

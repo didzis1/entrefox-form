@@ -7,8 +7,9 @@ import Typography from '@material-ui/core/Typography'
 import useStyles from '../../styles'
 
 const TextGauge = ({ answer }) => {
-	// console.log(answer)
+	const classes = useStyles()
 
+	// Fill the gauge and turn the needle based on answer value
 	const gaugeValues = () => {
 		switch (answer) {
 			case 'Heikolla tasolla':
@@ -23,8 +24,6 @@ const TextGauge = ({ answer }) => {
 				return { fill: 0.5, needle: 0.25 }
 		}
 	}
-	console.log(gaugeValues().fill)
-	const classes = useStyles()
 	return (
 		<>
 			<Box textAlign='center' my={2}>

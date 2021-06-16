@@ -8,22 +8,6 @@ import Grid from '@material-ui/core/Grid'
 import useStyles from '../../styles'
 
 const NumberGauge = ({ answer }) => {
-	console.log(answer)
-
-	// const gaugeValues = () => {
-	// 	switch (answer) {
-	// 		case 1:
-	// 			return { fill: 0.1, needle: -0.16 }
-	// 		case 2:
-	// 			return { fill: 0.2, needle: -0.06 }
-	// 		case 3:
-	// 			return { fill: 0.25, needle: 0 }
-	// 		case 4:
-	// 			return { fill: 0.4, needle: 0.15 }
-	// 		case 5:
-	// 			return { fill: 0.5, needle: 0.25 }
-	// 	}
-	// }
 	const classes = useStyles()
 	return (
 		<>

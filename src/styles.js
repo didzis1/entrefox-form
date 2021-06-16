@@ -1,5 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles'
 
+// Custom styles for the whole application or specific components can be added here
+
 const useStyles = makeStyles((theme) => ({
 	survey: {
 		background: '#fff',
@@ -8,6 +10,7 @@ const useStyles = makeStyles((theme) => ({
 		paddingBottom: '25px',
 		boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
 	},
+	// Remove padding on horizontal axis below small viewpoint
 	form: {
 		[theme.breakpoints.down('sm')]: {
 			paddingLeft: '0px',

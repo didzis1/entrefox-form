@@ -4,7 +4,6 @@ import { validatedButton } from '../utils'
 
 // Material UI
 import Button from '@material-ui/core/Button'
-//import Box from '@material-ui/core/Box'
 import { withStyles } from '@material-ui/core'
 
 const ButtonHandler = ({ text, handlePagination, colors, startIcon, href }) => {
@@ -20,6 +19,7 @@ const ButtonHandler = ({ text, handlePagination, colors, startIcon, href }) => {
 		}
 	}))(Button)
 
+	// If the button has a redirect link as props render it with own styles
 	if (href) {
 		return (
 			<ColorButton

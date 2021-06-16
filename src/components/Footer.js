@@ -6,7 +6,7 @@ import Box from '@material-ui/core/Box'
 import Typography from '@material-ui/core/Typography'
 import useStyles from '../styles'
 
-// Import logos
+// Footer logos
 import turkuamk_logo from '../images/footer/turkuamk_logo.png'
 import hy_logo from '../images/footer/hy_logo.png'
 import tyoterveyslaitos_logo from '../images/footer/tyoterveyslaitos_logo.png'
@@ -93,7 +93,5 @@ const Footer = () => {
 		</Box>
 	)
 }
-
-//Footer.propTypes = {}
 
 export default Footer

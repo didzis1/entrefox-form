@@ -4,11 +4,14 @@ import { useForm } from '../contexts/FormContext'
 
 import Question from './Question'
 
+// Material UI
+import Box from '@material-ui/core/Box'
+
 const Parts = ({ questionSets }) => {
 	// Return each part of the questions in their own div
 	const { currentPage } = useForm()
 	return (
-		<div>
+		<Box>
 			{questionSets.map((part) => (
 				<div
 					// Part is hidden if the currentPage is not the same as the part ID
@@ -19,7 +22,7 @@ const Parts = ({ questionSets }) => {
 					<Question questions={part.questions} page={part.ID} />
 				</div>
 			))}
-		</div>
+		</Box>
 	)
 }
 

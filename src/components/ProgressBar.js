@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography'
 import useStyles from '../styles'
 import { withStyles } from '@material-ui/core/styles'
 
-// LinearProgress component is visually upgraded with 'withStyles'
+// LinearProgress component is visually upgraded
 const BorderLinearProgress = withStyles(() => ({
 	root: {
 		height: 15,
@@ -28,6 +28,7 @@ const BorderLinearProgress = withStyles(() => ({
 const ProgressBar = () => {
 	const styles = useStyles()
 	const { currentPage } = useForm()
+	// Maximum amount of pages is five, so one page equals to 20%
 	const progress = currentPage * 20
 
 	return (

@@ -8,7 +8,6 @@ import Box from '@material-ui/core/Box'
 import useStyles from '../../styles'
 
 const StickyNote = ({ answer }) => {
-	// console.log(answer)
 	const classes = useStyles()
 	return (
 		<Box>

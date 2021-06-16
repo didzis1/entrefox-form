@@ -13,6 +13,7 @@ import entrefox_steps from '../../images/summaryImages/entrefox_steps.png'
 
 const GoalsScroll = ({ answers }) => {
 	const classes = useStyles()
+
 	return answers.map((answer, index) => {
 		return (
 			<Grid
@@ -29,7 +30,9 @@ const GoalsScroll = ({ answers }) => {
 					</Grid>
 					<Grid item>
 						<Box mx={2} my={1}>
-							<Typography variant='h4'>{index+1}. Tavoite</Typography>
+							<Typography variant='h4'>
+								{index + 1}. Tavoite
+							</Typography>
 						</Box>
 					</Grid>
 				</Grid>

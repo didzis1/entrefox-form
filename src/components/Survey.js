@@ -22,7 +22,9 @@ const Survey = ({
 }) => {
 	const classes = useStyles()
 
+	// Button handlers
 	const handlePreviousButton = () => {
+		// Remove 'Edellinen' button when viewing first page
 		if (currentPage === 1) {
 			return null
 		} else {
@@ -37,6 +39,7 @@ const Survey = ({
 	}
 
 	const handleNextButton = () => {
+		// Last button to submit the survey with different styling
 		if (questionSets.length === currentPage) {
 			return (
 				<ButtonHandler
@@ -66,6 +69,7 @@ const Survey = ({
 					</Typography>
 				</Box>
 				<Box pt={2} pb={4} px={3} className={classes.form}>
+					{/* Survey form */}
 					<form onSubmit={handleFormSubmit}>
 						<Parts
 							questionSets={questionSets}
@@ -94,6 +98,7 @@ const Survey = ({
 					</Grid>
 					<Grid item>{handleNextButton()}</Grid>
 				</Grid>
+
 				<Box m='auto'>
 					<ProgressBar />
 				</Box>
