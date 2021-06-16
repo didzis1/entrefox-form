@@ -88,7 +88,7 @@ const Summary = ({ handleFormSubmit }) => {
 			left: 0
 		})
 		const element = document.getElementById('summary')
-		element.style.padding = '0px 72px 0px 72px'
+		element.style.padding = '15px 72px 0px 72px'
 		const opt = {
 			filename: 'myfile.pdf',
 			image: { type: 'jpeg' },
@@ -135,6 +135,7 @@ const Summary = ({ handleFormSubmit }) => {
 					</Typography>
 				</Box>
 				<Divider />
+				<div className='html2pdf__page-break'></div>
 				{/* Page 3: Questions ID 5 - 11 */}
 				<Box mt={10} mb={5}>
 					<Typography variant='h5' className={classes.heading}>
@@ -153,7 +154,7 @@ const Summary = ({ handleFormSubmit }) => {
 						<ChartBars answers={formData} />
 					</Box>
 				</Box>
-
+				<div className='html2pdf__page-break'></div>
 				{/* Question 7 */}
 				<Box my={10}>
 					<Typography variant='body1'>
@@ -199,7 +200,7 @@ const Summary = ({ handleFormSubmit }) => {
 						<TextGauge answer={questionEight} />
 					</Box>
 				</Box>
-
+				<div className='html2pdf__page-break'></div>
 				{/* Question 11 */}
 				<Box mt={10} mb={2}>
 					<Typography variant='body1'>
@@ -226,7 +227,7 @@ const Summary = ({ handleFormSubmit }) => {
 						<StickyNote answer={getAnswerByID(3, 10)} />
 					</Box>
 				</Box>
-
+				<div className='html2pdf__page-break'></div>
 				<Divider />
 				{/* Page 4: Question 12 (Possible multiple fields in one question) */}
 				<Box my={10}>
@@ -247,7 +248,7 @@ const Summary = ({ handleFormSubmit }) => {
 				</Box>
 
 				<Divider />
-
+				<div className='html2pdf__page-break'></div>
 				{/* No questions - info text with image */}
 				<Box my={10}>
 					<Box mb={3}>
