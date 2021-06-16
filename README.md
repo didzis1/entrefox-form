@@ -9,21 +9,10 @@ The main project goal is to recreate and redesign a development discussion surve
 
 ## Getting Started
 
-To clone the project:
+To clone the project: `git clone https://github.com/didzis1/entrefox-form.git`
 
-### `git clone https://github.com/didzis1/entrefox-form.git`
+Install necessary dependencies with: `npm install`
 
-Install necessary dependencies with:
+To run the project in development mode: `npm start`
 
-### `npm install`
-
-To run the project in development mode:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-Generate the build version of the project:
-
-### `npm build`
+Generate the build version of the project: `npm build`
