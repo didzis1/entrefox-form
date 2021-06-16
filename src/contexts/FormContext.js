@@ -51,7 +51,7 @@ const FormContextProvider = ({ children }) => {
 		setFormData(newState)
 	}
 
-	// Return all necessary variables and functions to children
+	// Return all necessary variables and functions for children components to use
 	const value = {
 		formSubmitted,
 		formData,

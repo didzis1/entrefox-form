@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react'
-
-import Survey from './components/Survey'
-import Summary from './components/Summary'
 import questionSets from './data/questions.json'
 import { getAnswerByID } from './utils'
 import { useForm } from './contexts/FormContext'
+
+// Components
+import Survey from './components/Survey'
+import Summary from './components/Summary'
 import Footer from './components/Footer'
 
+// Material UI
 import Box from '@material-ui/core/Box'
 import useStyles from './styles'
 
