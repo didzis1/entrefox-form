@@ -63,7 +63,7 @@ const Summary = ({ handleFormSubmit }) => {
 			case 'Teen yleensä töistäni aikataulun, jota pyrin noudattamaan.':
 				return 'Teet töistäsi aikataulun, jota pyrit noudattamaan. '
 			case 'Suunnittelen ja priorisoin säännöllisesti työtehtäväni keskittyen olennaiseen.':
-				return 'Suunnittelet ja priorisoit säännöllisesti työtehtäväsi kesittyen olennaiseen. '
+				return 'Suunnittelet ja priorisoit säännöllisesti työtehtäväsi keskittyen olennaiseen. '
 		}
 	}
 
@@ -228,7 +228,7 @@ const Summary = ({ handleFormSubmit }) => {
 					</Box>
 				</Box>
 				<div className='html2pdf__page-break'></div>
-				<Divider data-html2canvas-ignore="true"/>
+				<Divider data-html2canvas-ignore='true' />
 				{/* Page 4: Question 12 (Possible multiple fields in one question) */}
 				<Box my={10}>
 					<Box mb={3}>
@@ -247,7 +247,7 @@ const Summary = ({ handleFormSubmit }) => {
 					<GoalsPaper answers={getAnswerByID(4, 12)} />
 				</Box>
 
-				<Divider data-html2canvas-ignore="true"/>
+				<Divider data-html2canvas-ignore='true' />
 				<div className='html2pdf__page-break'></div>
 				{/* No questions - info text with image */}
 				<Box my={10}>
@@ -280,7 +280,7 @@ const Summary = ({ handleFormSubmit }) => {
 						</Grid>
 					</Grid>
 				</Box>
-
+				<Divider data-html2canvas-ignore='true' />
 				{/* Extra part of the survey - ONLY IF USER ANSWERED YES TO FIRST QUESTION */}
 				{/* Page 2 - Questions 2-4 */}
 				{getAnswerByID(1, 1) === 'Kyllä' ? (
@@ -319,7 +319,7 @@ const Summary = ({ handleFormSubmit }) => {
 						</Box>
 					</Box>
 				) : null}
-				<Divider data-html2canvas-ignore="true"/>
+				<Divider data-html2canvas-ignore='true' />
 			</Box>
 			<Box mt={2}>
 				<Grid

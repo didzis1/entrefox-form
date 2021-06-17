@@ -259,7 +259,7 @@
 		"ID": 4,
 		"questions": [
 			{
-				"title": "Mieti arvioita, jotka teit äsken koskien omaa osaamista ja hyvinvointiasi. Mihin asiaan aiot panostaa tulevan 6 kk aikana? Valitse max 3 asiaa.",
+				"title": "Mieti arvioita, jotka teit äsken koskien omaa osaamista ja hyvinvointiasi. Mihin asiaan aiot panostaa tulevan 6 kk aikana? Valitse max. 3 asiaa.",
 				"description": "",
 				"fields": [
 					{

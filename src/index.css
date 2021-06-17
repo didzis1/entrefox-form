@@ -1,6 +1,6 @@
 /* ./src/index.css */
-// Use EntreFox's background image and set it fixed
-// Overflow-y for fixing Material UI's weird padding bug when opening date picker
+/* Use EntreFox's background image and set it fixed
+Overflow-y for fixing Material UI's weird padding bug when opening date picker */
 body {
 	background-image: url('./images/background/entrefox_bg.png');
 	background-size: cover;
