@@ -106,7 +106,7 @@ const Summary = ({ handleFormSubmit }) => {
 		}
 
 		// Generate the PDF from the defined options
-		await html2pdf().from(element).set(opt).save()
+		window.open(await html2pdf().from(element).set(opt).output('bloburl'))
 
 		// Change the padding back after PDF has been generated
 		element.style.padding = ''
