@@ -18,7 +18,7 @@ const Parts = ({ questionSets }) => {
 					style={{ display: currentPage === part.ID ? '' : 'none' }}
 					key={part.ID}
 					id={part.ID}>
-					{/*part -> helps defining the page that the question is on*/}
+					{/*page = Allow the question component to see which page it is located on*/}
 					<Question questions={part.questions} page={part.ID} />
 				</div>
 			))}

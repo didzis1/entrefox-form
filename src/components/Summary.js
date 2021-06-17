@@ -83,12 +83,20 @@ const Summary = ({ handleFormSubmit }) => {
 	}
 
 	const downloadPDF = async () => {
+
+		// scrolling up is necessary in order for the PDF to load correctly
 		await window.scrollTo({
 			top: 0,
 			left: 0
 		})
+
+		// Select only the inner Summary area for the PDF
 		const element = document.getElementById('summary')
+
+		// Temporary padding to help with the PDF layout
 		element.style.padding = '15px 72px 0px 72px'
+
+		// Options for the html2pdf rendering
 		const opt = {
 			filename: 'myfile.pdf',
 			image: { type: 'jpeg' },
@@ -96,8 +104,13 @@ const Summary = ({ handleFormSubmit }) => {
 			jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
 			pagebreak: { mode: ['avoid-all', 'css', 'legacy', 'whiteline'] }
 		}
+
+		// Generate the PDF from the defined options
 		await html2pdf().from(element).set(opt).save()
+
+		// Change the padding back after PDF has been generated
 		element.style.padding = ''
+
 	}
 
 	return (
@@ -135,7 +148,10 @@ const Summary = ({ handleFormSubmit }) => {
 					</Typography>
 				</Box>
 				<Divider />
+
+				{/* Manual page-break for the PDF generation */}
 				<div className='html2pdf__page-break'></div>
+
 				{/* Page 3: Questions ID 5 - 11 */}
 				<Box mt={10} mb={5}>
 					<Typography variant='h5' className={classes.heading}>
@@ -154,7 +170,10 @@ const Summary = ({ handleFormSubmit }) => {
 						<ChartBars answers={formData} />
 					</Box>
 				</Box>
+
+				{/* Manual page-break for the PDF generation */}
 				<div className='html2pdf__page-break'></div>
+
 				{/* Question 7 */}
 				<Box my={10}>
 					<Typography variant='body1'>
@@ -200,7 +219,10 @@ const Summary = ({ handleFormSubmit }) => {
 						<TextGauge answer={questionEight} />
 					</Box>
 				</Box>
+
+				{/* Manual page-break for the PDF generation */}
 				<div className='html2pdf__page-break'></div>
+
 				{/* Question 11 */}
 				<Box mt={10} mb={2}>
 					<Typography variant='body1'>
@@ -227,8 +249,13 @@ const Summary = ({ handleFormSubmit }) => {
 						<StickyNote answer={getAnswerByID(3, 10)} />
 					</Box>
 				</Box>
+
+				{/* Manual page-break for the PDF generation */}
 				<div className='html2pdf__page-break'></div>
+
+				{/* Element wont be visible on the PDF */}
 				<Divider data-html2canvas-ignore='true' />
+
 				{/* Page 4: Question 12 (Possible multiple fields in one question) */}
 				<Box my={10}>
 					<Box mb={3}>
@@ -247,8 +274,12 @@ const Summary = ({ handleFormSubmit }) => {
 					<GoalsPaper answers={getAnswerByID(4, 12)} />
 				</Box>
 
+				{/* Element wont be visible on the PDF */}
 				<Divider data-html2canvas-ignore='true' />
+
+				{/* Manual page-break for the PDF generation */}
 				<div className='html2pdf__page-break'></div>
+
 				{/* No questions - info text with image */}
 				<Box my={10}>
 					<Box mb={3}>
@@ -280,7 +311,10 @@ const Summary = ({ handleFormSubmit }) => {
 						</Grid>
 					</Grid>
 				</Box>
+
+				{/* Element wont be visible on the PDF */}
 				<Divider data-html2canvas-ignore='true' />
+
 				{/* Extra part of the survey - ONLY IF USER ANSWERED YES TO FIRST QUESTION */}
 				{/* Page 2 - Questions 2-4 */}
 				{getAnswerByID(1, 1) === 'Kyllä' ? (
@@ -319,7 +353,10 @@ const Summary = ({ handleFormSubmit }) => {
 						</Box>
 					</Box>
 				) : null}
+
+				{/* Element wont be visible on the PDF */}
 				<Divider data-html2canvas-ignore='true' />
+
 			</Box>
 			<Box mt={2}>
 				<Grid

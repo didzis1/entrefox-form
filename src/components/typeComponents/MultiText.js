@@ -1,11 +1,10 @@
 import React from 'react'
 import { useFieldData } from '../../hooks/useFieldData'
 import PropTypes from 'prop-types'
-//import { getAnswerByID } from '../../utils'
-
-// Material UI
 
 import ButtonHandler from '../ButtonHandler'
+
+// Material UI
 import InputLabel from '@material-ui/core/InputLabel'
 import TextField from '@material-ui/core/TextField'
 import Box from '@material-ui/core/Box'
@@ -14,6 +13,8 @@ import AddRoundedIcon from '@material-ui/icons/AddRounded'
 import RemoveRoundedIcon from '@material-ui/icons/RemoveRounded'
 
 const MultiText = ({ question }) => {
+
+	// Custom hook (hooks/useFieldData.js) to help with the MultiText component data saving
 	const { fieldCounter, addField, removeField, getValue, handleChange } =
 		useFieldData(question)
 

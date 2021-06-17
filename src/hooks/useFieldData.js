@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useForm } from '../contexts/FormContext'
 
-const loadFieldValue = (formData, question, setFieldCounter) => {
+const initalFieldValue = (formData, question, setFieldCounter) => {
 	let data = ''
 	formData.forEach((formPage) => {
 		const found = formPage.answers.find(
@@ -22,10 +22,10 @@ export const useFieldData = (question) => {
 	const { handleInputChange, formData } = useForm()
 	const [fieldCounter, setFieldCounter] = useState(0)
 	const [fieldData, setFieldData] = useState(() =>
-		loadFieldValue(formData, question, setFieldCounter)
+		initalFieldValue(formData, question, setFieldCounter)
 	)
 
-	// Update local state to useForm after small delay to avoid lag
+	// Update local state to useForm
 	useEffect(() => {
 		const timeout = setTimeout(() => {
 			handleInputChange(question.ID, validatedDispatch())
@@ -63,6 +63,7 @@ export const useFieldData = (question) => {
 		})
 	}
 
+	// Function to add/remove values to/from useForm
 	const handleChange = (fieldID, innerFieldID, value) => {
 		setFieldData(() => {
 			if (fieldData.find((field) => field.ID === fieldID)) {
@@ -113,6 +114,7 @@ export const useFieldData = (question) => {
 		})
 	}
 
+	// Get value for specific text field
 	const getValue = (fieldID, innerFieldID) => {
 		const fieldState = fieldData.find((field) => field.ID === fieldID)
 
@@ -132,7 +134,7 @@ export const useFieldData = (question) => {
 		setFieldCounter(fieldCounter + 1)
 	}
 
-	// remove the newest text fields from page
+	// Remove the newest text fields from page
 	const removeField = () => {
 		setFieldCounter(fieldCounter - 1)
 	}
