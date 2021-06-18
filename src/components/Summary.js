@@ -101,11 +101,10 @@ const Summary = ({ handleFormSubmit }) => {
 		element.style.backgroundImage = `url(${entrefox_pdf_bg})`
 		element.style.backgroundSize = '100% 1055px'
 		element.style.backgroundRepeat = 'repeat-y'
-		element.style.margin = '0px'
 		// element.style.backgroundPosition = 'center'
 		// element.style.backgroundAttachment = 'fixed'
 		// Temporary padding to help with the PDF layout
-		element.style.padding = '15px 72px 0px 72px'
+		element.style.padding = '15px 150px 0px 150px'
 
 		// Options for the html2pdf rendering
 		const opt = {
