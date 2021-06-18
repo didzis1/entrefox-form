@@ -105,7 +105,7 @@ const Summary = ({ handleFormSubmit }) => {
 		// element.style.backgroundPosition = 'center'
 		// element.style.backgroundAttachment = 'fixed'
 		// Temporary padding to help with the PDF layout
-		element.style.padding = '15px 150px 0px 150px'
+		element.style.padding = '15px 100px 0px 100px'
 
 		// Options for the html2pdf rendering
 		const opt = {
