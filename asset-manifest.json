@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "./static/css/main.f097c68e.chunk.css",
-    "main.js": "./static/js/main.33c3dd09.chunk.js",
-    "main.js.map": "./static/js/main.33c3dd09.chunk.js.map",
+    "main.js": "./static/js/main.1dde2898.chunk.js",
+    "main.js.map": "./static/js/main.1dde2898.chunk.js.map",
     "runtime-main.js": "./static/js/runtime-main.38312865.js",
     "runtime-main.js.map": "./static/js/runtime-main.38312865.js.map",
     "static/js/2.27832dc4.chunk.js": "./static/js/2.27832dc4.chunk.js",
@@ -18,6 +18,7 @@
     "static/media/entrefox_stocks.838df8d3.png": "./static/media/entrefox_stocks.838df8d3.png",
     "static/media/esr_logo.22dd5ddd.png": "./static/media/esr_logo.22dd5ddd.png",
     "static/media/hy_logo.9d778c1c.png": "./static/media/hy_logo.9d778c1c.png",
+    "static/media/pdf_background2.44a34b79.png": "./static/media/pdf_background2.44a34b79.png",
     "static/media/turkuamk_logo.f11730ae.png": "./static/media/turkuamk_logo.f11730ae.png",
     "static/media/vipuvoimaa_logo.b33e2ae2.png": "./static/media/vipuvoimaa_logo.b33e2ae2.png"
   },
@@ -25,6 +26,6 @@
     "static/js/runtime-main.38312865.js",
     "static/js/2.27832dc4.chunk.js",
     "static/css/main.f097c68e.chunk.css",
-    "static/js/main.33c3dd09.chunk.js"
+    "static/js/main.1dde2898.chunk.js"
   ]
 }
