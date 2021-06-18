@@ -95,12 +95,13 @@ const Summary = ({ handleFormSubmit }) => {
 		})
 
 		// Select only the inner Summary area for the PDF
-		const element = document.getElementById('summary')
-		const lastPage = document.getElementById('last-pdf-page')
+		const element = document.getElementById('summary').cloneNode(true)
+		const lastPage = document.getElementById('last-pdf-page').cloneNode(true)
 		lastPage.style.height = '972px'
 		element.style.backgroundImage = `url(${entrefox_pdf_bg})`
-		element.style.backgroundSize = '100% 1055px'
+		element.style.backgroundSize = '100% 279.4mm'
 		element.style.backgroundRepeat = 'repeat-y'
+		element.style.overflow = 'hidden'
 		// element.style.backgroundPosition = 'center'
 		// element.style.backgroundAttachment = 'fixed'
 		// Temporary padding to help with the PDF layout
@@ -108,10 +109,16 @@ const Summary = ({ handleFormSubmit }) => {
 
 		// Options for the html2pdf rendering
 		const opt = {
-			filename: 'myfile.pdf',
+			filename: 'entrefox_summary.pdf',
 			image: { type: 'jpeg' },
-			html2canvas: { scale: 2 },
-			jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
+			html2canvas: {
+				scale: 2,
+				scrollX: -window.scrollX,
+        		scrollY: -window.scrollY,
+        		windowWidth: document.documentElement.offsetWidth,
+        		windowHeight: document.documentElement.offsetHeight
+			},
+			jsPDF: { unit: 'mm', format: 'letter', orientation: 'portrait' },
 			pagebreak: { mode: ['avoid-all', 'css', 'legacy', 'whiteline'] }
 		}
 
