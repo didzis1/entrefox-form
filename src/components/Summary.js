@@ -95,8 +95,10 @@ const Summary = ({ handleFormSubmit }) => {
 		})
 
 		// Select only the inner Summary area for the PDF
-		const element = document.getElementById('summary')
-		const lastPage = document.getElementById('last-pdf-page')
+		const element = document.getElementById('summary').cloneNode(true)
+		const lastPage = document
+			.getElementById('last-pdf-page')
+			.cloneNode(true)
 		lastPage.style.height = '972px'
 		element.style.backgroundImage = `url(${entrefox_pdf_bg})`
 		element.style.backgroundSize = '100% 1055px'
