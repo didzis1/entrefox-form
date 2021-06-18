@@ -83,10 +83,6 @@ const Summary = ({ handleFormSubmit }) => {
 		}
 	}
 
-	// const effas = document.getElementById('summary')
-	// effas.style.backgroundImage = `url(${entrefox_pdf_bg})`
-	// effas.style.backgroundSize = '100% 1055px'
-	// effas.style.backgroundRepeat = 'repeat-y'
 	const downloadPDF = async () => {
 		// scrolling up is necessary in order for the PDF to load correctly
 		await window.scrollTo({
@@ -94,17 +90,16 @@ const Summary = ({ handleFormSubmit }) => {
 			left: 0
 		})
 
-		// Select only the inner Summary area for the PDF
+		// Select and clone elements that are to be edited for the PDF
 		const element = document.getElementById('summary').cloneNode(true)
 		const lastPage = document.getElementById('last-pdf-page').cloneNode(true)
+
+		// Style settings for cloned elements
+		// PDF page size: [215.9mm x 279.4mm]
 		lastPage.style.height = '972px'
 		element.style.backgroundImage = `url(${entrefox_pdf_bg})`
 		element.style.backgroundSize = '100% 279.4mm'
 		element.style.backgroundRepeat = 'repeat-y'
-		element.style.overflow = 'hidden'
-		// element.style.backgroundPosition = 'center'
-		// element.style.backgroundAttachment = 'fixed'
-		// Temporary padding to help with the PDF layout
 		element.style.padding = '15px 100px 0px 100px'
 
 		// Options for the html2pdf rendering
