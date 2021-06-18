@@ -24,6 +24,7 @@ import CheckCircleOutlineRoundedIcon from '@material-ui/icons/CheckCircleOutline
 // Images
 import entrefox_stocks from '../images/summaryImages/entrefox_stocks.png'
 import entrefox_business from '../images/summaryImages/entrefox_business.png'
+import entrefox_pdf_bg from '../images/background/pdf_background.png'
 
 import html2pdf from 'html2pdf.js'
 
@@ -83,25 +84,36 @@ const Summary = ({ handleFormSubmit }) => {
 	}
 
 	const downloadPDF = async () => {
-
 		// scrolling up is necessary in order for the PDF to load correctly
 		await window.scrollTo({
 			top: 0,
 			left: 0
 		})
 
-		// Select only the inner Summary area for the PDF
-		const element = document.getElementById('summary')
+		// Select and clone elements that are to be edited for the PDF
+		const element = document.getElementById('summary').cloneNode(true)
+		const lastPage = document.getElementById('last-pdf-page').cloneNode(true)
 
-		// Temporary padding to help with the PDF layout
-		element.style.padding = '15px 72px 0px 72px'
+		// Style settings for cloned elements
+		// PDF page size: [215.9mm x 279.4mm]
+		lastPage.style.height = '972px'
+		element.style.backgroundImage = `url(${entrefox_pdf_bg})`
+		element.style.backgroundSize = '100% 279.4mm'
+		element.style.backgroundRepeat = 'repeat-y'
+		element.style.padding = '15px 100px 0px 100px'
 
 		// Options for the html2pdf rendering
 		const opt = {
-			filename: 'myfile.pdf',
+			filename: 'entrefox_summary.pdf',
 			image: { type: 'jpeg' },
-			html2canvas: { scale: 2 },
-			jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
+			html2canvas: {
+				scale: 2,
+				scrollX: -window.scrollX,
+				scrollY: -window.scrollY,
+				windowWidth: document.documentElement.offsetWidth,
+				windowHeight: document.documentElement.offsetHeight
+			},
+			jsPDF: { unit: 'mm', format: 'letter', orientation: 'portrait' },
 			pagebreak: { mode: ['avoid-all', 'css', 'legacy', 'whiteline'] }
 		}
 
@@ -109,8 +121,10 @@ const Summary = ({ handleFormSubmit }) => {
 		window.open(await html2pdf().from(element).set(opt).output('bloburl'))
 
 		// Change the padding back after PDF has been generated
+		lastPage.style.height = 'auto'
 		element.style.padding = ''
-
+		element.style.backgroundImage = ''
+		element.style.backgroundSize = ''
 	}
 
 	return (
@@ -120,7 +134,7 @@ const Summary = ({ handleFormSubmit }) => {
 				colors={{ bg: '#cddc39', bgHover: '#c0ca33' }}
 				handlePagination={handleFormSubmit}
 			/>
-			<Box id={'summary'}>
+			<Box id='summary'>
 				{/* Header with EntreFox logo */}
 				<Box my={5}>
 					<Typography
@@ -279,84 +293,86 @@ const Summary = ({ handleFormSubmit }) => {
 
 				{/* Manual page-break for the PDF generation */}
 				<div className='html2pdf__page-break'></div>
-
-				{/* No questions - info text with image */}
-				<Box my={10}>
-					<Box mb={3}>
-						<Typography variant='h5' className={classes.heading}>
-							Seuraa tilannettasi ja muuta kurssia tarvittaessa
-						</Typography>
-					</Box>
-					<Grid
-						container
-						direction='row'
-						justify='space-around'
-						alignItems='flex-start'>
-						<Grid item xs={8} md={10}>
-							<Typography variant='body1'>
-								Seuraa kehittymistäsi, mutta muista kuunnella
-								itseäsi matkan varrella. Onko tavoitteet
-								edelleen oikeat, vai tarvitseeko kurssia
-								muuttaa?
-							</Typography>
-						</Grid>
-						<Grid item xs={4} md={2}>
-							<Box align='center'>
-								<img
-									className={classes.summaryImage}
-									src={entrefox_stocks}
-									alt='Kuva kurssin seurannasta'
-								/>
-							</Box>
-						</Grid>
-					</Grid>
-				</Box>
-
-				{/* Element wont be visible on the PDF */}
-				<Divider data-html2canvas-ignore='true' />
-
-				{/* Extra part of the survey - ONLY IF USER ANSWERED YES TO FIRST QUESTION */}
-				{/* Page 2 - Questions 2-4 */}
-				{getAnswerByID(1, 1) === 'Kyllä' ? (
+				<Box id='last-pdf-page'>
+					{/* No questions - info text with image */}
 					<Box my={10}>
 						<Box mb={3}>
 							<Typography
 								variant='h5'
 								className={classes.heading}>
-								Edellinen kehityskeskustelu
+								Seuraa tilannettasi ja muuta kurssia
+								tarvittaessa
 							</Typography>
 						</Box>
-						<Typography variant='body1'>
-							{previouslyDoneSurvey} <br />
-						</Typography>
-						<Box mt={2}>
-							<Typography variant='h6'>
-								{' '}
-								Edellisellä kerralla asetit itsellesi nämä
-								tavoitteet ja askelmerkit:
-							</Typography>
-						</Box>
-
-						<Box className={classes.textBorder} mb={2}>
-							<Typography variant='body1'>
-								{getAnswerByID(2, 3)}
-							</Typography>
-						</Box>
-
-						<Typography variant='h6'>
-							Tavoitteesi toteutuivat:
-						</Typography>
-						<Box>
-							<Typography variant='body1'>
-								{getAnswerByID(2, 4)}
-							</Typography>
-						</Box>
+						<Grid
+							container
+							direction='row'
+							justify='space-around'
+							alignItems='flex-start'>
+							<Grid item xs={8} md={10}>
+								<Typography variant='body1'>
+									Seuraa kehittymistäsi, mutta muista
+									kuunnella itseäsi matkan varrella. Onko
+									tavoitteet edelleen oikeat, vai tarvitseeko
+									kurssia muuttaa?
+								</Typography>
+							</Grid>
+							<Grid item xs={4} md={2}>
+								<Box align='center'>
+									<img
+										className={classes.summaryImage}
+										src={entrefox_stocks}
+										alt='Kuva kurssin seurannasta'
+									/>
+								</Box>
+							</Grid>
+						</Grid>
 					</Box>
-				) : null}
 
+					{/* Element wont be visible on the PDF */}
+					<Divider data-html2canvas-ignore='true' />
+
+					{/* Extra part of the survey - ONLY IF USER ANSWERED YES TO FIRST QUESTION */}
+					{/* Page 2 - Questions 2-4 */}
+					{getAnswerByID(1, 1) === 'Kyllä' ? (
+						<Box my={10}>
+							<Box mb={3}>
+								<Typography
+									variant='h5'
+									className={classes.heading}>
+									Edellinen kehityskeskustelu
+								</Typography>
+							</Box>
+							<Typography variant='body1'>
+								{previouslyDoneSurvey} <br />
+							</Typography>
+							<Box mt={2}>
+								<Typography variant='h6'>
+									{' '}
+									Edellisellä kerralla asetit itsellesi nämä
+									tavoitteet ja askelmerkit:
+								</Typography>
+							</Box>
+
+							<Box className={classes.textBorder} mb={2}>
+								<Typography variant='body1'>
+									{getAnswerByID(2, 3)}
+								</Typography>
+							</Box>
+
+							<Typography variant='h6'>
+								Tavoitteesi toteutuivat:
+							</Typography>
+							<Box>
+								<Typography variant='body1'>
+									{getAnswerByID(2, 4)}
+								</Typography>
+							</Box>
+						</Box>
+					) : null}
+				</Box>
 				{/* Element wont be visible on the PDF */}
 				<Divider data-html2canvas-ignore='true' />
-
 			</Box>
 			<Box mt={2}>
 				<Grid
@@ -378,7 +394,7 @@ const Summary = ({ handleFormSubmit }) => {
 						<Box mt={2} mb={1}>
 							<ButtonHandler
 								href='https://www.entrefox.fi/kehityskeskustelu/'
-								text='Päättä kehityskeskustelu'
+								text='Päätä kehityskeskustelu'
 								startIcon={<CheckCircleOutlineRoundedIcon />}
 								colors={{
 									bg: '#ffeb3b',
