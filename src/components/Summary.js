@@ -24,6 +24,7 @@ import CheckCircleOutlineRoundedIcon from '@material-ui/icons/CheckCircleOutline
 // Images
 import entrefox_stocks from '../images/summaryImages/entrefox_stocks.png'
 import entrefox_business from '../images/summaryImages/entrefox_business.png'
+import entrefox_pdf_bg from '../images/background/pdf_background.png'
 
 import html2pdf from 'html2pdf.js'
 
@@ -83,7 +84,6 @@ const Summary = ({ handleFormSubmit }) => {
 	}
 
 	const downloadPDF = async () => {
-
 		// scrolling up is necessary in order for the PDF to load correctly
 		await window.scrollTo({
 			top: 0,
@@ -92,7 +92,10 @@ const Summary = ({ handleFormSubmit }) => {
 
 		// Select only the inner Summary area for the PDF
 		const element = document.getElementById('summary')
-
+		element.style.backgroundImage = `url(${entrefox_pdf_bg})`
+		element.style.backgroundSize = '800px 1050px'
+		// element.style.backgroundPosition = 'center'
+		// element.style.backgroundAttachment = 'fixed'
 		// Temporary padding to help with the PDF layout
 		element.style.padding = '15px 72px 0px 72px'
 
@@ -110,7 +113,8 @@ const Summary = ({ handleFormSubmit }) => {
 
 		// Change the padding back after PDF has been generated
 		element.style.padding = ''
-
+		element.style.backgroundImage = ''
+		element.style.backgroundSize = ''
 	}
 
 	return (
@@ -356,7 +360,6 @@ const Summary = ({ handleFormSubmit }) => {
 
 				{/* Element wont be visible on the PDF */}
 				<Divider data-html2canvas-ignore='true' />
-
 			</Box>
 			<Box mt={2}>
 				<Grid
@@ -378,7 +381,7 @@ const Summary = ({ handleFormSubmit }) => {
 						<Box mt={2} mb={1}>
 							<ButtonHandler
 								href='https://www.entrefox.fi/kehityskeskustelu/'
-								text='Päättä kehityskeskustelu'
+								text='Päätä kehityskeskustelu'
 								startIcon={<CheckCircleOutlineRoundedIcon />}
 								colors={{
 									bg: '#ffeb3b',
