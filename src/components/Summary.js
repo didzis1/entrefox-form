@@ -24,7 +24,7 @@ import CheckCircleOutlineRoundedIcon from '@material-ui/icons/CheckCircleOutline
 // Images
 import entrefox_stocks from '../images/summaryImages/entrefox_stocks.png'
 import entrefox_business from '../images/summaryImages/entrefox_business.png'
-import entrefox_pdf_bg from '../images/background/pdf_background.png'
+import entrefox_pdf_bg from '../images/background/pdf_background2.png'
 
 import html2pdf from 'html2pdf.js'
 
@@ -94,6 +94,7 @@ const Summary = ({ handleFormSubmit }) => {
 		const element = document.getElementById('summary')
 		element.style.backgroundImage = `url(${entrefox_pdf_bg})`
 		element.style.backgroundSize = '800px 1050px'
+		element.style.backgroundRepeat = 'repeat-y'
 		// element.style.backgroundPosition = 'center'
 		// element.style.backgroundAttachment = 'fixed'
 		// Temporary padding to help with the PDF layout
