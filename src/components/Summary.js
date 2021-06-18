@@ -24,7 +24,7 @@ import CheckCircleOutlineRoundedIcon from '@material-ui/icons/CheckCircleOutline
 // Images
 import entrefox_stocks from '../images/summaryImages/entrefox_stocks.png'
 import entrefox_business from '../images/summaryImages/entrefox_business.png'
-import entrefox_pdf_bg from '../images/background/pdf_background2.png'
+import entrefox_pdf_bg from '../images/background/pdf_background.png'
 
 import html2pdf from 'html2pdf.js'
 
@@ -96,7 +96,9 @@ const Summary = ({ handleFormSubmit }) => {
 
 		// Select only the inner Summary area for the PDF
 		const element = document.getElementById('summary').cloneNode(true)
-		const lastPage = document.getElementById('last-pdf-page').cloneNode(true)
+		const lastPage = document
+			.getElementById('last-pdf-page')
+			.cloneNode(true)
 		lastPage.style.height = '972px'
 		element.style.backgroundImage = `url(${entrefox_pdf_bg})`
 		element.style.backgroundSize = '100% 279.4mm'
@@ -114,9 +116,9 @@ const Summary = ({ handleFormSubmit }) => {
 			html2canvas: {
 				scale: 2,
 				scrollX: -window.scrollX,
-        		scrollY: -window.scrollY,
-        		windowWidth: document.documentElement.offsetWidth,
-        		windowHeight: document.documentElement.offsetHeight
+				scrollY: -window.scrollY,
+				windowWidth: document.documentElement.offsetWidth,
+				windowHeight: document.documentElement.offsetHeight
 			},
 			jsPDF: { unit: 'mm', format: 'letter', orientation: 'portrait' },
 			pagebreak: { mode: ['avoid-all', 'css', 'legacy', 'whiteline'] }
