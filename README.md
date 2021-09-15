@@ -16,3 +16,7 @@ Install necessary dependencies with: `npm install`
 To run the project in development mode: `npm start`
 
 Generate the build version of the project: `npm run build`
+
+## Other EntreFox forms
+- [Time Management Form](https://github.com/didzis1/entrefox-time-mngmt-form)
+- [Health Condition Form](https://github.com/didzis1/entrefox-health-cond-form)
